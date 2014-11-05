@@ -8,7 +8,7 @@ namespace Small_World
     public class GameBoard
     {
 
-        public TilesFactory tilesFactory
+        public TileFactory tilesFactory
         {
             get
             {
