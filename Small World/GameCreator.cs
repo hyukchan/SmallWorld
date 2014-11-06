@@ -28,4 +28,23 @@ namespace Small_World
             throw new System.NotImplementedException();
         }
     }
+
+    public class GameCreator
+    {
+        public GameBoardCreator GameBoardCreator
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
+        public void build()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Small_World
 {
-    public class TilesFactory
+    public class TileFactory
     {
         public IEnumerable<Tile> Tiles
         {
