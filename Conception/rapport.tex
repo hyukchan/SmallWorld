@@ -70,8 +70,68 @@ Au début du jeu, chaque joueur choisit son peuple. Chaque peuple débute la par
 Lorsqu’un joueur peut jouer (c.-à-d. une fois par tour), il peut déplacer toutes ses unités suivant leur nombre de points de déplacements (un déplacement sur une case coûte un point de déplacement). Il est possible pour chaque unité de passer son tour (généralement par le biais de la touche espace). Une unité combattante peut engager un combat s’il lui reste au moins un point de mouvement. Lorsqu’un joueur a fini son tour, il clique sur le bouton correspondant ("Fin tour"). C’est alors au joueur suivant de commencer son tour. La partie se termine lorsque le nombre de tours prédéfini en début de partie à été effectué, ou lorsqu’il ne reste qu’un seul joueur sur le plateau.
 
 \section{Analyse}
-\section{Fonctionnalités globales}
-Après avoir lancé le jeu
+	
+Après avoir lancé le jeu, l'utilisateur a la possibilité de créer une nouvelle partie, ou bien d'en charger une existante.
+	
+	\subsection{Lancement d'une partie}
+La Figure \ref{fig:cas_creation} représente la création d'une partie. Le joueur A choisit son nom de joueur puis son peuple. Le joueur B fait de même, puis définit la taille de la carte. Celui-ci termine en lançant la partie.
 
+\begin{figure}[ht]
+\centering
+	\includegraphics[width=1\textwidth]{../Schemas/CU_Creation.png}
+		\caption{Diagramme de cas d'utilisation de création du jeu}
+		\label{fig:cas_creation}
+\end{figure}
+
+
+	\subsection{Tour de jeu}
+Nous avons représenté un tour de jeu avec la Figure~\ref{fig:tour}. Le joueur peut déplacer chaque unité selon son nombre de points de déplacement, et le coût de celui-ci (par défaut bouger d'une case coûte un point). En cas de rencontre d'une unité adverse, un combat a lieu. Il peut également passer le tour de l'unité, ou terminer totalement son tour. L'annulation d'un déplcement est prévue, ainsi que la sauvegarde de la partie.
+
+\begin{figure}[ht]
+\centering
+	\includegraphics[width=1\textwidth]{../Schemas/CU_Tour.png}
+		\caption{Diagramme de cas d'utilisation d'un tour de jeu}
+		\label{fig:tour}
+\end{figure}
+
+	\newpage\subsection{Combat}
+ A la rencontre d'unités adverses, le joueur peut décider de combattre à l'aide de ses unités. Le déroulement d'un combat est montré à l'aide de la Figure~\ref{fig:interaction_combat}.
+\begin{figure}[ht]
+\centering
+	\includegraphics[width=1\textwidth, height=0.4\textheight]{../Schemas/Interaction_Combat.png}
+		\caption{Diagramme d'interaction représentant un combat}
+		\label{fig:interaction_combat}
+\end{figure}
+
+Les calculs des combats prennent en compte les points de vie restants de chaque unité en combat, pour déterminer des probabilités de remporter le combat. Une attaque est composée de 3 au maximum des points de vie des unités en combat + 2. Chaque combat fait perdre un point de vie à l'unité perdante, jusqu'à ce que le nombre de combats soit atteint ou qu'une unité soit tuée.
+
+\newpage\subsection{Unités}
+Le diagramme d'état-transitions, Figure\ref{fig:machine_unite}, montre le cycle de vie d'une unité. Une unité peut simplement être vivante ou non.
+A sa création, elle possède cinq points de vie.
+Au début d'un tour, l'unité possède un point de déplacement. Elle a alors la possibilité de se déplacer. Si elle rencontre une unité ennemie, elle combat et en ressort soit vainqueure (ou match nul), soit perdante. Dans ce dernier cas l'unité meurt et atteint son état final.
+
+\begin{figure}[ht]
+\centering
+	\includegraphics[width=0.5\textwidth, height=0.4\textheight]{../Schemas/machine_etat_unite.png}
+		\caption{Machine à état pour une unité}
+		\label{fig:machine_unite}
+\end{figure}
+
+\newpage\section{Modélisation et diagrammes de classe}
+Nous allons dans cette section expliquer nos utilisations des différents patrons de conception.
+	
+	\subsection{Fabrique}
+
+	\subsection{Monteur}
+	
+	\subsection{Stratégie}
+	
+	\subsection{Poids-mouche}
+	
+	\subsection{Diagramme de classes global}
+	
+	
+\section{Conclusion}
+\newpage
+\listoffigures
 \end{document}
-
