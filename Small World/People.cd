@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Factory">
+    <Position X="1.177" Y="1.271" Height="0.344" Width="0.7" />
+  </Comment>
   <Class Name="Small_World.Dwarf">
     <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>

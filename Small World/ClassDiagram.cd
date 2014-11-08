@@ -6,6 +6,9 @@
   <Comment CommentText="Flyweight&#xD;&#xA;">
     <Position X="8.031" Y="6.452" Height="0.343" Width="0.904" />
   </Comment>
+  <Comment CommentText="Factory">
+    <Position X="1.333" Y="5.573" Height="0.344" Width="0.7" />
+  </Comment>
   <Class Name="Small_World.Dwarf">
     <Position X="0.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Comment CommentText="Flyweight GameBoard&#xD;&#xA;">
-    <Position X="1.166" Y="0.847" Height="0.604" Width="1.102" />
+    <Position X="1.666" Y="1.274" Height="0.604" Width="1.102" />
   </Comment>
-  <Class Name="Small_World.TilesFactory">
+  <Class Name="Small_World.TileFactory">
     <Position X="3.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAA=</HashCode>
