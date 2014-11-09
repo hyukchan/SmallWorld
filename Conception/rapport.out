@@ -1,0 +1,18 @@
+\BOOKMARK [1][-]{section.1}{Principes et But du jeu}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{R\350gles du jeu}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{Peuples}{subsection.1.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.2}{Cartes}{subsection.1.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.1.3}{D\351roulement d'une partie}{subsection.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.2}{Tours de jeu}{section.1}% 6
+\BOOKMARK [1][-]{section.2}{Analyse}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{Lancement d'une partie}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Tour de jeu}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Combat}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.4}{Unit\351s}{section.2}% 11
+\BOOKMARK [1][-]{section.3}{Mod\351lisation et diagrammes de classe}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Fabrique}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.2}{Monteur}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.3}{Strat\351gie}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.4}{Poids-mouche}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.5}{Diagramme de classes global}{section.3}% 17
+\BOOKMARK [1][-]{section.4}{Conclusion}{}% 18
