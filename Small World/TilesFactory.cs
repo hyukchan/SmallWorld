@@ -7,7 +7,12 @@ namespace Small_World
 {
     public class TileFactory
     {
-        public IEnumerable<Tile> Tiles
+        public TileFactory()
+        {
+            throw new System.NotImplementedException();
+        }
+    
+        public Desert Desert
         {
             get
             {
@@ -17,8 +22,61 @@ namespace Small_World
             {
             }
         }
-    
-        public void getTile(int key)
+
+        public Mountain Mountain
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public Plain Plain
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public Forest Forest
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public Tile GetTile()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Desert GetDesert()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Mountain GetMountain()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Plain GetPlain()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Forest GetForest()
         {
             throw new System.NotImplementedException();
         }

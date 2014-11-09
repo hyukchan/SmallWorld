@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Player
+    public class Game
     {
-        public Player()
+        public Game()
         {
             throw new System.NotImplementedException();
         }
     
-        public People People
+        public GameBoard GameBoard
         {
             get
             {
@@ -23,7 +23,7 @@ namespace Small_World
             }
         }
 
-        public Unit Units
+        public Player Player
         {
             get
             {
@@ -32,16 +32,6 @@ namespace Small_World
             set
             {
             }
-        }
-    
-        public void GamePoints()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CreatePlayer()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

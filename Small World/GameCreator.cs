@@ -5,33 +5,9 @@ using System.Text;
 
 namespace Small_World
 {
-    public class GameBoardCreator
-    {
-        public GameBoardBuilder GameBoardBuilder
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
-        public void BuildGameBoard()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void FillGameBoard()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
     public class GameCreator
     {
-        public GameBoardCreator GameBoardCreator
+        public GameBuilder GameBuilder
         {
             get
             {
@@ -41,8 +17,8 @@ namespace Small_World
             {
             }
         }
-    
-        public void build()
+
+        public void CreateGame()
         {
             throw new System.NotImplementedException();
         }

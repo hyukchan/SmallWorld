@@ -5,17 +5,16 @@ using System.Text;
 
 namespace Small_World
 {
-    public class SmallGameBoardBuilder : GameBoardBuilder
+    public class SmallGameBoardCreator : GameBoardCreator
     {
-        public int nbUnit
+        public SmallGameBoardCreator()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            throw new System.NotImplementedException();
+        }
+
+        public void CreateGameBoard()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

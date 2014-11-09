@@ -7,5 +7,9 @@ namespace Small_World
 {
     public class Plain : Tile
     {
+        public Plain()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

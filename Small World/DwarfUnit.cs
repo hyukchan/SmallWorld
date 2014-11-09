@@ -5,14 +5,19 @@ using System.Text;
 
 namespace Small_World
 {
-    public class LargeGameBoardCreator : GameBoardCreator
+    public class DwarfUnit : Unit
     {
-        public LargeGameBoardCreator()
+        public DwarfUnit()
         {
             throw new System.NotImplementedException();
         }
 
-        public void CreateGameBoard()
+        public void Attack()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Move()
         {
             throw new System.NotImplementedException();
         }

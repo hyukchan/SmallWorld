@@ -7,5 +7,9 @@ namespace Small_World
 {
     public class Forest : Tile
     {
+        public Forest()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

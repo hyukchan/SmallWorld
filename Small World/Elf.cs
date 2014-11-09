@@ -7,5 +7,14 @@ namespace Small_World
 {
     public class Elf : People
     {
+        public Elf()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CreateUnit()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

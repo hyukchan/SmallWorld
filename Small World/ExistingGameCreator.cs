@@ -5,11 +5,4 @@ using System.Text;
 
 namespace Small_World
 {
-    public class ExistingGame : GameBoardCreator
-    {
-        public void FillGameBoard()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
 }

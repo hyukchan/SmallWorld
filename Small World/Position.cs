@@ -5,14 +5,9 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Player
+    public class Position
     {
-        public Player()
-        {
-            throw new System.NotImplementedException();
-        }
-    
-        public People People
+        public int X
         {
             get
             {
@@ -23,7 +18,7 @@ namespace Small_World
             }
         }
 
-        public Unit Units
+        public int Y
         {
             get
             {
@@ -32,16 +27,6 @@ namespace Small_World
             set
             {
             }
-        }
-    
-        public void GamePoints()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CreatePlayer()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Player
+    public class OrcUnit : Unit
     {
-        public Player()
+        public OrcUnit()
         {
             throw new System.NotImplementedException();
         }
-    
-        public People People
+
+        public int BonusPt
         {
             get
             {
@@ -23,23 +23,12 @@ namespace Small_World
             }
         }
 
-        public Unit Units
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
-        public void GamePoints()
+        public void Attack()
         {
             throw new System.NotImplementedException();
         }
 
-        public void CreatePlayer()
+        public void Move()
         {
             throw new System.NotImplementedException();
         }

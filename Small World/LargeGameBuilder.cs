@@ -5,35 +5,34 @@ using System.Text;
 
 namespace Small_World
 {
-    public class PeopleFactory
+    public class LargeGameBuilder : GameBuilder
     {
-        public People People
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
-        public Dwarf CreateDwarf()
+        public LargeGameBuilder()
         {
             throw new System.NotImplementedException();
         }
 
-        public Elf CreateElf()
+        public void addGameBoard()
         {
             throw new System.NotImplementedException();
         }
 
-        public Orc CreateOrc()
+        public void addPeople()
         {
             throw new System.NotImplementedException();
         }
 
-        public void CreatePeople()
+        public void addPlayer()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void createGame()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void placeUnits()
         {
             throw new System.NotImplementedException();
         }

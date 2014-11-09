@@ -5,9 +5,14 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Unit
+    public abstract class Unit
     {
-        public int people
+        public Unit()
+        {
+            throw new System.NotImplementedException();
+        }
+    
+        public int AttackPt
         {
             get
             {
@@ -16,6 +21,49 @@ namespace Small_World
             set
             {
             }
+        }
+
+        public int DefensePt
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public int HitPt
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public int Position
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public void Attack()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Move()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

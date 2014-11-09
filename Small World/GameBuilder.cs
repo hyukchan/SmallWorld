@@ -5,52 +5,46 @@ using System.Text;
 
 namespace Small_World
 {
-    public class GameBoard
+    public abstract class GameBuilder
     {
-        public GameBoard()
+        public Game Game
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public PeopleFactory PeopleFactory
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public void AddGameBoard()
         {
             throw new System.NotImplementedException();
         }
 
-        public TileFactory tilesFactory
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public Tile Tiles
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public GameBoardCreator GameBoardCreator
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public void SetSize()
+        public void AddPlayer()
         {
             throw new System.NotImplementedException();
         }
 
-        public void Create()
+        public void Build()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void PlaceUnits()
         {
             throw new System.NotImplementedException();
         }

@@ -7,19 +7,14 @@ namespace Small_World
 {
     public class Orc : People
     {
-        public int bonusPt
+        public Orc()
         {
-            get
-            {
-                return bonusPt;
-            }
-            set
-            {
-                if(value >= 0)
-                {
-                    bonusPt = value;
-                }
-            }
+            throw new System.NotImplementedException();
+        }
+
+        public void CreateUnit()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

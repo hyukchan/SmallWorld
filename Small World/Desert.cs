@@ -7,5 +7,9 @@ namespace Small_World
 {
     public class Desert : Tile
     {
+        public Desert()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
