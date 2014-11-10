@@ -33,5 +33,15 @@ namespace Small_World
             {
             }
         }
+
+        public void SelectUnit()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void EndTurn()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
