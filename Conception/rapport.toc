@@ -11,12 +11,12 @@
 \contentsline {section}{\numberline {2}Analyse}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}Lancement d'une partie}{4}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Tour de jeu}{7}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Combat}{9}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Unit\IeC {\'e}s}{10}{subsection.2.4}
-\contentsline {section}{\numberline {3}Mod\IeC {\'e}lisation et diagrammes de classe}{11}{section.3}
-\contentsline {subsection}{\numberline {3.1}Fabrique}{11}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Monteur}{12}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Strat\IeC {\'e}gie}{13}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Poids-mouche}{14}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Diagramme de classes global}{15}{subsection.3.5}
-\contentsline {section}{\numberline {4}Conclusion}{16}{section.4}
+\contentsline {subsection}{\numberline {2.3}Combat}{10}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Unit\IeC {\'e}s}{11}{subsection.2.4}
+\contentsline {section}{\numberline {3}Mod\IeC {\'e}lisation et diagrammes de classe}{12}{section.3}
+\contentsline {subsection}{\numberline {3.1}Fabrique}{12}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Monteur}{13}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Strat\IeC {\'e}gie}{14}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Poids-mouche}{15}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Diagramme de classes global}{16}{subsection.3.5}
+\contentsline {section}{\numberline {4}Conclusion}{17}{section.4}

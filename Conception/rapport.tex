@@ -12,6 +12,7 @@
 \usepackage{rotating}
 \usepackage[gen]{eurosym}
 \DeclareUnicodeCharacter{20AC}{\euro{}}
+\setcounter{tocdepth}{2}
 
 \usepackage{hyperref}
 
@@ -31,7 +32,7 @@
 \begin{document}
 \maketitle
 \begin{center}
-\includegraphics[width=0.8\textwidth]{./smallworld.jpg}~\\[5cm]
+\includegraphics[width=0.8\textwidth]{../Schemas/smallworld.jpg}~\\[5cm]
 \end{center}
 
 \newpage
@@ -52,22 +53,22 @@ Nous expliquerons également notre utilisation des patrons de conception.
 Les joueurs ont le choix entre trois peuples : les Orcs, les Elfs et les Nains. Chacun dispose de bonus et malus influant sur la façon de les jouer.
 
 \paragraph{Elfs} Les Elfs ont un coût de déplacement réduit de moitié sur une case Forêt, tandis que le déplacement sur une case Déserte est deux fois plus coûteux. Lors d'un combat dont l'issue conduit à la mort de l'unité, celle-ci a 50\% de chance de s'échapper avec 1 point de vie.
-\paragraph{Orcs} Les Orcs ont un coût de déplacement 50\% sur une case Plaine. Ils ne gagnent aucun point sur une case Forêt, mais ont un bonus propre à l'unité lorsque celle-ci en tue une autre.
+\paragraph{Orcs} Les Orcs ont un coût de déplacement de 50\% sur une case Plaine. Ils ne gagnent aucun point sur une case Forêt, mais ont un bonus propre à l'unité lorsque celle-ci en tue une autre.
 \paragraph{Nains} Les Nains ont un coût de déplacement divisé par deux sur une case Plaine. Ils n'acquièrent aucun point sur les cases de ce type. Ils peuvent se déplacer d'une case Montagne à une autre à condition que celle-ci ne soit pas occupée par une unité adverse.
 
 		\subsubsection{Cartes}
 Le joueur, à la création de la partie, a le choix entre trois cartes :
 \begin{itemize}
-\item Démo : 2 joueurs, 5 cases x 5 cases, 5 tours, 4 unités par peuple.
-\item Petite : 2 joueurs, 10 cases x 10 cases, 20 tours, 6 unités par peuple.
-\item Normale : 2 joueurs, 15 cases x 15 cases, 30 tours, 8 unités par peuple.
+\item Small : 2 joueurs, 5 cases x 5 cases, 5 tours, 4 unités par peuple.
+\item Medium : 2 joueurs, 10 cases x 10 cases, 20 tours, 6 unités par peuple.
+\item Large : 2 joueurs, 15 cases x 15 cases, 30 tours, 8 unités par peuple.
 \end{itemize}
 
 		\subsubsection{Déroulement d'une partie}
 Au début du jeu, chaque joueur choisit son peuple. Chaque peuple débute la partie avec toutes ses unités sur la même case de la carte, choisie de manière à ce que les joueurs ne soient pas trop proches. L’ordre de jeu est déterminé aléatoirement en début de partie. Les joueurs jouent chacun leur tour sur le même ordinateur.
 
 	\subsection{Tours de jeu}
-Lorsqu’un joueur peut jouer (c.-à-d. une fois par tour), il peut déplacer toutes ses unités suivant leur nombre de points de déplacements (un déplacement sur une case coûte un point de déplacement). Il est possible pour chaque unité de passer son tour (généralement par le biais de la touche espace). Une unité combattante peut engager un combat s’il lui reste au moins un point de mouvement. Lorsqu’un joueur a fini son tour, il clique sur le bouton correspondant ("Fin tour"). C’est alors au joueur suivant de commencer son tour. La partie se termine lorsque le nombre de tours prédéfini en début de partie à été effectué, ou lorsqu’il ne reste qu’un seul joueur sur le plateau.
+Lorsqu’un joueur peut jouer (c.-à-d. une fois par tour), il peut déplacer toutes ses unités suivant leur nombre de points de déplacement (à part dans le cas d'un bonus lié au peuple, un déplacement sur une case coûte un point de déplacement). Il est possible pour chaque unité de passer son tour (généralement par le biais de la touche espace). Une unité combattante peut engager un combat s’il lui reste au moins un point de mouvement. Lorsqu’un joueur a fini son tour, il clique sur le bouton correspondant ("Fin tour"). C’est alors au joueur suivant de commencer son tour. La partie se termine lorsque le nombre de tours prédéfini en début de partie à été effectué, ou lorsqu’il ne reste qu’un seul joueur sur le plateau.
 
 \section{Analyse}
 	
@@ -99,7 +100,7 @@ La Figure \ref{fig:cas_creation} représente la création d'une partie. Le joueu
 
 \clearpage
 	\subsection{Tour de jeu}
-Nous avons représenté un tour de jeu avec la Figure~\ref{fig:cas_tour}. Le joueur peut déplacer chaque unité selon son nombre de points de déplacement, et le coût de celui-ci (par défaut bouger d'une case coûte un point). En cas de rencontre d'une unité adverse, un combat a lieu. Il peut également passer le tour de l'unité, ou terminer totalement son tour. L'annulation d'un déplacement est prévue, ainsi que la sauvegarde de la partie. Le déroulement de ces actions est représenté sur la Figure \ref{fig:inter_tour}
+Nous avons représenté un tour de jeu avec la Figure~\ref{fig:cas_tour}. Le joueur peut déplacer chaque unité selon son nombre de points de déplacement, et le coût de celui-ci. En cas de rencontre d'une unité adverse, un combat a lieu. Il peut également passer le tour de l'unité, ou terminer totalement son tour. L'annulation d'un déplacement est prévue, ainsi que la sauvegarde de la partie. Le déroulement de ces actions est représenté sur la Figure \ref{fig:inter_tour}, et sur la Figure \ref{fig:sequence_tour}.
 
 \begin{figure}[ht]
 \centering
@@ -114,9 +115,18 @@ Nous avons représenté un tour de jeu avec la Figure~\ref{fig:cas_tour}. Le jou
 		\caption{Diagramme d'interaction d'un tour de jeu}
 		\label{fig:inter_tour}
 \end{figure}
+
+\begin{figure}[ht]
+\centering
+	\includegraphics[width=0.7\textwidth]{../Schemas/sequence_Tour.png}
+		\caption{Diagramme de séquence d'un tour de jeu}
+		\label{fig:sequence_tour}
+\end{figure}
+
 \clearpage
 	\subsection{Combat}
  A la rencontre d'unités adverses, le joueur peut décider de combattre à l'aide de ses unités. Le déroulement d'un combat est montré à l'aide de la Figure~\ref{fig:interaction_combat}.
+
 \begin{figure}[ht]
 \centering
 	\includegraphics[width=1\textwidth, height=0.4\textheight]{../Schemas/Interaction_Combat.png}
@@ -141,7 +151,7 @@ Au début d'un tour, l'unité possède un point de déplacement. Elle a alors la
 
 \clearpage
 \section{Modélisation et diagrammes de classe}
-Nous allons dans cette section expliquer nos utilisations des différents patrons de conception, accompagnés de diagrammes de classe montrant leur mise en place au sein de notre de conception.
+Nous allons dans cette section expliquer nos utilisations des différents patrons de conception, accompagnés de diagrammes de classe montrant leur mise en place au sein de notre de projet.
 	
 	\subsection{Fabrique}
 Le patron de conception \textit{Fabrique} est utilisé pour la création des différents peuples. En effet, le jeu créera simplement un peuple, sans savoir duquel il s'agit. Une interface réunit les points commun entre les différents peuples. Les unités étant toutes les mêmes, elles n'ont pas besoin de \textit{Fabrique}. Les classes sont représentées dans la Figure \ref{fig:class_factory}
@@ -159,7 +169,7 @@ Nous avons utilisé un \textit{Monteur} pour la création d'une partie. En effet
 
 \begin{figure}[ht]
 \centering
-	\includegraphics[width=\textwidth]{../Schemas/class_GameBoardBuilder_Builder.png}
+	\includegraphics[width=0.9\textwidth, height=0.7\textheight]{../Schemas/class_GameBoardBuilder_Builder.png}
 		\caption{Monteur de la partie}
 		\label{fig:class_builder}
 \end{figure}
@@ -170,7 +180,7 @@ Le patron de conception \textit{Stratégie} est utilisé pour la création des c
 
 \begin{figure}[ht]
 \centering
-	\includegraphics[width=\textwidth]{../Schemas/class_GameBoardBuilder_Strategy.png}
+	\includegraphics[width=0.9\textwidth,height=0.7\textheight]{../Schemas/class_GameBoardBuilder_Strategy.png}
 		\caption{Stratégie de création de la carte}
 		\label{fig:class_strategy}
 \end{figure}
@@ -199,6 +209,9 @@ Voici donc la représentation globale de notre projet, visible à la Figure \ref
 
 \clearpage
 \section{Conclusion}
+	La phase d'analyse et de conception de notre projet de Programmation et de Modélisation Orientée Objet se termine avec ce rapport.
+Elle nous a permis, avec le polycopié contenant le cahier des charges, de penser à toutes les classes et aux attributs dont nous allons avoir besoin afin que notre version du jeu SmallWorld dispose des fonctionnalités nécessaires.
+Nous allons donc commencer à implémenter les méthodes décrites dans ce rapport, dont le code a, en partie, été généré automatiquement.
 \newpage
 \listoffigures
 \end{document}
