@@ -43,5 +43,10 @@ namespace Small_World
         {
             throw new System.NotImplementedException();
         }
+
+        public void MoveUnit()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

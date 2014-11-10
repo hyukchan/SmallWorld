@@ -148,7 +148,7 @@
   <Class Name="Small_World.Game">
     <Position X="15" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAABAAAAAABAAAAAAAAIAAAAAAAAQAAAAA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -205,7 +205,7 @@
   <Class Name="Small_World.Unit">
     <Position X="12.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAIAAAAAgAAAAAAAgAIAAAAAAAAAAAAAAIAA=</HashCode>
+      <HashCode>AAIAAAAAAIAAAAAgAAAAAAAgAIAAAAAAAAAAAAAAIgA=</HashCode>
       <FileName>Unit.cs</FileName>
     </TypeIdentifier>
   </Class>

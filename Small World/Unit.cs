@@ -56,6 +56,17 @@ namespace Small_World
             }
         }
 
+        public int MovePt
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public void Attack()
         {
             throw new System.NotImplementedException();
