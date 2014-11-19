@@ -12,14 +12,13 @@ namespace Small_World
             throw new System.NotImplementedException();
         }
 
-        public void Attack()
+        //TODO to fill
+        public void Move(Position p)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void Move()
-        {
-            throw new System.NotImplementedException();
+            if (MovePt > 0)
+            {
+                MovePt--;
+            }
         }
     }
 }

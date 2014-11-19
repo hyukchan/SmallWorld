@@ -9,28 +9,21 @@ namespace Small_World
     {
         public OrcUnit()
         {
-            throw new System.NotImplementedException();
         }
 
         public int BonusPt
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
-        public void Attack()
+        //TODO to fill
+        public void Move(Position p)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void Move()
-        {
-            throw new System.NotImplementedException();
+            if (MovePt > 0)
+            {
+                MovePt--;
+            }
         }
     }
 }
