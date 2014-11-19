@@ -5,28 +5,24 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Position
+    public struct Position
     {
+        public Position(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
         public int X
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
         public int Y
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
     }
 }
