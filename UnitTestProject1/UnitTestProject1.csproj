@@ -54,6 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Small World\AlgorithmsWrapper\AlgorithmsWrapper.vcxproj">
+      <Project>{5ce6f519-8529-4bb1-8922-825eeb8b3af2}</Project>
+      <Name>AlgorithmsWrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Small World\Small World.csproj">
       <Project>{98d0e7a4-677d-46c6-b17a-08f42fa9524b}</Project>
       <Name>Small World</Name>

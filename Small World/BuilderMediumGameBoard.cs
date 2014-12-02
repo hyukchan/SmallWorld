@@ -12,6 +12,39 @@ namespace Small_World
             throw new System.NotImplementedException();
         }
 
+        public int NbTiles
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public int NbTurns
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public int NbUnits
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public void CreateGameBoard()
         {
             throw new System.NotImplementedException();

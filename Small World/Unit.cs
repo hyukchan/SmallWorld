@@ -16,10 +16,10 @@ namespace Small_World
             HitPt = HIT_PT;
             MovePt = MOVE_PT;
 
-            Position p = new Position(2, 3);
+            Position p = new Position { X = 2, Y = 3 };
             var p2 = p;
 
-            Position a = new Position(2,3);
+            Position a = new Position { X = 2, Y = 3 };
             Position b = a;
             
         }

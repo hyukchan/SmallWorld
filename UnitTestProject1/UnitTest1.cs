@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Small_World;
+using Wrapper;
+
 namespace UnitTestProject1
 {
     [TestClass]
@@ -16,6 +18,12 @@ namespace UnitTestProject1
             Assert.AreEqual(orc.MovePt, 1);
             orc.Move(new Position(1,2));
             Assert.AreEqual(orc.MovePt, 0);
+        }
+
+        [TestMethod]
+        public void TestCreationGameBoard()
+        {
+            WrapperAlgo w = new WrapperAlgo();
         }
     }
 }
