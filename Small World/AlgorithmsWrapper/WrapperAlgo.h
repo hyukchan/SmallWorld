@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#pragma once
 
 #include "../../Algorithms/Algo.h"
 
@@ -13,6 +13,6 @@ namespace Wrapper {
 	public:
 		WrapperAlgo(){ algo = new Algo(); }
 		~WrapperAlgo(){ delete(algo); }
-		int createGameBoard(){ return algo->createGameBoard(6); }
+		int createGameBoard(int nb){ return algo->createGameBoard(nb); }
 	};
 }

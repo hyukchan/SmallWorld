@@ -1,3 +1,5 @@
+#pragma once
+
 class Algo {
 
 public:
@@ -7,7 +9,7 @@ public:
 		int y;
 	};
 
-	// Algo();
+	Algo();
 	int createGameBoard(int n);
 	Position* getStartPositions(int* gameBoard);
 	Position* getBestMoves(int* gameBoard);
