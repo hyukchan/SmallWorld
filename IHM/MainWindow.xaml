@@ -1,0 +1,60 @@
+﻿<Window x:Class="IHM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:IHM="clr-namespace:IHM"
+        Title="MainWindow" Height="500" Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        
+        <ScrollViewer
+            Grid.Row="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Aqua">
+            <IHM:MapView></IHM:MapView>
+        </ScrollViewer>
+
+        <Grid
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                >
+                Peuple 1
+            </TextBlock>
+
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="1"
+                >
+                Nb points
+            </TextBlock>
+
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="2"
+                >
+                Nb unités restantes
+            </TextBlock>
+            <!--TODO-->
+        </Grid>
+    </Grid>
+</Window>
