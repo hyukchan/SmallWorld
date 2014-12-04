@@ -5,7 +5,11 @@ using System.Text;
 
 namespace Small_World
 {
-    public abstract class Tile
+
+    public interface TileInterface
+    {
+    }
+    public abstract class Tile : TileInterface
     {
     }
 }

@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 
 namespace Small_World
-{
-    public class Forest : Tile
+{   
+    public interface ForestInterface : TileInterface
+    {
+
+    }
+    public class Forest : Tile, ForestInterface
     {
         public Forest()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

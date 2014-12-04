@@ -9,8 +9,9 @@ public:
 		int y;
 	};
 
-	Algo();
-	int createGameBoard(int n);
+	Algo* Algo_new();
+	void delete_Algo(Algo* algo);
+	int** createGameBoard(int n);
 	Position* getStartPositions(int* gameBoard);
 	Position* getBestMoves(int* gameBoard);
 

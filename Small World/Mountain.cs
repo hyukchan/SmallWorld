@@ -5,11 +5,15 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Mountain : Tile
+    public interface MountainInterface : TileInterface
+    {
+
+    }
+    public class Mountain : Tile, MountainInterface
     {
         public Mountain()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

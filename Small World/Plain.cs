@@ -5,11 +5,19 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Plain : Tile
+    public interface PlainInterface : TileInterface
     {
+
+    }
+    public class Plain : Tile, PlainInterface
+    {
+        public interface PlainInterface
+        {
+
+        }
         public Plain()
         {
-            throw new System.NotImplementedException();
+
         }
     }
 }
