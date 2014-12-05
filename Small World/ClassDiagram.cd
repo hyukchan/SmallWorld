@@ -10,7 +10,7 @@
     <Position X="7.025" Y="8.032" Height="0.364" Width="0.915" />
   </Comment>
   <Comment CommentText="Builder">
-    <Position X="14.172" Y="7.821" Height="0.337" Width="0.7" />
+    <Position X="14.172" Y="8.821" Height="0.337" Width="0.7" />
   </Comment>
   <Class Name="Small_World.Dwarf">
     <Position X="18.75" Y="6.25" Width="1.5" />
@@ -103,6 +103,7 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Desert.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Small_World.Mountain">
     <Position X="2.25" Y="3.5" Width="1.5" />
@@ -110,13 +111,22 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Mountain.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Small_World.Plain">
     <Position X="4" Y="3.5" Width="1.5" />
+    <NestedTypes>
+      <Interface Name="Small_World.Plain.PlainInterface" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Plain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Plain.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Small_World.Forest">
     <Position X="5.75" Y="3.5" Width="1.5" />
@@ -124,6 +134,7 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Forest.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Small_World.TileFactory">
     <Position X="3" Y="5.25" Width="1.5" />
@@ -144,9 +155,10 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tile.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Small_World.Game">
-    <Position X="15" Y="6" Width="1.5" />
+    <Position X="15" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAABAAAAAABAAAAAAAAIAAAAAAAAQAAAAA=</HashCode>
       <FileName>Game.cs</FileName>
@@ -157,7 +169,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Small_World.GameBuilder">
-    <Position X="15" Y="8" Width="1.5" />
+    <Position X="15" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAABAAAAkAgAAAAAgAAAAAAAA=</HashCode>
       <FileName>GameBuilder.cs</FileName>
@@ -168,21 +180,21 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Small_World.NewGameBuilder">
-    <Position X="13.75" Y="10.75" Width="1.5" />
+    <Position X="13.75" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAACABAAAAAAAAAAABgAAAAAAAA=</HashCode>
       <FileName>SmallGameBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Small_World.SavedGameBuilder">
-    <Position X="16.25" Y="10.75" Width="1.5" />
+    <Position X="16.25" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAACABAAAAAAAAAAABgAAAAAAAA=</HashCode>
       <FileName>MediumGameBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Small_World.GameCreator">
-    <Position X="11.75" Y="8" Width="1.5" />
+    <Position X="11.75" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAACAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCreator.cs</FileName>
@@ -192,20 +204,22 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Small_World.Player">
-    <Position X="15" Y="3.75" Width="1.5" />
+    <Position X="15" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAEAAIAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAGAAIAAgCAAAAAAAAQAAAAUAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="People" />
-      <Property Name="Units" />
     </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="units" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Small_World.Unit">
-    <Position X="12.25" Y="3.5" Width="1.5" />
+    <Position X="12.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAIAAAAAgAAAAQAAgAIAAAEBAAAAAAAAAIgA=</HashCode>
+      <HashCode>AAIAABAAAIAAAAAgAgAAQAAgAIAAAEBAAAAgAAAAIgA=</HashCode>
       <FileName>Unit.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -213,28 +227,28 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Small_World.DwarfUnit">
-    <Position X="12.25" Y="0.75" Width="1.5" />
+    <Position X="12.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DwarfUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Small_World.ElfUnit">
-    <Position X="15.75" Y="0.75" Width="1.5" />
+    <Position X="15.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ElfUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Small_World.OrcUnit">
-    <Position X="14" Y="0.75" Width="1.5" />
+    <Position X="14" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>OrcUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="Small_World.Position" Collapsed="true">
-    <Position X="9.75" Y="3.5" Width="1.5" />
+    <Position X="9.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Position.cs</FileName>

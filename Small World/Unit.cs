@@ -11,6 +11,10 @@ namespace Small_World
         const int DEFENSE_PT = 1;
         const int HIT_PT = 5;
         const int MOVE_PT = 1;
+
+        private int gamePt;
+        private Position position;
+
         public Unit()
         {
             HitPt = HIT_PT;
@@ -50,10 +54,24 @@ namespace Small_World
         {
             get
             {
-                throw new System.NotImplementedException();
+                return position;
             }
             set
             {
+                position = value;
+            }
+        }
+
+        public int GamePt
+        {
+            get
+            {
+                this.UpdateGamePoints();
+                return gamePt;
+            }
+            set
+            {
+                gamePt = value;
             }
         }
 
@@ -70,6 +88,12 @@ namespace Small_World
         public void Move()
         {
             throw new System.NotImplementedException();
+        }
+
+        public int UpdateGamePoints()
+        {
+            //TODOSMALLWORLD calculer le point du jeu en fonction de la case où l'unité se situe etc...
+            return gamePt;
         }
     }
 }

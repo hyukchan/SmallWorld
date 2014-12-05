@@ -7,41 +7,78 @@ namespace Small_World
 {
     public class Player
     {
+        private People people;
+        private int points;
+        private string name;
+        private List<Unit> units;
+
         public Player()
         {
-            throw new System.NotImplementedException();
         }
-    
+
+        public Player(string name, People people)
+        {
+            Name = name;
+            People = people;
+            Units = new List<Unit>;
+        }
+
         public People People
         {
             get
             {
-                throw new System.NotImplementedException();
+                return people;
             }
             set
             {
+                people = value;
             }
         }
 
-        public Unit Units
+        public int Points
         {
             get
             {
-                throw new System.NotImplementedException();
+                return points;
             }
             set
             {
+                points = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+
+        public List<Unit> Units
+        {
+            get
+            {
+                return units;
+            }
+            set
+            {
+                units = value;
             }
         }
     
-        public void GamePoints()
+        public void GetGamePoints()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void CreatePlayer()
-        {
-            throw new System.NotImplementedException();
+            int pointsCount = 0;
+            foreach (Unit unit in units)
+            {
+                pointsCount += unit.UpdateGamePoints();
+            }
+            Points = pointsCount;
         }
     }
 }
