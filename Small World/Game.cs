@@ -23,7 +23,18 @@ namespace Small_World
             }
         }
 
-        public Player Player
+        public Player Player1
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public Player Player2
         {
             get
             {

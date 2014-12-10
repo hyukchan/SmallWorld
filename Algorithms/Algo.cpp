@@ -29,26 +29,24 @@ void delete_Algo(Algo* algo){
 }
 
 
-int** Algo::createGameBoard(int n){
+int* Algo::createGameBoard(int n){
+	srand(time(NULL));
 
-			
-
-	int** tiles = (int**)malloc(n * sizeof(int *));
-
+	int* tiles = new int[n*n];
 
 	int initNbTiles = n*n / 4;
 
 	int LeftTiles[] = { initNbTiles, initNbTiles, initNbTiles, initNbTiles};
 
-	int currentTileType, i, j;
+	unsigned int currentTileType, i, j;
 
 	for (i = 0; i < n; i++){
-		for (j = (i % 2); j < n; j++){
+		for (j = 0; j < n; j++){
 			currentTileType = rand() % 4;
 			while (LeftTiles[currentTileType] == 0){
 				currentTileType = rand() % 4;
 			}
-			tiles[i][j] = currentTileType;
+			tiles[i*n + j] = currentTileType;
 			LeftTiles[currentTileType]--;
 		}
 

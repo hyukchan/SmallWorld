@@ -20,7 +20,7 @@ namespace Small_World
         {
             Name = name;
             People = people;
-            Units = new List<Unit>;
+            Units = new List<Unit>();
         }
 
         public People People

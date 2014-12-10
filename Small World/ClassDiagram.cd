@@ -159,13 +159,19 @@
   </Class>
   <Class Name="Small_World.Game">
     <Position X="15" Y="7" Width="1.5" />
+    <AssociationLine Name="Player2" Type="Small_World.Player">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.775" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAABAAAAAABAAAAAAAAIAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAABAAAwAABAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="GameBoard" />
-      <Property Name="Player" />
+      <Property Name="Player1" />
+      <Property Name="Player2" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Small_World.GameBuilder">
@@ -206,7 +212,7 @@
   <Class Name="Small_World.Player">
     <Position X="15" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAGAAIAAgCAAAAAAAAQAAAAUAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgACAAIAAgCAAAAAAAAQAAAAUAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -219,7 +225,7 @@
   <Class Name="Small_World.Unit">
     <Position X="12.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAIAAAAAgAgAAQAAgAIAAAEBAAAAgAAAAIgA=</HashCode>
+      <HashCode>AAIAABAAAIAAAAAgAgAAYAAgAIAAAGBAAAAgAAAAIgA=</HashCode>
       <FileName>Unit.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

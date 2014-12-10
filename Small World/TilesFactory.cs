@@ -7,15 +7,21 @@ namespace Small_World
 {
     public class TileFactory
     {
+
+        private Desert desert;
+        private Plain plain;
+        private Forest forest;
+        private Mountain mountain;
         public TileFactory()
         {
-            throw new System.NotImplementedException();
+            //TODOSW instancier chaque attribut pour poids mouche
         }
     
         public Desert Desert
         {
             get
             {
+                //TODOSW return desert
                 throw new System.NotImplementedException();
             }
             set
