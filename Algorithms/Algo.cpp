@@ -115,6 +115,36 @@ Déplacements simples des unités
 
 //déplacements orc
 
+void initializeOrcMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
+{
+	//Par défaut toute les cases sont inacessibles
+	int i, j;
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			moves[i*size + j] = INIT;
+		}
+	}
+	//Les points de déplacements restants sont initialisés à 0
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			moves[i*size + j] = 0;
+		}
+	}
+	//On autorise la case initiale
+	moves[x*size + y] = INIT;
+	cost[x*size + y] = movPt;
+	orcPossibleMovement(map, size, x, y, moves, cost);
+}
+
+void orcPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+{
+
+}
+
 void orcMovement(int* map, double* cost, int size,int x, int y, double movPt, int* moves)
 {
 	double mvt = movPt;
@@ -169,7 +199,37 @@ void orcMovement(int* map, double* cost, int size,int x, int y, double movPt, in
 
 }
 
+// déplacements elfs
 
+void initializeElfMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
+{
+	//Par défaut toute les cases sont inacessibles
+	int i, j;
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			moves[i*size + j] = INIT;
+		}
+	}
+	//Les points de déplacements restants sont initialisés à 0
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			moves[i*size + j] = 0;
+		}
+	}
+	//On autorise la case initiale
+	moves[x*size + y] = INIT;
+	cost[x*size + y] = movPt;
+	elfPossibleMovement(map, size, x, y, moves, cost);
+}
+
+void elfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+{
+
+}
 void elfMovement(int* map, double* cost, int size, int x, int y, double movPt, int* moves)
 {
 	double mvt = movPt;
@@ -216,6 +276,36 @@ void elfMovement(int* map, double* cost, int size, int x, int y, double movPt, i
 
 }
 
+// déplacements nains
+void initializeDwarfMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
+{
+	//Par défaut toute les cases sont inacessibles
+	int i, j;
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			moves[i*size + j] = INIT;
+		}
+	}
+	//Les points de déplacements restants sont initialisés à 0
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			moves[i*size + j] = 0;
+		}
+	}
+	//On autorise la case initiale
+	moves[x*size + y] = INIT;
+	cost[x*size + y] = movPt;
+	dwarfPossibleMovement(map, size, x, y, moves, cost);
+}
+
+void dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+{
+
+}
 void dwarfMovement(int* map, double* cost, int size, int x, int y, double movPt, int* moves)
 {
 	double mvt = movPt;
