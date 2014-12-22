@@ -55,7 +55,7 @@ int* Algo::createGameBoard(int n){
 	return tiles;
 }
 
-int* startingPositions(int* map, int n){
+int* startingPositions(int* map, int size){
 
 	srand((unsigned int)time(NULL));
 
@@ -65,16 +65,16 @@ int* startingPositions(int* map, int n){
 	int i, j, i1, j1;
 	if (pos == 1){
 		i = rand() % 2;
-		j = n - rand() % 2;
-		i1 = n - rand() % 2;
+		j = size - rand() % 2;
+		i1 = size - rand() % 2;
 		j1 = rand() % 2;
 	}
 	else
 	{
 		i = rand() % 2;
 		j = rand() % 2;
-		i1 = n - rand() % 2;
-		j1 = n - rand() % 2;
+		i1 = size - rand() % 2;
+		j1 = size - rand() % 2;
 	}
 
 	coordinates[0] = i;
@@ -96,7 +96,7 @@ void freeMap(int* map){
 	free(map);
 }
 
-double* CostTab(int size)
+double* costTab(int size)
 {
 	double* tab = (double*)malloc(size * size * sizeof(double));
 	return tab;
@@ -115,7 +115,7 @@ Déplacements simples des unités
 
 //déplacements orc
 
-void initializeOrcMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
+void Algo::initializeOrcMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
 {
 	//Par défaut toute les cases sont inacessibles
 	int i, j;
@@ -140,7 +140,7 @@ void initializeOrcMvt(int * map, int size, int x, int y, double * cost, int * mo
 	orcPossibleMovement(map, size, x, y, moves, cost);
 }
 
-void orcPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+void Algo::orcPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
 {
 	//cases au dessus
 	if (x != 0)
@@ -197,7 +197,7 @@ void orcPossibleMovement(int* map, int size, int x, int y, int* moves, double* c
 	}
 }
 
-void orcPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
+void Algo::orcPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
 {
 	//cases au dessus
 	if (x != 0)
@@ -247,7 +247,7 @@ void orcPossibleMovement2(int* map, int size, int x, int y, int* moves, double* 
 		}
 	}
 }
-void orcMovement(int* map, double* cost, int size,int x, int y, double movPt, int* moves)
+void Algo::orcMovement(int* map, double* cost, int size,int x, int y, double movPt, int* moves)
 {
 	double mvt = movPt;
 
@@ -303,7 +303,7 @@ void orcMovement(int* map, double* cost, int size,int x, int y, double movPt, in
 
 // déplacements elfs
 
-void initializeElfMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
+void Algo::initializeElfMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
 {
 	//Par défaut toute les cases sont inacessibles
 	int i, j;
@@ -328,7 +328,7 @@ void initializeElfMvt(int * map, int size, int x, int y, double * cost, int * mo
 	elfPossibleMovement(map, size, x, y, moves, cost);
 }
 
-void elfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+void Algo::elfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
 {
 	//cases au dessus
 	if (x != 0)
@@ -385,7 +385,7 @@ void elfPossibleMovement(int* map, int size, int x, int y, int* moves, double* c
 	}
 }
 
-void elfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
+void Algo::elfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
 {
 	//cases au dessus
 	if (x != 0)
@@ -436,7 +436,7 @@ void elfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* 
 	}
 }
 
-void elfMovement(int* map, double* cost, int size, int x, int y, double movPt, int* moves)
+void Algo::elfMovement(int* map, double* cost, int size, int x, int y, double movPt, int* moves)
 {
 	double mvt = movPt;
 
@@ -483,7 +483,7 @@ void elfMovement(int* map, double* cost, int size, int x, int y, double movPt, i
 }
 
 // déplacements nains
-void initializeDwarfMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
+void Algo::initializeDwarfMvt(int * map, int size, int x, int y, double * cost, int * moves, double movPt)
 {
 
 	int i, j;
@@ -508,7 +508,7 @@ void initializeDwarfMvt(int * map, int size, int x, int y, double * cost, int * 
 	dwarfPossibleMovement(map, size, x, y, moves, cost);
 }
 
-void dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+void Algo::dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
 {
 	//cases au dessus
 	if (x != 0)
@@ -565,7 +565,7 @@ void dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, double*
 	}
 }
 
-void dwarfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
+void Algo::dwarfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
 {
 	//cases au dessus
 	if (x != 0)
@@ -617,7 +617,7 @@ void dwarfPossibleMovement2(int* map, int size, int x, int y, int* moves, double
 }
 
 
-void dwarfMovement(int* map, double* cost, int size, int x, int y, double movPt, int* moves)
+void Algo::dwarfMovement(int* map, double* cost, int size, int x, int y, double movPt, int* moves)
 {
 	double mvt = movPt;
 
