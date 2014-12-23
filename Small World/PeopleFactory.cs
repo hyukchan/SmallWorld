@@ -5,37 +5,69 @@ using System.Text;
 
 namespace Small_World
 {
-    public class PeopleFactory
+
+    
+
+    public interface peopleFactoryInterface
     {
-        public People People
+        People peopleFactory(string people);
+    }
+    public class PeopleFactory : peopleFactoryInterface
+    {
+
+        public const string DWARF = "Dwarf";
+        public const string ELF = "Elf";
+        public const string ORC = "Orc";
+
+        private static PeopleFactory factoryInstance;
+
+        public PeopleFactory()
+        {
+
+        }
+
+        public static PeopleFactory FactoryInstance
         {
             get
             {
-                throw new System.NotImplementedException();
+                if (factoryInstance == null)
+                {
+                    factoryInstance = new PeopleFactory();
+                }
+                return factoryInstance;
             }
-            set
+        }
+
+        public People CreatePeople(string people)
+        {
+            switch (people)
             {
+                case DWARF:
+                    return new CreateDwarf();
+                case ELF:
+                    return new CreateElf();
+                case ORC:
+                    return new CreateOrc();
+
             }
-        }
-    
-        public Dwarf CreateDwarf()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Elf CreateElf()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Orc CreateOrc()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CreatePeople()
-        {
-            throw new System.NotImplementedException();
         }
     }
-}
+
+        //TODOSW créer les classes des peuples (ici ou classe People ? )
+        public class CreateDwarf
+        {
+            public CreateDwarf(){}
+        }
+
+        public class CreateElf
+        {
+            public CreateElf(){}
+        }
+
+        public class CreateOrc
+        {
+            public CreateOrc(){}
+        }
+
+    }
+
