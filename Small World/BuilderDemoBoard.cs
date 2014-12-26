@@ -5,6 +5,12 @@ using System.Text;
 
 namespace Small_World
 {
+
+    public interface DemoGameBoardBuilderInterface : GameBoardBuilderInterface
+    {
+
+    }
+
     public class SmallGameBoardCreator : GameBoardCreator
     {
         public SmallGameBoardCreator()
