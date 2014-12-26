@@ -6,7 +6,7 @@ using System.Text;
 namespace Small_World
 {
 
-    
+
 
     public interface peopleFactoryInterface
     {
@@ -19,7 +19,7 @@ namespace Small_World
         public const string ELF = "Elf";
         public const string ORC = "Orc";
 
-        private static PeopleFactory factoryInstance;
+        private static PeopleFactory peoplefactoryInstance;
 
         public PeopleFactory()
         {
@@ -30,11 +30,11 @@ namespace Small_World
         {
             get
             {
-                if (factoryInstance == null)
+                if (peoplefactoryInstance == null)
                 {
-                    factoryInstance = new PeopleFactory();
+                    peoplefactoryInstance = new PeopleFactory();
                 }
-                return factoryInstance;
+                return peoplefactoryInstance;
             }
         }
 
@@ -48,26 +48,15 @@ namespace Small_World
                     return new CreateElf();
                 case ORC:
                     return new CreateOrc();
+                default: 
+                    return null;
 
             }
         }
-    }
-
-        //TODOSW créer les classes des peuples (ici ou classe People ? )
-        public class CreateDwarf
-        {
-            public CreateDwarf(){}
-        }
-
-        public class CreateElf
-        {
-            public CreateElf(){}
-        }
-
-        public class CreateOrc
-        {
-            public CreateOrc(){}
-        }
 
     }
+
+
+
+}
 
