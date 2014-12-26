@@ -7,84 +7,57 @@ namespace Small_World
 {
     public class TileFactory
     {
+        private static TileFactory tileFactory_instance;
 
         private Desert desert;
         private Plain plain;
         private Forest forest;
         private Mountain mountain;
+
         public TileFactory()
         {
-            //TODOSW instancier chaque attribut pour poids mouche
-        }
-    
-        public Desert Desert
-        {
-            get
-            {
-                //TODOSW return desert
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            desert = new Desert();
+            plain = new Plain();
+            forest = new Forest();
+            mountain = new Mountain();
         }
 
-        public Mountain Mountain
+        public static TileFactory TileFactory_Instance
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public Plain Plain
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public Forest Forest
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                if (tileFactory_instance == null) //Cette classe est un singleton
+                {
+                    tileFactory_instance = new TileFactory();
+                }
+                return tileFactory_instance;
             }
         }
 
         public Tile GetTile()
         {
+            // TODOSW utile de le garder ?
             throw new System.NotImplementedException();
         }
 
         public Desert GetDesert()
         {
-            throw new System.NotImplementedException();
+            return desert;
         }
 
         public Mountain GetMountain()
         {
-            throw new System.NotImplementedException();
+            return mountain;
         }
 
         public Plain GetPlain()
         {
-            throw new System.NotImplementedException();
+            return plain;  
         }
 
         public Forest GetForest()
         {
-            throw new System.NotImplementedException();
+            return forest;
         }
     }
 }
