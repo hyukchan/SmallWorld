@@ -5,16 +5,21 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Orc : People
+    public interface OrcInterface : PeopleInterface
+    {
+
+    }
+
+    public class Orc : People, OrcInterface
     {
         public Orc()
         {
-            throw new System.NotImplementedException();
+            
         }
 
-        public void CreateUnit()
+        public override Unit CreateUnit()
         {
-            throw new System.NotImplementedException();
+            return new OrcUnit();
         }
     }
 }

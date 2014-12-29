@@ -43,11 +43,11 @@ namespace Small_World
             switch (people)
             {
                 case DWARF:
-                    return new CreateDwarf();
+                    return new Dwarf();
                 case ELF:
-                    return new CreateElf();
+                    return new Elf();
                 case ORC:
-                    return new CreateOrc();
+                    return new Orc();
                 default: 
                     return null;
 

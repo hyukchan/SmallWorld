@@ -50,7 +50,7 @@ namespace Small_World
 
         private GameBoard gameBoard;
 
-        private GameBuilder strategy;
+        private BuilderGameBoard strategy;
 
         public int NbTiles
         {
@@ -112,7 +112,18 @@ namespace Small_World
             }
         }
 
+        public BuilderGameBoard Strategy
+        {
+            get
+            {
+                return strategy;
+            }
+            set
+            {
+                strategy = value;
+            }
+        }
 
-
+        //TODOSW implémenter les fonctions de l'interface
     }
 }

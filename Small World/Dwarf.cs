@@ -5,16 +5,21 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Dwarf : People
+    public interface DwarfInterface : PeopleInterface
+    {
+
+    }
+
+    public class Dwarf : People, DwarfInterface
     {
         public Dwarf()
         {
-            throw new System.NotImplementedException();
+            
         }
 
-        public void CreateUnit()
+        public override Unit CreateUnit()
         {
-            throw new System.NotImplementedException();
+            return new DwarfUnit();
         }
     }
 }
