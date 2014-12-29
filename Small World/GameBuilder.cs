@@ -5,16 +5,74 @@ using System.Text;
 
 namespace Small_World
 {
-    public abstract class GameBuilder
+    public interface GameBuilderInterface
     {
-        public Game Game
+        void addMap();
+
+        void addPlayer(string player, string people);
+
+        Game createGame(string player1, string people1, string player2, string people2);
+
+        void placeUnits();
+
+        void initNbTours();
+
+    }
+
+    public interface DemoGameBuilderInterface : GameBuilderInterface
+    {
+
+    }
+
+    public interface MediumGameBuilderInterface : GameBuilderInterface
+    {
+
+    }
+
+    public interface LargeGameBuilderInterface : GameBuilderInterface
+    {
+
+    }
+
+
+
+    public abstract class GameBuilder : GameBuilderInterface
+    {
+        protected int nbTiles;
+
+        protected int nbTurns;
+
+        protected int nbUnits;
+
+        private PeopleFactory peopleFactory;
+
+        private Game game;
+
+        private GameBoard gameBoard;
+
+        private GameBuilder strategy;
+
+        public int NbTiles
         {
             get
             {
-                throw new System.NotImplementedException();
+                return nbTiles;
             }
-            set
+        }
+
+        public int NbTurns
+        {
+            get
             {
+                return nbTurns;
+            }
+        }
+
+        public int NbUnits
+        {
+            get
+            {
+                return nbUnits;
             }
         }
 
@@ -22,31 +80,39 @@ namespace Small_World
         {
             get
             {
-                throw new System.NotImplementedException();
+                return peopleFactory;
             }
             set
             {
+                peopleFactory = value;
             }
         }
 
-        public void AddGameBoard()
+        public Game Game
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                return game;
+            }
+            set
+            {
+                game = value;
+            }
         }
 
-        public void AddPlayer()
+        public GameBoard GameBoard
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                return gameBoard;
+            }
+            set
+            {
+                gameBoard = value;
+            }
         }
 
-        public void Build()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public void PlaceUnits()
-        {
-            throw new System.NotImplementedException();
-        }
+
     }
 }

@@ -5,56 +5,20 @@ using System.Text;
 
 namespace Small_World
 {
-
-    public interface MediumGameBoardBuilderInterface : GameBoardBuilderInterface
+    public interface StrategyMediumInterface : StrategyInterface
     {
 
+        new List<List<Tile>> build();
     }
 
-
-    public class MediumGameBoardCreator : GameBoardCreator
+    public class BuilderMediumGameBoard : BuilderGameBoard, StrategyMediumInterface
     {
-        public MediumGameBoardCreator()
-        {
-            throw new System.NotImplementedException();
-        }
+        public const int NB_TILES_MEDIUM = 10;
 
-        public int NbTiles
+        public BuilderMediumGameBoard()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public int NbTurns
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public int NbUnits
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public void CreateGameBoard()
-        {
-            throw new System.NotImplementedException();
+            size = NB_TILES_MEDIUM;
         }
     }
+    
 }

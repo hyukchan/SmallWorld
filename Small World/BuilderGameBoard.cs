@@ -6,34 +6,32 @@ using System.Text;
 namespace Small_World
 {
 
-    public interface GameBoardBuilderInterface
+    public interface StrategyInterface
     {
-        void addMap();
+        public const int NB_TILES_DEMO = 6;
+        public const int NB_TILES_MEDIUM = 10;
+        public const int NB_TILES_LARGE = 14;
 
-        void addPlayer(string player, string people);
-
-        Game createGame(string player1, string people1, string player2, string people2);
-
-        void placeUnits();
-
-        void initNbTours();
-
+        List<List<Tile>> build();
     }
 
-    public abstract class BuilderGameBoard : GameBoardBuilderInterface 
+    public unsafe abstract class BuilderGameBoard : StrategyInterface
     {
-        protected int nbTiles;
+        protected int size;
 
-        protected int nbTours;
+        public int Size
+        {
+            get
+            {
+                return size;
+            }
+        }
 
-        protected int nbUnits;
-
-        private PeopleFactory peopleFactory;
-
-        private Game game;
-
-        private GameBoard gameBoard;
-
-
+        public unsafe List<List<Tile>> build()
+        {
+            //TODOSW strategie avec wrapper
+            return null;
+        }
     }
+
 }
