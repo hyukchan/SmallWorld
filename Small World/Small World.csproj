@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuilderDemoBoard.cs" />
+    <Compile Include="BuilderDemoGameBoard.cs" />
     <Compile Include="BuilderGameBoard.cs" />
-    <Compile Include="BuilderLargeBoard.cs" />
+    <Compile Include="BuilderLargeGameBoard.cs" />
     <Compile Include="BuilderMediumGameBoard.cs" />
     <Compile Include="DwarfUnit.cs" />
     <Compile Include="ElfUnit.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmallGameBuilder.cs" />
+    <Compile Include="DemoGameBuilder.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="TilesFactory.cs" />
     <Compile Include="Unit.cs" />

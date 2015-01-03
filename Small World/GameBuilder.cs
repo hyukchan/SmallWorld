@@ -15,25 +15,9 @@ namespace Small_World
 
         void placeUnits();
 
-        void initNbTours();
+        void initNbTurns();
 
     }
-
-    public interface DemoGameBuilderInterface : GameBuilderInterface
-    {
-
-    }
-
-    public interface MediumGameBuilderInterface : GameBuilderInterface
-    {
-
-    }
-
-    public interface LargeGameBuilderInterface : GameBuilderInterface
-    {
-
-    }
-
 
 
     public abstract class GameBuilder : GameBuilderInterface
@@ -124,6 +108,46 @@ namespace Small_World
             }
         }
 
-        //TODOSW implémenter les fonctions de l'interface
+        public void addMap()
+        {
+            List<List<Tile>> listTiles;
+            listTiles = BuilderGameBoard.build();
+
+            Game.GameBoard.ListTiles = listTiles;
+        }
+
+        public void addPlayer(string playername, string people)
+        {
+            People p = PeopleFactory.FactoryInstance.CreatePeople(people);
+            Player player = new Player(playername, p);
+            Game.ListPlayers.add(player);
+
+            Random r = new Random();
+            int first = r.Next(Game.ListPlayers.Count);
+            Game.FirstPlayer = first;
+            Game.CurrentPlayer = Game.FirstPlayer;
+            //TODOSW implémenter les fonctions de l'interface
+        }
+
+        public Game CreateGame(string player1, string people1, string player2, string people2)
+        {
+            this.addPlayer(player1, people1);
+            this.addPlayer(player2, people2);
+            this.addMap();
+            this.placeUnits();
+            this.initNbTurns();
+            return Game;
+        }
+
+        public void initNbTurns()
+        {
+            Game.NbTurnsRemaining = nbTurns;
+        }
+
+        public void placeUnits()
+        {
+            //TODOSW
+        }
     }
+
 }

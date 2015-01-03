@@ -5,36 +5,27 @@ using System.Text;
 
 namespace Small_World
 {
-    public class LargeGameBuilder : GameBuilder
+
+    public interface LargeGameBuilderInterface : GameBuilderInterface
+    {
+
+    }
+
+    public class LargeGameBuilder : GameBuilder, LargeGameBuilderInterface
     {
         public LargeGameBuilder()
         {
-            throw new System.NotImplementedException();
+            nbTiles = BuilderLargeGameBoard.NB_TILES_LARGE;
+            nbTurns = BuilderLargeGameBoard.NB_TOUR_LARGE;
+            nbUnits = BuilderLargeGameBoard.NB_UNITS_LARGE;
+
+            PeopleFactory = new PeopleFactory();
+            GameBoard = new GameBoard();
+            Game = new Game();
+            Strategy = new BuilderDemoGameBoard();
         }
 
-        public void addGameBoard()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void addPeople()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void addPlayer()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void createGame()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void placeUnits()
-        {
-            throw new System.NotImplementedException();
-        }
     }
+
+   
 }

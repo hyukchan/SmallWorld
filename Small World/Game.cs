@@ -5,8 +5,39 @@ using System.Text;
 
 namespace Small_World
 {
-    public class Game
+
+    public interface GameInterface
     {
+        Player winner();
+
+        void changePlayer();
+
+        List<Unit> selectUnit(int x, int y);
+
+        List<Unit> selectOpponentUnit(int x, int y);
+
+        bool canMove(Unit unit, int x, int y);
+
+        int askToMove(Unit unit, int x, int y);
+
+        void checkEndOfGame();
+
+        bool save();
+
+        bool saveAs(string filename);
+
+        Game load(string filename);
+
+        //TODOSW restaurer ?
+    }
+
+    public unsafe class Game : GameInterface
+    {
+
+        private Player FirstPlayer;
+
+        private Player currentPlayer;
+
         public Game()
         {
             throw new System.NotImplementedException();
@@ -31,6 +62,7 @@ namespace Small_World
             }
             set
             {
+
             }
         }
 

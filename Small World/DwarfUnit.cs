@@ -12,7 +12,7 @@ namespace Small_World
             throw new System.NotImplementedException();
         }
 
-        //TODO to fill
+        //TODOSW to fill
         public void Move(Position p)
         {
             if (MovePt > 0)

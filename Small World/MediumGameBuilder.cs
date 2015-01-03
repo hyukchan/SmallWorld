@@ -5,36 +5,27 @@ using System.Text;
 
 namespace Small_World
 {
-    public class SavedGameBuilder : GameBuilder
+
+    public interface MediumGameBuilderInterface : GameBuilderInterface
     {
-        public SavedGameBuilder()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public void AddGameBoard()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void AddPeople()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void AddPlayer()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CreateGame()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void PlaceUnits()
-        {
-            throw new System.NotImplementedException();
-        }
     }
-}
+
+
+    public class MediumGameBuilder : GameBuilder, MediumGameBuilderInterface
+    {
+        public MediumGameBuilder()
+        {
+            nbTiles = BuilderMediumGameBoard.NB_TILES_MEDIUM;
+            nbTurns = BuilderMediumGameBoard.NB_TURNS_MEDIUM;
+            nbUnits = BuilderMediumGameBoard.NB_UNITS_MEDIUM;
+
+            PeopleFactory = new PeopleFactory();
+            GameBoard = new GameBoard();
+            Game = new Game();
+            Strategy = new BuilderDemoGameBoard();
+        }
+
+    }
+    }
+

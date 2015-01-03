@@ -14,6 +14,8 @@ namespace Small_World
     public class BuilderLargeGameBoard : BuilderGameBoard, StrategyLargeInterface
     {
         public const int NB_TILES_LARGE = 14;
+        public const int NB_UNITS_LARGE = 8;
+        public const int NB_TURNS_LARGE = 30;
 
         public BuilderLargeGameBoard()
         {
