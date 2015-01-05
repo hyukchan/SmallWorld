@@ -91,5 +91,56 @@ namespace Small_World
         {
             throw new System.NotImplementedException();
         }
+
+        public Player winner()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void changePlayer()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Unit> selectUnit(int x, int y)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Unit> selectOpponentUnit(int x, int y)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool canMove(Unit unit, int x, int y)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int askToMove(Unit unit, int x, int y)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        public void checkEndOfGame()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool save()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool saveAs(string filename)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Game load(string filename)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

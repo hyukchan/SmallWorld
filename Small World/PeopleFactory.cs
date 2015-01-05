@@ -54,6 +54,10 @@ namespace Small_World
             }
         }
 
+        public People peopleFactory(string people)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 

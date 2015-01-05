@@ -11,7 +11,7 @@ namespace Small_World
 
         void addPlayer(string player, string people);
 
-        Game createGame(string player1, string people1, string player2, string people2);
+        Game CreateGame(string player1, string people1, string player2, string people2);
 
         void placeUnits();
 
