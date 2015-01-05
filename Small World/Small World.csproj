@@ -87,6 +87,12 @@
       <DependentUpon>tourJeu.sequencediagram</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="AlgorithmsWrapper\AlgorithmsWrapper.vcxproj">
+      <Project>{5ce6f519-8529-4bb1-8922-825eeb8b3af2}</Project>
+      <Name>AlgorithmsWrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
