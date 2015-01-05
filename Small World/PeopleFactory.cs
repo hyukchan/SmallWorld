@@ -5,16 +5,12 @@ using System.Text;
 
 namespace Small_World
 {
-
-
-
     public interface peopleFactoryInterface
     {
         People peopleFactory(string people);
     }
     public class PeopleFactory : peopleFactoryInterface
     {
-
         public const string DWARF = "Dwarf";
         public const string ELF = "Elf";
         public const string ORC = "Orc";
@@ -59,8 +55,5 @@ namespace Small_World
             throw new System.NotImplementedException();
         }
     }
-
-
-
 }
 

@@ -24,7 +24,7 @@ namespace Small_World
             Game = new Game();
             Strategy = new BuilderDemoGameBoard();
         }
-        public Game createGame(string player1, string people1, string player2, string people2)
+        public Game CreateGame(string player1, string people1, string player2, string people2)
         {
             //TODOSW
             return null;
