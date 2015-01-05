@@ -101,9 +101,6 @@
     <ProjectReference Include="..\..\Algorithms\Algorithms.vcxproj">
       <Project>{466be7d8-4b95-41f9-b839-94f9a0744155}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Small World.csproj">
-      <Project>{98d0e7a4-677d-46c6-b17a-08f42fa9524b}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WrapperAlgo;
 
 namespace Small_World
 {
 
     public interface StrategyInterface
     {
-        List<List<Tile>> build();
+        List<Tile> build();
     }
 
     public abstract class BuilderGameBoard : StrategyInterface
@@ -23,10 +24,45 @@ namespace Small_World
             }
         }
 
-        public List<List<Tile>> build()
+        public unsafe List<Tile> build()
         {
-            //TODOSW strategie avec wrapper
-            return null;
+
+            int i, j, k;
+
+            int* map;
+            map = WrapperAlgo.generateMap(Size);
+
+            List<Tile> finalMap = new List<Tile>();
+
+
+            for (i = 0; i < Size; i++)
+            {
+                for (j = 0; j < Size; j++)
+                {
+                    k = map[i * Size + j];
+
+                    switch (k)
+                    {
+                        case Tile.DESERT:
+                            finalMap.Add(TileFactory.TileFactory_Instance.GetDesert());
+                            break;
+                        case Tile.PLAIN:
+                            finalMap.Add(TileFactory.TileFactory_Instance.GetPlain());
+                            break;
+                        case Tile.FOREST:
+                            finalMap.Add(TileFactory.TileFactory_Instance.GetForest());
+                            break;
+                        case Tile.MOUNTAIN:
+                            finalMap.Add(TileFactory.TileFactory_Instance.GetMountain());
+                            break;
+                        default: 
+                            break;
+
+                    }
+                }
+            }
+                
+                return finalMap;
         }
     }
 
