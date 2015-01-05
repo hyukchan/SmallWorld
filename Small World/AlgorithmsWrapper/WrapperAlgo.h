@@ -2,9 +2,6 @@
 #define _WRAPPER
 #pragma once
 
-#include "../../Algorithms/Algo.h"
-
-#pragma comment(lib, "../Debug/Algorithms.lib")
 using namespace System;
 using namespace Small_World;
 
