@@ -11,9 +11,9 @@ namespace Small_World
 
     }
 
-    public class LargeGameBuilder : GameBuilder, DemoGameBuilderInterface
+    public class DemoGameBuilder : GameBuilder, DemoGameBuilderInterface
     {
-        public LargeGameBuilder()
+        public DemoGameBuilder()
         {
             nbTiles = BuilderDemoGameBoard.NB_TILES_DEMO;
             nbTurns = BuilderDemoGameBoard.NB_TURNS_DEMO;
@@ -24,7 +24,11 @@ namespace Small_World
             Game = new Game();
             Strategy = new BuilderDemoGameBoard();
         }
-
+        public Game createGame(string player1, string people1, string player2, string people2)
+        {
+            //TODOSW
+            return null;
+        }
     }
 
 }

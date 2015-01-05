@@ -31,7 +31,7 @@ namespace Small_World
         //TODOSW restaurer ?
     }
 
-    public unsafe class Game : GameInterface
+    public class Game : GameInterface
     {
 
         private Player FirstPlayer;

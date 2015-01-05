@@ -8,14 +8,10 @@ namespace Small_World
 
     public interface StrategyInterface
     {
-        public const int NB_TILES_DEMO = 6;
-        public const int NB_TILES_MEDIUM = 10;
-        public const int NB_TILES_LARGE = 14;
-
         List<List<Tile>> build();
     }
 
-    public unsafe abstract class BuilderGameBoard : StrategyInterface
+    public abstract class BuilderGameBoard : StrategyInterface
     {
         protected int size;
 
@@ -27,7 +23,7 @@ namespace Small_World
             }
         }
 
-        public unsafe List<List<Tile>> build()
+        public List<List<Tile>> build()
         {
             //TODOSW strategie avec wrapper
             return null;

@@ -7,12 +7,12 @@ namespace Small_World
 {
     public interface PeopleInterface
     {
-        Unit createUnit();
+        Unit CreateUnit();
     }
 
     public abstract class People : PeopleInterface
     {
-        public abstract Unit createUnit();
+        public abstract Unit CreateUnit();
     }
 
 }
