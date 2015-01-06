@@ -120,10 +120,10 @@ namespace Small_World
         {
             People p = PeopleFactory.FactoryInstance.CreatePeople(people);
             Player player = new Player(playername, p);
-            Game.ListPlayers.add(player);
+            Game.PlayerList.Add(player);
 
             Random r = new Random();
-            int first = r.Next(Game.ListPlayers.Count);
+            int first = r.Next(Game.PlayerList.Count);
             Game.FirstPlayer = first;
             Game.CurrentPlayer = Game.FirstPlayer;
             //TODOSW implémenter les fonctions de l'interface
@@ -141,12 +141,12 @@ namespace Small_World
 
         public void initNbTurns()
         {
-            Game.NbTurnsRemaining = nbTurns;
+            Game.NbRemainingTurns = nbTurns;
         }
 
-        public void placeUnits()
+        public unsafe void placeUnits()
         {
-            //TODOSW
+            
         }
     }
 

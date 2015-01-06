@@ -8,7 +8,7 @@ namespace Small_World
     public interface StrategyMediumInterface : StrategyInterface
     {
 
-        List<List<Tile>> build();
+        List<Tile> build();
     }
 
     public class BuilderMediumGameBoard : BuilderGameBoard, StrategyMediumInterface
@@ -16,11 +16,6 @@ namespace Small_World
         public const int NB_TILES_MEDIUM = 10;
         public const int NB_UNITS_MEDIUM = 6;
         public const int NB_TURNS_MEDIUM = 15;
-
-        public List<List<Tile>> build()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public BuilderMediumGameBoard()
         {

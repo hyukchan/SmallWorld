@@ -7,52 +7,82 @@ namespace Small_World
 {
     public class GameBoard
     {
+        private List<Tile> listTiles;
+        private BuilderGameBoard strategy;
+        private TileFactory tilesFactory;
+        private int size;
+
         public GameBoard()
         {
-            throw new System.NotImplementedException();
+            TilesFactory = TileFactory.TileFactory_Instance;
+            ListTiles = new List<Tile>();
         }
 
-        public TileFactory tilesFactory
+        public GameBoard(List<Tile> tiles)
+        {
+            TilesFactory = TileFactory.TileFactory_Instance;
+            ListTiles = tiles;
+        }
+
+        public TileFactory TilesFactory
         {
             get
             {
-                throw new System.NotImplementedException();
+                return tilesFactory;
             }
             set
             {
+                tilesFactory = value;
             }
         }
 
-        public Tile Tiles
+        public List<Tile> ListTiles
         {
             get
             {
-                throw new System.NotImplementedException();
+                return listTiles;
             }
             set
             {
+                listTiles = value;
+                size = value.Count;
             }
         }
 
-        public GameBoardCreator GameBoardCreator
+        public BuilderGameBoard Strategy
         {
             get
             {
-                throw new System.NotImplementedException();
+                return strategy;
             }
             set
             {
+                strategy = value;
             }
         }
 
-        public void SetSize()
+        public int Size
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+            }
         }
 
         public void Create()
         {
-            throw new System.NotImplementedException();
+            Strategy.build();
         }
+
+        public void SetStrategy(BuilderGameBoard b)
+        {
+            Strategy = b;
+        }
+
+
     }
 }

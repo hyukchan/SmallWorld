@@ -30,7 +30,8 @@ namespace Small_World
             int i, j, k;
 
             int* map;
-            map = WrapperAlgo.generateMap(Size);
+            WrapperAlgo wrapperAlgo = new WrapperAlgo();
+            map = wrapperAlgo.mapCreation(Size);
 
             List<Tile> finalMap = new List<Tile>();
 

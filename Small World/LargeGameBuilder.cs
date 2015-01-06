@@ -16,7 +16,7 @@ namespace Small_World
         public LargeGameBuilder()
         {
             nbTiles = BuilderLargeGameBoard.NB_TILES_LARGE;
-            nbTurns = BuilderLargeGameBoard.NB_TOUR_LARGE;
+            nbTurns = BuilderLargeGameBoard.NB_TURNS_LARGE;
             nbUnits = BuilderLargeGameBoard.NB_UNITS_LARGE;
 
             PeopleFactory = new PeopleFactory();
