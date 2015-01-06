@@ -30,5 +30,16 @@ namespace UnitTestProject1
 
             //TODOSW
         }
+
+        [TestMethod]
+        public unsafe void TestAttack()
+        {
+            DwarfUnit d = new DwarfUnit();
+            ElfUnit e = new ElfUnit();
+
+            e.Attack(d, 1);
+
+            Assert.AreEqual(4, d.HitPt);
+        }
     }
 }

@@ -19,5 +19,17 @@ namespace Small_World
                 MovePt--;
             }
         }
+
+        public override void CalculateMoves()
+        {
+
+        }
+
+        public override int UpdateGamePoints()
+        {
+            GamePt = 1;
+            return GamePt;
+        }
+
     }
 }
