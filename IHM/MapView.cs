@@ -14,7 +14,7 @@ namespace IHM
 {
     class MapView:Panel
     {
-        protected override void OnRender(DrawingContext dc){
+        protected unsafe override void OnRender(DrawingContext dc){
             WrapperAlgo wrapper = new WrapperAlgo();
             var map = wrapper.createGameBoard(4);
             BitmapImage image = new BitmapImage(new Uri("textures/desert.png", UriKind.RelativeOrAbsolute));

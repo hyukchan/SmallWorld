@@ -95,5 +95,15 @@ namespace Small_World
             //TODOSMALLWORLD calculer le point du jeu en fonction de la case où l'unité se situe etc...
             return gamePt;
         }
+
+        public void endTurn()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void newTurn()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
