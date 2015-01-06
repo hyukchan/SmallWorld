@@ -226,7 +226,7 @@ namespace Small_World
         {
             int i;
             List<Unit> unitList = new List<Unit>();
-            Position pos;
+            Position pos = new Position();
             pos.X = x;
             pos.Y = y;
             int opponent = (CurrentPlayer + 1) % PlayerList.Count;

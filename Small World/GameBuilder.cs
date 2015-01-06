@@ -110,8 +110,8 @@ namespace Small_World
 
         public void addMap()
         {
-            List<List<Tile>> listTiles;
-            listTiles = BuilderGameBoard.build();
+            List<Tile> listTiles;
+            listTiles = Strategy.build();
 
             Game.GameBoard.ListTiles = listTiles;
         }
