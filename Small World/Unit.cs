@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Wrapper;
 
 namespace Small_World
 {
@@ -12,20 +13,93 @@ namespace Small_World
         const int HIT_PT = 5;
         const int MOVE_PT = 1;
 
-        private int gamePt;
+       
         private Position position;
+        protected int* tabMap;
+        private int* moves;
+        private double* costs;
+        private int sizeMap;
 
-        public Unit()
+        private bool turnEnded;
+
+        private int attackPt;
+        private int defensePt;
+        private int hitPt;
+        private double movePt;
+        private int gamePt;
+
+        protected WrapperAlgo wrapperAlgo;
+
+        public Position Position
         {
-            HitPt = HIT_PT;
-            MovePt = MOVE_PT;
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
+        }
 
-            Position p = new Position { X = 2, Y = 3 };
-            var p2 = p;
+        public unsafe int* TabMap
+        {
+            get
+            {
+                return tabMap;
+            }
+            set
+            {
+                tabMap = value;
+            }
+        }
 
-            Position a = new Position { X = 2, Y = 3 };
-            Position b = a;
-            
+        public unsafe int* Moves
+        {
+            get
+            {
+                return moves;
+            }
+            set
+            {
+                moves = value;
+            }
+        }
+
+        public unsafe double* Costs
+        {
+            get
+            {
+                return costs;
+            }
+            set
+            {
+                costs = value;
+            }
+        }
+
+        public int SizeMap
+        {
+            get
+            {
+                return sizeMap;
+            }
+            set
+            {
+                sizeMap = value;
+            }
+        }
+
+        public bool TurnEnded
+        {
+            get
+            {
+                return turnEnded;
+            }
+            set
+            {
+                turnEnded = value;
+            }
         }
 
         public int AttackPt
@@ -40,15 +114,55 @@ namespace Small_World
 
         public int HitPt
         {
-            get;
-            set;
+            get
+            {
+                return hitPt;
+            }
+            set
+            {
+                hitPt = value;
+            }
         }
 
-        public int MovePt
+        public int GamePt
         {
-            get;
-            set;
+            get
+            {
+                this.UpdateGamePoints();
+                return gamePt;
+            }
+            set
+            {
+                gamePt = value;
+            }
         }
+
+        public double MovePt
+        {
+            get
+            {
+                return movePt;
+            }
+            set
+            {
+                movePt = value;
+            }
+        }
+
+        public Unit()
+        {
+            HitPt = HIT_PT;
+            MovePt = MOVE_PT;
+
+            Position p = new Position { X = 2, Y = 3 };
+            var p2 = p;
+
+            Position a = new Position { X = 2, Y = 3 };
+            Position b = a;
+            
+        }
+
+       
 
         public Position Position
         {

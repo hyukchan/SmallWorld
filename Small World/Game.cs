@@ -242,7 +242,7 @@ namespace Small_World
 
         public bool CanMove(Unit u, int x, int y)
         {
-            //nain peuvent se déplacer de montagne en montagne
+            //nains peuvent se déplacer de montagne en montagne
             if((u.GetType() == new DwarfUnit().GetType()) && (selectOpponentUnit(x,y).Count != 0) && (Math.Abs(x - u.Position.X) <= 1) && (Math.Abs(y-u.Position.Y) <= 1 ))
             {
                 return false;
@@ -254,43 +254,18 @@ namespace Small_World
 
         }
 
-        public GameBoard GameBoard
+        public int AskToMove(Unit u, int x, int y)
         {
-            get
+            if (CanMove(u, x, y))
             {
-                throw new System.NotImplementedException();
+                List<Unit> listUnits = selectOpponentUnit(x,y);
+                if (listUnits.Count == 0)
+                {
+                    u.Move(x, y);
+                    return 1;
+                }
             }
-            set
-            {
-            }
-        }
-
-        public Player Player1
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-
-            }
-        }
-
-        public Player Player2
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public void SelectUnit()
-        {
-            throw new System.NotImplementedException();
+            return 1;
         }
 
         public void EndTurn()
