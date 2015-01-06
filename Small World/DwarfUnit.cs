@@ -9,7 +9,7 @@ namespace Small_World
     {
         public DwarfUnit()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         //TODOSW to fill

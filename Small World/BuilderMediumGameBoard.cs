@@ -17,11 +17,6 @@ namespace Small_World
         public const int NB_UNITS_MEDIUM = 6;
         public const int NB_TURNS_MEDIUM = 15;
 
-        public List<Tile> build()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public BuilderMediumGameBoard()
         {
             size = NB_TILES_MEDIUM;

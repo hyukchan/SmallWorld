@@ -17,11 +17,6 @@ namespace Small_World
         public const int NB_UNITS_LARGE = 8;
         public const int NB_TURNS_LARGE = 30;
 
-       public unsafe List<Tile> build()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public BuilderLargeGameBoard()
         {
             size = NB_TILES_LARGE;
