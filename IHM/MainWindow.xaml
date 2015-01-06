@@ -40,16 +40,25 @@
                     Background="PowderBlue"
                     >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="150"></RowDefinition>
                         <RowDefinition Height="100"></RowDefinition>
                     </Grid.RowDefinitions>
+                    
+                    <TextBlock
+                        Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        >
+                        Hyukchan
+                    </TextBlock>
 
                     <!-- Player 1 Avatar -->
-                    <Image Grid.Row="0">
+                    <Image Grid.Row="1">
                     </Image>
                     
                     <!-- Player 1 Points and Unit numbers -->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"></RowDefinition>
                             <RowDefinition Height="50"></RowDefinition>
@@ -110,7 +119,9 @@
             <!-- Player 1 Panel End -->
             
             <!-- The Map -->
-            <ScrollViewer Grid.Column="1">
+            <ScrollViewer
+                Grid.Column="1"
+                Padding="20">
                 <IHM:MapView />
             </ScrollViewer>
 
