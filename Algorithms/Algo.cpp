@@ -17,14 +17,14 @@ using namespace std;
 /**
 * Constructeur
 */
-Algo* Algo_new()
+Algo* Algo::Algo_new()
 {
 	return new Algo();
 }
 /**
 * Destructeur
 */
-void delete_Algo(Algo* algo){
+void Algo::delete_Algo(Algo* algo){
 	delete algo;
 }
 
@@ -55,7 +55,7 @@ int* Algo::createGameBoard(int n){
 	return tiles;
 }
 
-int* startingPositions(int* map, int size){
+int* Algo::startingPositions(int* map, int size){
 
 	srand((unsigned int)time(NULL));
 
@@ -87,22 +87,22 @@ int* startingPositions(int* map, int size){
 		return coordinates;
 }
 
-int* mapCreation(int size){
+int* Algo::mapCreation(int size){
 	int* map = (int*)malloc(size * size * sizeof(int));
 	return map;
 }
 
-void freeMap(int* map){
+void Algo::freeMap(int* map){
 	free(map);
 }
 
-double* costTab(int size)
+double* Algo::costTab(int size)
 {
 	double* tab = (double*)malloc(size * size * sizeof(double));
 	return tab;
 }
 
-void freeCost(double* costTab)
+void Algo::freeCost(double* costTab)
 {
 	free(costTab);
 }

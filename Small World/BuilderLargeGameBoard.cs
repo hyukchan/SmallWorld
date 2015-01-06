@@ -8,7 +8,7 @@ namespace Small_World
     public interface StrategyLargeInterface : StrategyInterface
     {
 
-        new List<List<Tile>> build();
+        List<List<Tile>> build();
     }
 
     public class BuilderLargeGameBoard : BuilderGameBoard, StrategyLargeInterface
@@ -16,6 +16,11 @@ namespace Small_World
         public const int NB_TILES_LARGE = 14;
         public const int NB_UNITS_LARGE = 8;
         public const int NB_TURNS_LARGE = 30;
+
+        public List<List<Tile>> build()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public BuilderLargeGameBoard()
         {

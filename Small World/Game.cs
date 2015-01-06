@@ -46,7 +46,7 @@ namespace Small_World
 
         private GameBoard map;
 
-        private int* tabMap;
+        unsafe private int* tabMap;
 
         private String saveName;
 
@@ -300,11 +300,6 @@ namespace Small_World
         }
 
         public void MoveUnit()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Player winner()
         {
             throw new System.NotImplementedException();
         }

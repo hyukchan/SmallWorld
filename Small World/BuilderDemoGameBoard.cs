@@ -9,7 +9,7 @@ namespace Small_World
     public interface StrategyDemoInterface : StrategyInterface
     {
         
-        new List<List<Tile>> build();
+        List<List<Tile>> build();
     }
 
     public class BuilderDemoGameBoard : BuilderGameBoard ,StrategyDemoInterface
@@ -17,6 +17,11 @@ namespace Small_World
         public const int NB_TILES_DEMO = 6;
         public const int NB_UNITS_DEMO = 4;
         public const int NB_TURNS_DEMO = 5;
+
+        public List<List<Tile>> build()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public BuilderDemoGameBoard()
         {

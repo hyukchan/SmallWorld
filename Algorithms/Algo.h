@@ -1,6 +1,9 @@
 #pragma once
 
-class Algo {
+#define DLL _declspec(dllexport)
+#define EXTERNC extern "C"
+
+class DLL Algo {
 
 public:
 	static enum Tile { MOUNTAIN, DESERT, PLAIN, FOREST };

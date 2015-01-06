@@ -1,9 +1,9 @@
-#ifndef _WRAPPER
-#define _WRAPPER
-#pragma once
+#ifndef __WRAPPER__
+#define __WRAPPER__
+
+#include "../../Algorithms/Algo.h"
 
 using namespace System;
-using namespace Small_World;
 
 namespace Wrapper {
 	public ref class WrapperAlgo{
