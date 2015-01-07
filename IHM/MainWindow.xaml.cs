@@ -26,6 +26,10 @@ namespace IHM
         public MainWindow(Game g)
         {
             game = g;
+
+            MapView mv = new MapView(this.game);
+            myCanvas.Children.Add(mv);
+
             InitializeComponent();
         }
     }

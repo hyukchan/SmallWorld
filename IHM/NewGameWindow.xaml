@@ -26,7 +26,9 @@
             Grid.Row="0"
             Grid.ColumnSpan="2"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center">
+            HorizontalAlignment="Center"
+            Style="{StaticResource ActionMan}"
+            FontSize="20">
             Paramètres de la partie
         </TextBlock>
 

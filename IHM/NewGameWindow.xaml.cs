@@ -60,8 +60,12 @@ namespace IHM
             }
             else
             {
-                Game g = new Game();
-                MainWindow mainWindow = new MainWindow(g);
+                GameCreator gameCreator = new GameCreator();
+                gameCreator.AddPlayer(playerOneNameString, playerOnePeopleString);
+                gameCreator.AddPlayer(playerTwoNameString, playerTwoPeopleString);
+                Game game = gameCreator.CreateGame();
+
+                MainWindow mainWindow = new MainWindow(game);
                 mainWindow.Show();
                 this.Close();
             }

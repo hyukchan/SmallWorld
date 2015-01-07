@@ -130,12 +130,12 @@
                 Width="400"
                 Height="300"
                 VerticalScrollBarVisibility="Auto">
-                <!--<Canvas Name="myCanvas" Height="{Binding Height, ElementName=myCanvas}" Width="{Binding Width, ElementName=myCanvas}">
-                </Canvas>-->
+                <Canvas Name="myCanvas" Height="{Binding Height, ElementName=myCanvas}" Width="{Binding Width, ElementName=myCanvas}">
+                </Canvas>
                 <!--<ContentControl x:Name="Map">
                     
                 </ContentControl>-->
-                <IHM:MapView/>
+                <!--<IHM:MapView/>-->
             </ScrollViewer>
 
             <!-- Player 2 Panel -->

@@ -14,14 +14,12 @@ namespace IHM
 {
     class MapView:Panel
     {
+        private Game game;
 
-        //protected unsafe override void OnRender(DrawingContext dc){
-            
-        //    WrapperAlgo wrapper = new WrapperAlgo();
-        //    var map = wrapper.createGameBoard(4);
-        //    BitmapImage image = new BitmapImage(new Uri("textures/desert.png", UriKind.RelativeOrAbsolute));
-        //    dc.DrawImage(image, new System.Windows.Rect(0,0,69,79));
-        //}
+        public MapView(Game g)
+        {
+            this.game = g;
+        }
 
         unsafe protected override void OnRender(System.Windows.Media.DrawingContext dc)
         {
