@@ -113,7 +113,7 @@ namespace Small_World
             List<Tile> listTiles;
             listTiles = Strategy.build();
 
-            Game.GameBoard.ListTiles = listTiles;
+            Game.Map.ListTiles = listTiles;
         }
 
         public void addPlayer(string playername, string people)
@@ -126,7 +126,7 @@ namespace Small_World
             int first = r.Next(Game.PlayerList.Count);
             Game.FirstPlayer = first;
             Game.CurrentPlayer = Game.FirstPlayer;
-            //TODOSW implémenter les fonctions de l'interface
+            
         }
 
         public Game CreateGame(string player1, string people1, string player2, string people2)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Wrapper;
 
 namespace Small_World
 {
@@ -12,20 +13,97 @@ namespace Small_World
         const int HIT_PT = 5;
         const int MOVE_PT = 1;
 
-        private int gamePt;
+       
         private Position position;
+        protected unsafe int* tabMap;
+        private unsafe int* moves;
+        private unsafe double* costs;
+        private int sizeMap;
 
-        public Unit()
+        private bool turnEnded;
+
+        private int attackPt;
+        private int defensePt;
+        private int hitPt;
+        private double movePt;
+        private int gamePt;
+
+        protected WrapperAlgo wrapperAlgo;
+
+        public Position Position
         {
-            HitPt = HIT_PT;
-            MovePt = MOVE_PT;
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
+        }
 
-            Position p = new Position { X = 2, Y = 3 };
-            var p2 = p;
+        public unsafe int* TabMap
+        {
+            get
+            {
+                return tabMap;
+            }
+            set
+            {
+                tabMap = value;
+            }
+        }
 
-            Position a = new Position { X = 2, Y = 3 };
-            Position b = a;
-            
+        public unsafe int* Moves
+        {
+            get
+            {
+                return moves;
+            }
+            set
+            {
+                moves = value;
+            }
+        }
+
+        public unsafe double* Costs
+        {
+            get
+            {
+                return costs;
+            }
+            set
+            {
+                costs = value;
+            }
+        }
+
+        public int SizeMap
+        {
+            get
+            {
+                return sizeMap;
+            }
+            set
+            {
+                sizeMap = value;
+            }
+        }
+
+        public bool TurnEnded
+        {
+            get
+            {
+                return turnEnded;
+            }
+            set
+            {
+                turnEnded = value;
+                if (turnEnded)
+                {
+                    MovePt = 0;
+                }
+            }
         }
 
         public int AttackPt
@@ -40,25 +118,13 @@ namespace Small_World
 
         public int HitPt
         {
-            get;
-            set;
-        }
-
-        public int MovePt
-        {
-            get;
-            set;
-        }
-
-        public Position Position
-        {
             get
             {
-                return position;
+                return hitPt;
             }
             set
             {
-                position = value;
+                hitPt = value;
             }
         }
 
@@ -66,8 +132,7 @@ namespace Small_World
         {
             get
             {
-                this.UpdateGamePoints();
-                return gamePt;
+                return this.UpdateGamePoints();
             }
             set
             {
@@ -75,35 +140,99 @@ namespace Small_World
             }
         }
 
-        public void Attack(Unit u)
+        public double MovePt
+        {
+            get
+            {
+                return movePt;
+            }
+            set
+            {
+                movePt = value;
+            }
+        }
+
+        public Unit()
+        {
+            HitPt = HIT_PT;
+            MovePt = MOVE_PT;
+            TurnEnded = false;
+            wrapperAlgo = new WrapperAlgo();
+        }
+
+        public void Attack(Unit u, int rounds)
         {
             double ptDef = u.DefensePt * (u.HitPt / HIT_PT);
             double ptAtck = AttackPt * (HitPt / HIT_PT);
-            double forceRatio = 1 - (ptAtck / ptDef);
-            double dieProbaAtckBasic = ptAtck / ptDef;
-            double dieProbaAtckFinal = dieProbaAtckBasic + dieProbaAtckBasic * forceRatio;
+            double dieProbaAtck = 0.5;
 
+            double forceRatio = ((double)Math.Abs(ptAtck - ptDef) / Math.Max(ptAtck, ptDef));
+            if (ptAtck > ptDef)
+            {
+                dieProbaAtck = dieProbaAtck - forceRatio;
+            }
+            else
+            {
+                dieProbaAtck = dieProbaAtck + forceRatio;
+            }
+
+            Random random = new Random();
+            while (rounds > 0 && HitPt > 0 && u.HitPt > 0)
+            {
+                double r = random.Next(100);
+                if (r < dieProbaAtck * 100)
+                {
+                    this.HitPt--;
+                }
+                else
+                {
+                    u.HitPt--;
+                }
+                rounds--;
+            }
         }
 
-        public void Move()
+        public unsafe bool CanMove(int x, int y)
         {
-            throw new System.NotImplementedException();
+            return Moves[x * SizeMap + y] > 1;
         }
 
-        public int UpdateGamePoints()
+        public unsafe bool Move(int x, int y)
         {
+            if (CanMove(x, y))
+            {
+                MovePt = Costs[x * SizeMap + y];
+                Position = new Position { X = x, Y = y };
+                this.CalculateMoves();
+                if (MovePt == 0)
+                {
+                    this.endTurn();
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                   
+        }
+
+        public abstract int UpdateGamePoints();
             //TODOSMALLWORLD calculer le point du jeu en fonction de la case où l'unité se situe etc...
-            return gamePt;
-        }
+            // défini dans les unités de chaque classe
+
+        public abstract void CalculateMoves();
 
         public void endTurn()
         {
-            throw new System.NotImplementedException();
+            TurnEnded = true;
         }
 
         public void newTurn()
         {
-            throw new System.NotImplementedException();
+            TurnEnded = false;
+            MovePt = MOVE_PT;
+            CalculateMoves();
         }
     }
 }

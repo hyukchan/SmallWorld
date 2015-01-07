@@ -21,12 +21,25 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void TestCreationGameBoard()
+        public unsafe void TestCreationGameBoard()
         {
             WrapperAlgo w = new WrapperAlgo();
-            //var res = w.createGameBoard(6);
-            //Assert.AreEqual(42, res);
+            var res = w.createGameBoard(6);
+            int * p = res;
+           
+
             //TODOSW
+        }
+
+        [TestMethod]
+        public unsafe void TestAttack()
+        {
+            DwarfUnit d = new DwarfUnit();
+            ElfUnit e = new ElfUnit();
+
+            e.Attack(d, 1);
+
+            Assert.AreEqual(4, d.HitPt);
         }
     }
 }

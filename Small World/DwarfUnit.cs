@@ -20,5 +20,24 @@ namespace Small_World
                 MovePt--;
             }
         }
+
+        public override void CalculateMoves()
+        {
+
+        }
+
+        public override unsafe int UpdateGamePoints()
+        {
+            if (TabMap[Position.X * SizeMap + Position.Y] == Tile.PLAIN)
+            {
+                GamePt = 0;
+            }
+            else
+            {
+                GamePt = 1;
+            }
+            return GamePt;
+        }
+
     }
 }
