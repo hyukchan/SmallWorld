@@ -64,7 +64,7 @@ namespace IHM
                 gameCreator.AddPlayer(playerOneNameString, playerOnePeopleString);
                 gameCreator.AddPlayer(playerTwoNameString, playerTwoPeopleString);
 
-                gameCreator.GameType = "Demo";
+                gameCreator.GameType = mapTypeString;
 
                 Game game = gameCreator.CreateGame();
 
@@ -106,7 +106,7 @@ namespace IHM
         public MapCollection()
         {
             Add("Demo");
-            Add("Normal");
+            Add("Medium");
             Add("Large");
         }
     }

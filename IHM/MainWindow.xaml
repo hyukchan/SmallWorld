@@ -19,8 +19,7 @@
         <Grid
             Grid.Row="1"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="Aqua">
+            VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -125,16 +124,11 @@
             <ScrollViewer
                 Grid.Column="1"
                 Padding="20"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Width="400"
-                Height="300"
-                VerticalScrollBarVisibility="Auto">
+                VerticalScrollBarVisibility="Auto"
+                Margin="30"
+                Background="#eceebc">
                 <Canvas Name="myCanvas" Height="{Binding Height, ElementName=myCanvas}" Width="{Binding Width, ElementName=myCanvas}">
                 </Canvas>
-                <!--<ContentControl x:Name="Map">
-                    
-                </ContentControl>-->
                 <!--<IHM:MapView/>-->
             </ScrollViewer>
 
@@ -149,7 +143,7 @@
                 <!-- Player 2 Informations -->
                 <Grid
                     Grid.Row="0"
-                    Background="PowderBlue"
+                    Background="#e6b0b0"
                     >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
@@ -222,7 +216,7 @@
                 <!-- Player 2 Units -->
                 <ScrollViewer
                     Grid.Row="1"
-                    Background="AliceBlue"
+                    Background="#fff0f0"
                     VerticalScrollBarVisibility="Auto">
                     <StackPanel>
 

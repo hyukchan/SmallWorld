@@ -23,11 +23,11 @@ namespace IHM
 
         unsafe protected override void OnRender(System.Windows.Media.DrawingContext dc)
         {
-            int TAILLE = 4;
-            BitmapImage plainImg = new BitmapImage(new Uri("textures/plain.png", UriKind.Relative));
-            BitmapImage desertImg = new BitmapImage(new Uri("textures/desert.png", UriKind.Relative));
-            BitmapImage mountainImg = new BitmapImage(new Uri("textures/ocean.png", UriKind.Relative));
-            BitmapImage forestImg = new BitmapImage(new Uri("textures/foret.png", UriKind.Relative));
+            int TAILLE = (int) Math.Sqrt(game.Map.Size);
+            BitmapImage plainImg = new BitmapImage(new Uri("./textures/plain.png", UriKind.Relative));
+            BitmapImage desertImg = new BitmapImage(new Uri("./textures/desert.png", UriKind.Relative));
+            BitmapImage mountainImg = new BitmapImage(new Uri("./textures/mountain.png", UriKind.Relative));
+            BitmapImage forestImg = new BitmapImage(new Uri("./textures/foret.png", UriKind.Relative));
 
             BitmapImage[] tilesImg = { plainImg, desertImg, mountainImg, forestImg };
 
@@ -35,8 +35,7 @@ namespace IHM
             {
                 for (int i = 0; i < TAILLE; i++)
                 {
-                    //TODOSW : replace map initialisation using the method createGameBoard(int n)
-                    var map = new int[16] { 1, 0, 2 ,1 , 3, 1, 2, 3, 1, 1, 2, 3, 1, 1, 2, 2};
+                    var map = game.TabMap;
                     int tile = map[j * TAILLE + i];
 
                     double d = tilesImg[tile].PixelWidth / 2 * Math.Tan(30 * Math.PI / 180);
