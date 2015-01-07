@@ -162,23 +162,23 @@ namespace Small_World
 
             for (i = 0; i < NbTiles; i++)
             {
-                for (j = 0; j < nbTiles; j++)
+                for (j = 0; j < NbTiles; j++)
                 {
-                    if (Game.Map.ListTiles[i * nbTiles + j].GetType() == new Desert().GetType())
+                    if (Game.Map.ListTiles[i * NbTiles + j].GetType() == new Desert().GetType())
                     {
-                        map[i * nbTiles + j] = Tile.DESERT;
+                        map[i * NbTiles + j] = Tile.DESERT;
                     }
                     if (Game.Map.ListTiles[i * nbTiles + j].GetType() == new Plain().GetType())
                     {
-                        map[i * nbTiles + j] = Tile.PLAIN;
+                        map[i * NbTiles + j] = Tile.PLAIN;
                     }
                     if (Game.Map.ListTiles[i * nbTiles + j].GetType() == new Mountain().GetType())
                     {
-                        map[i * nbTiles + j] = Tile.MOUNTAIN;
+                        map[i * NbTiles + j] = Tile.MOUNTAIN;
                     }
                     if (Game.Map.ListTiles[i * nbTiles + j].GetType() == new Forest().GetType())
                     {
-                        map[i * nbTiles + j] = Tile.FOREST;
+                        map[i * NbTiles + j] = Tile.FOREST;
                     }
                 }
             }

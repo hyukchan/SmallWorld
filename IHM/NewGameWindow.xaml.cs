@@ -63,6 +63,9 @@ namespace IHM
                 GameCreator gameCreator = new GameCreator();
                 gameCreator.AddPlayer(playerOneNameString, playerOnePeopleString);
                 gameCreator.AddPlayer(playerTwoNameString, playerTwoPeopleString);
+
+                gameCreator.GameType = "Demo";
+
                 Game game = gameCreator.CreateGame();
 
                 MainWindow mainWindow = new MainWindow(game);
