@@ -46,10 +46,25 @@ namespace IHM
 
             string mapTypeString = (string) mapType.SelectedItem;
 
-            Game g = new Game();
-            MainWindow mainWindow = new MainWindow(g);
-            mainWindow.Show();
-            this.Close();
+            if (playerOneNameString == "" || playerTwoNameString == "" || playerOnePeopleString == "" || playerTwoPeopleString == "" || mapTypeString == "")
+            {
+                errorBlock.Text = "Empty fields !";
+            }
+            else if (playerOnePeopleString == playerTwoPeopleString)
+            {
+                errorBlock.Text = "You can't play with the same people !";
+            }
+            else if (playerOneNameString == playerTwoNameString)
+            {
+                errorBlock.Text = "You want to play alone ?";
+            }
+            else
+            {
+                Game g = new Game();
+                MainWindow mainWindow = new MainWindow(g);
+                mainWindow.Show();
+                this.Close();
+            }
         }
     }
 

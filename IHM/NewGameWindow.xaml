@@ -152,7 +152,7 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Foreground="#FA023C"
-            x:Name="ErrorBlock">
+            x:Name="errorBlock">
         </TextBlock>
 
         <Button
