@@ -49,6 +49,7 @@
                         Grid.Row="0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
+                        x:Name="playerOneName"
                         >
                         Hyukchan
                     </TextBlock>
@@ -82,7 +83,8 @@
                             Grid.Row="0"
                             Grid.Column="1"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            x:Name="playerOnePoints">
                             0
                         </TextBlock>
 
@@ -99,7 +101,8 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            x:Name="playerOneUnitNumbers">
                             0
                         </TextBlock>
                     </Grid>
@@ -156,6 +159,7 @@
                         Grid.Row="0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
+                        x:Name="playerTwoName"
                         >
                         Hyukchan
                     </TextBlock>
@@ -189,7 +193,8 @@
                             Grid.Row="0"
                             Grid.Column="1"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            x:Name="playerTwoPoints">
                             0
                         </TextBlock>
 
@@ -206,7 +211,8 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            x:Name="playerTwoUnitNumbers">
                             0
                         </TextBlock>
                     </Grid>
