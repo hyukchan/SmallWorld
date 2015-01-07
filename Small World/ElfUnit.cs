@@ -20,9 +20,9 @@ namespace Small_World
             }
         }
 
-        public override void CalculateMoves()
+        public override unsafe void CalculateMoves()
         {
-
+            wrapperAlgo.initializeElfMvt(TabMap, SizeMap, Position.X, Position.Y, Costs, Moves, MovePt);
         }
 
         public override int UpdateGamePoints()

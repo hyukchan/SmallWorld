@@ -26,9 +26,9 @@ namespace Small_World
             }
         }
 
-        public override void CalculateMoves()
+        public override unsafe void CalculateMoves()
         {
-            throw new NotImplementedException();
+            wrapperAlgo.initializeOrcMvt(TabMap, SizeMap, Position.X, Position.Y, Costs, Moves, MovePt);
         }
 
         public override unsafe int UpdateGamePoints()

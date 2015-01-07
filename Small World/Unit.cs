@@ -217,8 +217,20 @@ namespace Small_World
                    
         }
 
+        public unsafe void restore(int* tiles)
+        {
+            WrapperAlgo wrapper = new WrapperAlgo();
+            TabMap = tiles;
+            Costs = wrapper.costTab(SizeMap);
+            Moves = wrapper.mapCreation(SizeMap);
+            CalculateMoves();
+
+
+                
+        }
+
         public abstract int UpdateGamePoints();
-            //TODOSMALLWORLD calculer le point du jeu en fonction de la case où l'unité se situe etc...
+            // calcule le point du jeu en fonction de la case où l'unité se situe etc...
             // défini dans les unités de chaque classe
 
         public abstract void CalculateMoves();
