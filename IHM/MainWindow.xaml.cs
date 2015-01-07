@@ -43,8 +43,8 @@ namespace IHM
             playerOnePoints.Text = game.PlayerList[0].Points.ToString();
             playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
 
-            playerOneName.Text = game.PlayerList[1].Name;
-            playerOnePoints.Text = game.PlayerList[1].Points.ToString();
+            playerTwoName.Text = game.PlayerList[1].Name;
+            playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
             playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
 
             myCanvas.Height = canvasHeight;
@@ -52,6 +52,8 @@ namespace IHM
 
             MapView mv = new MapView(this.game);
             myCanvas.Children.Add(mv);
+
+            showUnits();
 
             for (int j = 0; j < mapSize; j++)
             {
@@ -70,6 +72,23 @@ namespace IHM
                     listHexa.Add(h.polygon);
                     myCanvas.Children.Add(h.polygon);
                 }
+            }
+        }
+
+        public void showUnits()
+        {
+            playerOneUnitList.Children.Clear();
+            foreach (Unit u in game.PlayerList[0].Units)
+            {
+                UnitBox unitBox = new UnitBox(u);
+                playerOneUnitList.Children.Add(unitBox);
+            }
+
+            playerTwoUnitList.Children.Clear();
+            foreach (Unit u in game.PlayerList[1].Units)
+            {
+                UnitBox unitBox = new UnitBox(u);
+                playerTwoUnitList.Children.Add(unitBox);
             }
         }
 
