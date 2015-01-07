@@ -23,25 +23,33 @@ namespace IHM
     {
         public NewGameWindow()
         {
-            GameCreator gameCreator = new GameCreator();
-            GameBuilder gameBuilder = gameCreator.CreateGame();
-
             InitializeComponent();
             PopulationCollection populationCollection = new PopulationCollection();
-            PeopleBox1.DataContext = populationCollection;
-            PeopleBox2.DataContext = populationCollection;
+            playerOnePeople.DataContext = populationCollection;
+            playerTwoPeople.DataContext = populationCollection;
 
-            PeopleBox1.SelectedItem = "Elf";
-            PeopleBox2.SelectedItem = "Dwarf";
+            playerOnePeople.SelectedItem = "Elf";
+            playerTwoPeople.SelectedItem = "Dwarf";
 
             MapCollection mapCollection = new MapCollection();
-            mapBox.DataContext = mapCollection;
-            mapBox.SelectedItem = "Demo";
+            mapType.DataContext = mapCollection;
+            mapType.SelectedItem = "Demo";
         }
 
         private void OnClickStartGame(object sender, RoutedEventArgs e)
         {
+            string playerOneNameString = playerOneName.Text;
+            string playerTwoNameString = playerTwoName.Text;
 
+            string playerOnePeopleString = (string) playerOnePeople.SelectedItem;
+            string playerTwoPeopleString = (string) playerTwoPeople.SelectedItem;
+
+            string mapTypeString = (string) mapType.SelectedItem;
+
+            Game g = new Game();
+            MainWindow mainWindow = new MainWindow(g);
+            mainWindow.Show();
+            this.Close();
         }
     }
 

@@ -119,7 +119,7 @@
     <Content Include="textures\ocean.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="textures\plaine.png">
+    <Content Include="textures\plain.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

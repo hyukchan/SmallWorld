@@ -21,8 +21,11 @@ namespace IHM
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private Game game;
+
+        public MainWindow(Game g)
         {
+            game = g;
             InitializeComponent();
         }
     }

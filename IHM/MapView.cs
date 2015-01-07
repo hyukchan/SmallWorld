@@ -14,12 +14,6 @@ namespace IHM
 {
     class MapView:Panel
     {
-        private Game game;
-
-        public MapView(Game g)
-        {
-            this.game = g;
-        }
 
         //protected unsafe override void OnRender(DrawingContext dc){
             
@@ -31,12 +25,11 @@ namespace IHM
 
         unsafe protected override void OnRender(System.Windows.Media.DrawingContext dc)
         {
-            int TAILLE = this.game.Map.Strategy.Size * this.game.Map.Strategy.Size;
-
+            int TAILLE = 4;
             BitmapImage plainImg = new BitmapImage(new Uri("textures/plain.png", UriKind.Relative));
             BitmapImage desertImg = new BitmapImage(new Uri("textures/desert.png", UriKind.Relative));
-            BitmapImage mountainImg = new BitmapImage(new Uri("textures/mountain.png", UriKind.Relative));
-            BitmapImage forestImg = new BitmapImage(new Uri("textures/forest.png", UriKind.Relative));
+            BitmapImage mountainImg = new BitmapImage(new Uri("textures/ocean.png", UriKind.Relative));
+            BitmapImage forestImg = new BitmapImage(new Uri("textures/foret.png", UriKind.Relative));
 
             BitmapImage[] tilesImg = { plainImg, desertImg, mountainImg, forestImg };
 

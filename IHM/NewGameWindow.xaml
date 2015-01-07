@@ -54,7 +54,8 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
             Width="140"
-            Margin="10,0,10,0">
+            Margin="10,0,10,0"
+            Name="playerOneName">
             Hyukchan
         </TextBox>
 
@@ -70,12 +71,12 @@
         <ComboBox
             Grid.Row="3"
             Grid.Column="1"
-            x:Name="PeopleBox1"
             ItemsSource="{Binding}"
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
             Width="140"
-            Margin="10,0,10,0"/>
+            Margin="10,0,10,0"
+            Name="playerOnePeople"/>
 
         <TextBlock
             Grid.Row="4"
@@ -101,7 +102,8 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
             Width="140"
-            Margin="10,0,10,0">
+            Margin="10,0,10,0"
+            Name="playerTwoName">
             Florent
         </TextBox>
 
@@ -117,12 +119,12 @@
         <ComboBox
             Grid.Row="6"
             Grid.Column="1"
-            x:Name="PeopleBox2"
+            Name="playerTwoPeople"
             ItemsSource="{Binding}"
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
             Width="140"
-            Margin="10,0,10,0"/>
+            Margin="10,0,10,0" />
 
         <TextBlock
             Grid.Row="7"
@@ -136,13 +138,13 @@
         <ComboBox
             Grid.Row="7"
             Grid.Column="1"
-            x:Name="mapBox"
+            Name="mapType"
             ItemsSource="{Binding}"
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
             Width="140"
             Margin="10,0,10,0"/>
-        
+
         <TextBlock
             Grid.Row="8"
             Grid.ColumnSpan="2"
@@ -152,7 +154,7 @@
             Foreground="#FA023C"
             x:Name="ErrorBlock">
         </TextBlock>
-        
+
         <Button
             Grid.Row="9"
             Grid.ColumnSpan="2"
