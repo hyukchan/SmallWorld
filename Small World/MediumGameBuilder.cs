@@ -27,5 +27,5 @@ namespace Small_World
         }
 
     }
-    }
+}
 

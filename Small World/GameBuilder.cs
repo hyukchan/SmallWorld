@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Wrapper;
 
 namespace Small_World
 {
@@ -146,7 +147,71 @@ namespace Small_World
 
         public unsafe void placeUnits()
         {
-            
+            int i, j;
+
+            for (i = 0; i < NbUnits; i++)
+            {
+                Game.PlayerList[0].Units.Add(game.PlayerList[0].People.CreateUnit());
+                Game.PlayerList[1].Units.Add(game.PlayerList[1].People.CreateUnit());
+            }
+
+            WrapperAlgo wrapper = new WrapperAlgo();
+            int* position;
+            int* map = wrapper.createGameBoard(NbTiles);
+
+            for (i = 0; i < NbTiles; i++)
+            {
+                for (j = 0; j < nbTiles; j++)
+                {
+                    if (Game.Map.ListTiles[i * nbTiles + j].GetType() == new Desert().GetType())
+                    {
+                        map[i * nbTiles + j] = Tile.DESERT;
+                    }
+                    if (Game.Map.ListTiles[i * nbTiles + j].GetType() == new Plain().GetType())
+                    {
+                        map[i * nbTiles + j] = Tile.PLAIN;
+                    }
+                    if (Game.Map.ListTiles[i * nbTiles + j].GetType() == new Mountain().GetType())
+                    {
+                        map[i * nbTiles + j] = Tile.MOUNTAIN;
+                    }
+                    if (Game.Map.ListTiles[i * nbTiles + j].GetType() == new Forest().GetType())
+                    {
+                        map[i * nbTiles + j] = Tile.FOREST;
+                    }
+                }
+            }
+
+            position = wrapper.startingPositions(map, NbTiles);
+
+            Game.TabMap = map;
+
+            Position p1 = new Position { X = position[0], Y = position[1] };
+            Position p2 = new Position { X = position[2], Y = position[3] };
+
+            List<Position> pos = { p1, p2 };
+
+            for (i = 0; i < Game.PlayerList.Count; i++)
+            {
+                for (j = 0; j < Game.PlayerList[i].Units.Count; j++)
+                {
+                    Game.PlayerList[i].Units[j].Position = new Position { X = pos[i].X, Y = pos[i].Y };
+                    Game.PlayerList[i].Units[j].TabMap = map;
+                    Game.PlayerList[i].Units[j].Costs = wrapper.costTab(NbTiles);
+                    Game.PlayerList[i].Units[j].Moves = wrapper.createGameBoard(NbTiles);
+                    Game.PlayerList[i].Units[j].SizeMap = NbTiles;
+                    Game.PlayerList[i].Units[j].CalculateMoves();
+                    Game.PlayerList[i].Units[j].endTurn();
+                }
+
+                Game.PlayerList[i].GetGamePoints();
+            }
+
+            foreach (Unit u in Game.PlayerList[Game.CurrentPlayer].Units)
+            {
+                u.newTurn();
+            }
+
         }
     }
 
