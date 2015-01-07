@@ -13,15 +13,15 @@ namespace Small_World
     {
         Player winner();
 
-        void changePlayer();
+        void ChangePlayer();
 
-        List<Unit> selectUnit(int x, int y);
+        List<Unit> SelectUnit(int x, int y);
 
-        List<Unit> selectOpponentUnit(int x, int y);
+        List<Unit> SelectOpponentUnit(int x, int y);
 
-        bool canMove(Unit unit, int x, int y);
+        bool CanMove(Unit unit, int x, int y);
 
-        int askToMove(Unit unit, int x, int y);
+        int AskToMove(Unit unit, int x, int y);
 
         void checkEndOfGame();
 

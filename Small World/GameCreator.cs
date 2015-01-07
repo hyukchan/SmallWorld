@@ -18,9 +18,9 @@ namespace Small_World
             }
         }
 
-        public Game CreateGame()
+        public GameBuilder CreateGame()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

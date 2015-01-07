@@ -33,7 +33,7 @@ namespace Small_World
 
         public override unsafe int UpdateGamePoints()
         {
-            if (TabMap[Position.X * SizeMap + y] == Tile.PLAIN)
+            if (TabMap[Position.X * SizeMap + Position.Y] == Tile.PLAIN)
             {
                 GamePt = BonusPt; 
             }
