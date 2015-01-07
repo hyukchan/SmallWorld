@@ -133,7 +133,7 @@ namespace Small_World
             get
             {
                 this.UpdateGamePoints();
-                return this.GamePt;
+                return gamePt;
             }
             set
             {
