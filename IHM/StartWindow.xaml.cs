@@ -10,20 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Small_World;
 
 namespace IHM
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour StartWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StartWindow : Window
     {
-        public MainWindow()
+        public StartWindow()
         {
             InitializeComponent();
+        }
+
+        public void OnClickNewGame(object sender, RoutedEventArgs e)
+        {
+            NewGameWindow newGameWindow = new NewGameWindow();
+            newGameWindow.Show();
+            this.Close();
         }
     }
 }
