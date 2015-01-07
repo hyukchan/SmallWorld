@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using Wrapper;
 
 namespace Small_World
 {
@@ -243,7 +246,7 @@ namespace Small_World
         public bool CanMove(Unit u, int x, int y)
         {
             //nains peuvent se déplacer de montagne en montagne
-            if((u.GetType() == new DwarfUnit().GetType()) && (selectOpponentUnit(x,y).Count != 0) && (Math.Abs(x - u.Position.X) <= 1) && (Math.Abs(y-u.Position.Y) <= 1 ))
+            if((u.GetType() == new DwarfUnit().GetType()) && (SelectOpponentUnit(x,y).Count != 0) && (Math.Abs(x - u.Position.X) <= 1) && (Math.Abs(y-u.Position.Y) <= 1 ))
             {
                 return false;
             }
@@ -258,7 +261,7 @@ namespace Small_World
         {
             if (CanMove(u, x, y))
             {
-                List<Unit> listUnits = selectOpponentUnit(x,y);
+                List<Unit> listUnits = SelectOpponentUnit(x,y);
                 if (listUnits.Count == 0)
                 {
                     u.Move(x, y);
@@ -270,58 +273,95 @@ namespace Small_World
 
         public void EndTurn()
         {
-            throw new System.NotImplementedException();
+            foreach (Unit u in PlayerList[CurrentPlayer].Units)
+            {
+                u.endTurn();
+            }
+            CurrentPlayer = (CurrentPlayer + 1) % PlayerList.Count;
         }
 
-        public void MoveUnit()
+        public void Move()
         {
             throw new System.NotImplementedException();
         }
-
-        public void changePlayer()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public List<Unit> selectUnit(int x, int y)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public List<Unit> selectOpponentUnit(int x, int y)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool canMove(Unit unit, int x, int y)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public int askToMove(Unit unit, int x, int y)
-        {
-            throw new System.NotImplementedException();
-        }
-
 
         public void checkEndOfGame()
         {
             throw new System.NotImplementedException();
         }
 
+        public unsafe void restore()
+        {
+            WrapperAlgo wrapper = new WrapperAlgo();
+
+            int mapSize = this.Map.Size;
+            int* tiles = wrapper.createGameBoard(mapSize);
+            int i, j;
+
+            for (i = 0; i < mapSize; i++)
+            {
+                for (j = 0; j < mapSize; j++)
+                {
+                    if (Map.ListTiles[i * mapSize + j].GetType() == new Desert().GetType())
+                    {
+                        tiles[i * mapSize + j] = Tile.DESERT;
+                    }
+                    if (Map.ListTiles[i * mapSize + j].GetType() == new Mountain().GetType())
+                    {
+                        tiles[i * mapSize + j] = Tile.MOUNTAIN;
+                    }
+                    if (Map.ListTiles[i * mapSize + j].GetType() == new Plain().GetType())
+                    {
+                        tiles[i * mapSize + j] = Tile.PLAIN;
+                    }
+                    if (Map.ListTiles[i * mapSize + j].GetType() == new Forest().GetType())
+                    {
+                        tiles[i * mapSize + j] = Tile.FOREST;
+                    }
+                }
+            }
+
+            foreach (Player player in PlayerList)
+            {
+                foreach (Unit u in player.Units)
+                {
+                    u.restore(tiles);
+                }
+            }
+        }
+
         public bool save()
         {
-            throw new System.NotImplementedException();
+            if (SaveName != "")
+            {
+                this.saveAs(SaveName);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool saveAs(string filename)
         {
-            throw new System.NotImplementedException();
+            FileStream file = File.Create(filename);
+            BinaryFormatter b = new BinaryFormatter();
+            b.Serialize(file, this);
+            file.Close();
+
+            return true;
         }
 
         public Game load(string filename)
         {
-            throw new System.NotImplementedException();
+            FileStream file = File.OpenRead(filename);
+            BinaryFormatter b = new BinaryFormatter();
+            Game g = (Game)b.Deserialize(file);
+            file.Close();
+            g.restore();
+
+            return g;
         }
     }
 }
