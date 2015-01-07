@@ -22,7 +22,7 @@ namespace Small_World
             PeopleFactory = new PeopleFactory();
             GameBoard = new GameBoard();
             Game = new Game();
-            Strategy = new BuilderDemoGameBoard();
+            Strategy = new BuilderLargeGameBoard();
         }
     }
 }
