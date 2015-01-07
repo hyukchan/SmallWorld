@@ -9,14 +9,22 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        
+
+        <Image Grid.Row="0" Source="StartScreen1.png" Stretch="Fill"/>
+
         <Button
             Grid.Row="1"
-            Click="OnClickNewGame">
+            Click="OnClickNewGame"
+            FontSize="23"
+            Foreground="#333333"
+            Style="{StaticResource ActionMan}">
             New Game
         </Button>
 
-        <Button Grid.Row="2">
+        <Button Grid.Row="2"
+            FontSize="23"
+            Foreground="#333333"
+            Style="{StaticResource ActionMan}">
             Load Game
         </Button>
     </Grid>

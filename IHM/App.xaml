@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="StartWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="ActionMan">
+            <Setter Property="TextElement.FontFamily" 
+                Value="pack://application:,,,/fonts/#Action Man" />
+        </Style>
     </Application.Resources>
 </Application>
