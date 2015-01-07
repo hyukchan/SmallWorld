@@ -125,6 +125,7 @@
                 Grid.Column="1"
                 Padding="20"
                 VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"
                 Margin="30"
                 Background="#eceebc">
                 <Canvas Name="myCanvas" Height="{Binding Height, ElementName=myCanvas}" Width="{Binding Width, ElementName=myCanvas}">
