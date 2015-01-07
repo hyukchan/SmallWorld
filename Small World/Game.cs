@@ -267,6 +267,64 @@ namespace Small_World
                     u.Move(x, y);
                     return 1;
                 }
+                else
+                {
+                    Unit best = listUnits[0];
+                    foreach (Unit unit in listUnits)
+                    {
+                        if ((unit.DefensePt + unit.HitPt) > (best.DefensePt + best.HitPt))
+                        {
+                            best = u;
+                        }
+                    }
+
+                    int rounds = 0;
+                    Random r = new Random();
+                    while (rounds < 3)
+                    {
+                        rounds = r.Next(Math.Max(u.HitPt, best.HitPt) + 2);
+                    }
+                    u.Attack(best, rounds);
+
+                    // unite defensive meurt
+                    if (best.HitPt == 0)
+                    {
+                        if (u.GetType() == new OrcUnit().GetType())
+                        {
+                            ((OrcUnit)u).BonusPt++;
+                        }
+                        PlayerList[(CurrentPlayer + 1) % PlayerList.Count].Units.Remove(best);
+                        PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
+                        PlayerList[CurrentPlayer].GetGamePoints();
+
+                        if (SelectOpponentUnit(x, y).Count == 0)
+                        {
+                            u.Move(x, y);
+                            checkEndOfGame();
+                            return 2;
+                        }
+                    }
+
+                    //unite attaquante meurt
+                    if (u.HitPt == 0)
+                    {
+                        if (best.GetType() == new OrcUnit().GetType())
+                        {
+                            ((OrcUnit)best).BonusPt++;
+                        }
+                        PlayerList[CurrentPlayer].Units.Remove(u);
+                        PlayerList[CurrentPlayer].GetGamePoints();
+                        PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
+                        checkEndOfGame();
+                    }
+
+
+
+                }
+            }
+            else
+            {
+                
             }
             return 1;
         }
@@ -287,7 +345,12 @@ namespace Small_World
 
         public void checkEndOfGame()
         {
-            throw new System.NotImplementedException();
+            bool end = false;
+            foreach (Player p in PlayerList)
+            {
+                end = end || (p.Units.Count == 0);
+            }
+            GameEnded = end;
         }
 
         public unsafe void restore()
