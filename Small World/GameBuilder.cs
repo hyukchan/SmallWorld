@@ -132,6 +132,7 @@ namespace Small_World
 
         public Game CreateGame(string player1, string people1, string player2, string people2)
         {
+            Game = new Game();
             this.addPlayer(player1, people1);
             this.addPlayer(player2, people2);
             this.addMap();
@@ -189,7 +190,9 @@ namespace Small_World
             Position p1 = new Position { X = position[0], Y = position[1] };
             Position p2 = new Position { X = position[2], Y = position[3] };
 
-            List<Position> pos = { p1, p2 };
+            List<Position> pos = new List<Position>();
+            pos.Add(p1);
+            pos.Add(p2);
 
             for (i = 0; i < Game.PlayerList.Count; i++)
             {
