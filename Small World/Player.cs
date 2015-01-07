@@ -73,11 +73,43 @@ namespace Small_World
     
         public void GetGamePoints()
         {
+            List<Position> posOwned = new List<Position>();
+            List<Unit> unitsCounted = new List<Unit>();
+
+            int i;
             int pointsCount = 0;
+            int max;
             foreach (Unit unit in units)
             {
                 unit.UpdateGamePoints();
-                pointsCount += unit.GamePt;
+                max = unit.GamePt;
+
+                if (posOwned.Contains(unit.Position))
+                {
+                    for (i = 0; i < unitsCounted.Count; i++)
+                    {
+                        if (unitsCounted[i].Position.Equals(unit.Position))
+                        {
+                            if (unitsCounted[i].GamePt < max)
+                            {
+                                max = unitsCounted[i].GamePt;
+                                unitsCounted.Remove(unitsCounted[i]);
+                                unitsCounted.Add(unit);
+                            }
+                            else
+                            {
+                                max = 0;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    posOwned.Add(unit.Position);
+                    unitsCounted.Add(unit);
+                }
+                
+                pointsCount += max;
             }
             Points = pointsCount;
         }

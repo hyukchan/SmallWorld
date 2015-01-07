@@ -19,5 +19,15 @@ namespace Small_World
             get;
             set;
         }
+
+        public bool Equals(Position p)
+        {
+            bool res = this.X == p.X;
+            if (res)
+            {
+                res = this.Y == p.Y;
+            }
+            return res;
+        }
     }
 }
