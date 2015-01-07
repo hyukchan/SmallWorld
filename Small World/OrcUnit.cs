@@ -31,17 +31,16 @@ namespace Small_World
             wrapperAlgo.initializeOrcMvt(TabMap, SizeMap, Position.X, Position.Y, Costs, Moves, MovePt);
         }
 
-        public override unsafe int UpdateGamePoints()
+        public override unsafe void UpdateGamePoints()
         {
             if (TabMap[Position.X * SizeMap + Position.Y] == Tile.PLAIN)
             {
-                GamePt = BonusPt; 
+                GamePt = BonusPt;
             }
             else
             {
                 GamePt = BonusPt + 1;
             }
-            return GamePt;
         }
     }
 }

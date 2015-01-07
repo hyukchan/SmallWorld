@@ -26,7 +26,7 @@ namespace Small_World
             wrapperAlgo.initializeDwarfMvt(TabMap, SizeMap, Position.X, Position.Y, Costs, Moves, MovePt);
         }
 
-        public override unsafe int UpdateGamePoints()
+        public override unsafe void UpdateGamePoints()
         {
             if (TabMap[Position.X * SizeMap + Position.Y] == Tile.PLAIN)
             {
@@ -36,7 +36,6 @@ namespace Small_World
             {
                 GamePt = 1;
             }
-            return GamePt;
         }
 
     }

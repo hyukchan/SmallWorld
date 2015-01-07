@@ -132,7 +132,6 @@ namespace Small_World
 
         public Game CreateGame(string player1, string people1, string player2, string people2)
         {
-            Game = new Game();
             this.addPlayer(player1, people1);
             this.addPlayer(player2, people2);
             this.addMap();

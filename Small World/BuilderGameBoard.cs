@@ -31,7 +31,7 @@ namespace Small_World
 
             int* map;
             WrapperAlgo wrapperAlgo = new WrapperAlgo();
-            map = wrapperAlgo.mapCreation(Size);
+            map = wrapperAlgo.createGameBoard(Size);
 
             List<Tile> finalMap = new List<Tile>();
 

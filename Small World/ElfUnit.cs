@@ -25,10 +25,9 @@ namespace Small_World
             wrapperAlgo.initializeElfMvt(TabMap, SizeMap, Position.X, Position.Y, Costs, Moves, MovePt);
         }
 
-        public override int UpdateGamePoints()
+        public override void UpdateGamePoints()
         {
             GamePt = 1;
-            return GamePt;
         }
 
     }

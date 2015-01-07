@@ -132,7 +132,8 @@ namespace Small_World
         {
             get
             {
-                return this.UpdateGamePoints();
+                this.UpdateGamePoints();
+                return this.GamePt;
             }
             set
             {
@@ -229,7 +230,7 @@ namespace Small_World
                 
         }
 
-        public abstract int UpdateGamePoints();
+        public abstract void UpdateGamePoints();
             // calcule le point du jeu en fonction de la case où l'unité se situe etc...
             // défini dans les unités de chaque classe
 

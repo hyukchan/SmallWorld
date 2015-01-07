@@ -76,7 +76,8 @@ namespace Small_World
             int pointsCount = 0;
             foreach (Unit unit in units)
             {
-                pointsCount += unit.UpdateGamePoints();
+                unit.UpdateGamePoints();
+                pointsCount += unit.GamePt;
             }
             Points = pointsCount;
         }
