@@ -77,6 +77,23 @@ int* Algo::startingPositions(int* map, int size){
 		j1 = size - rand() % 2;
 	}
 
+	if (i == size)
+	{
+		i--;
+	}
+	if (j == size)
+	{
+		i--;
+	}
+	if (i1 == size)
+	{
+		i--;
+	}
+	if (j1 == size)
+	{
+		i--;
+	}
+
 	coordinates[0] = i;
 	coordinates[1] = j;
 	coordinates[2] = i1;
