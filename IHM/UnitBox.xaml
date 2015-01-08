@@ -22,8 +22,8 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        <Label Grid.Column="0" Name="unitImage" />
+
+        <Label Grid.Column="0" Name="unitImage" Content="{Binding Tag, ElementName=unitImage}"/>
         <Image Grid.Column="1" Source="textures/blade1.png" />
         <Label Grid.Column="2" Name="unitAttackPt" VerticalAlignment="Center" Content="{Binding Tag, ElementName=unitAttackPt}"/>
         <Image Grid.Column="3" Source="textures/shield47.png" />

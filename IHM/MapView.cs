@@ -23,7 +23,7 @@ namespace IHM
 
         unsafe protected override void OnRender(System.Windows.Media.DrawingContext dc)
         {
-            int TAILLE = (int) Math.Sqrt(game.Map.Size);
+            int mapSize = (int) Math.Sqrt(game.Map.Size);
             BitmapImage plainImg = new BitmapImage(new Uri("./textures/plain.png", UriKind.Relative));
             BitmapImage desertImg = new BitmapImage(new Uri("./textures/desert.png", UriKind.Relative));
             BitmapImage mountainImg = new BitmapImage(new Uri("./textures/mountain.png", UriKind.Relative));
@@ -31,12 +31,12 @@ namespace IHM
 
             BitmapImage[] tilesImg = { plainImg, desertImg, mountainImg, forestImg };
 
-            for (int j = 0; j < TAILLE; j++)
+            for (int j = 0; j < mapSize; j++)
             {
-                for (int i = 0; i < TAILLE; i++)
+                for (int i = 0; i < mapSize; i++)
                 {
                     var map = game.TabMap;
-                    int tile = map[j * TAILLE + i];
+                    int tile = map[j * mapSize + i];
 
                     double d = tilesImg[tile].PixelWidth / 2 * Math.Tan(30 * Math.PI / 180);
 

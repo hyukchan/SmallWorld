@@ -62,7 +62,7 @@ int* Algo::startingPositions(int* map, int size){
 	int* coordinates = (int*)malloc(4 * sizeof(int));
 
 	int i, j, i1, j1;
-	int pos = rand() % 1;
+	int pos = rand() % 2;
 	if (pos == 0)
 	{
 		i = 0;

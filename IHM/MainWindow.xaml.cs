@@ -25,7 +25,7 @@ namespace IHM
         private List<Polygon> listHexa;
         private List<Polygon> listHexaReachable;
         public Polygon selectedPolygon;
-
+            
         public MainWindow(Game g)
         {
             game = g;
@@ -54,6 +54,7 @@ namespace IHM
             myCanvas.Children.Add(mv);
 
             showUnits();
+            showUnitsOnMap();
 
             for (int j = 0; j < mapSize; j++)
             {
@@ -92,6 +93,8 @@ namespace IHM
             }
         }
 
+
+
         private void mouseEnterHandler(object sender, MouseEventArgs e)
         {
             var polygon = sender as Polygon;
@@ -117,6 +120,67 @@ namespace IHM
                 polygon.StrokeThickness = 3;
                 polygon.Stroke = Brushes.GreenYellow;
                 polygon.SetValue(Canvas.ZIndexProperty, 25);
+            }
+        }
+
+        private void showUnitsOnMap()
+        {
+            double w = Hexagon.w;
+            double h = Hexagon.h;
+
+            List<Position> positionList = new List<Position>();
+            foreach (Unit u in game.PlayerList[0].Units)
+            {
+                if (!positionList.Contains(u.Position))
+                {
+                    positionList.Add(u.Position);
+
+                    double d = w / 2 * Math.Tan(30 * Math.PI / 180);
+
+                    double posx = u.Position.X * w;
+                    double posy = u.Position.Y * (h - d);
+                    if (u.Position.Y % 2 == 1)
+                    {
+                        posx += w / 2;
+                    }
+
+                    Image imgP1 = new Image();
+                    imgP1.Source = new BitmapImage(u.GetUnitIcon());
+                    imgP1.Width = w;
+                    imgP1.Height = h;
+                    imgP1.SetValue(Canvas.ZIndexProperty, 9);
+                    imgP1.SetValue(Canvas.LeftProperty, posx);
+                    imgP1.SetValue(Canvas.TopProperty, posy);
+                    myCanvas.Children.Add(imgP1);
+                }
+            }
+
+
+
+            foreach (Unit u2 in this.game.PlayerList[1].Units)
+            {
+                if (!positionList.Contains(u2.Position))
+                {
+                    positionList.Add(u2.Position);
+
+                    double d = w / 2 * Math.Tan(30 * Math.PI / 180);
+
+                    double posx = u2.Position.X * w;
+                    double posy = u2.Position.Y * (h - d);
+                    if (u2.Position.Y % 2 == 1)
+                    {
+                        posx += w / 2;
+                    }
+
+                    Image imgP2 = new Image();
+                    imgP2.Source = new BitmapImage(u2.GetUnitIcon());
+                    imgP2.Width = w;
+                    imgP2.Height = h;
+                    imgP2.SetValue(Canvas.ZIndexProperty, 9);
+                    imgP2.SetValue(Canvas.LeftProperty, posx);
+                    imgP2.SetValue(Canvas.TopProperty, posy);
+                    myCanvas.Children.Add(imgP2);
+                }
             }
         }
 

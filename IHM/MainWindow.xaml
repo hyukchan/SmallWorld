@@ -149,8 +149,9 @@
                 <!-- Player 2 Informations -->
                 <Grid
                     Grid.Row="0"
-                    Background="#e6b0b0"
+                    Background="#fff0f0"
                     >
+                    <!-- Active color :  #e6b0b0 -->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="150"></RowDefinition>
