@@ -164,7 +164,7 @@ namespace Small_World
             // selection random du premier joueur
             Random r = new Random();
             int first = r.Next(PlayerList.Count);
-            FirstPlayer =first;
+            FirstPlayer = first;
             CurrentPlayer = FirstPlayer;
  
         }
@@ -333,11 +333,6 @@ namespace Small_World
                 u.endTurn();
             }
             CurrentPlayer = (CurrentPlayer + 1) % PlayerList.Count;
-        }
-
-        public void Move()
-        {
-            throw new System.NotImplementedException();
         }
 
         public void checkEndOfGame()

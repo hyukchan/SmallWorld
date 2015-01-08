@@ -11,8 +11,8 @@ using namespace std;
 #define MOUNTAIN 3
 
 #define INIT 0
-#define POSSIBLE 1
-#define IMPOSSIBLE 2
+#define IMPOSSIBLE 1
+#define POSSIBLE 2
 
 /**
 * Constructeur
@@ -127,16 +127,17 @@ void Algo::initializeOrcMvt(int * map, int size, int x, int y, double * cost, in
 			moves[i*size + j] = INIT;
 		}
 	}
+
 	//Les points de déplacements restants sont initialisés à 0
 	for (i = 0; i < size; i++)
 	{
 		for (j = 0; j < size; j++)
 		{
-			moves[i*size + j] = 0;
+			cost[i*size + j] = 0;
 		}
 	}
 	//On autorise la case initiale
-	moves[x*size + y] = INIT;
+	moves[x*size + y] = POSSIBLE;
 	cost[x*size + y] = movPt;
 	orcPossibleMovement(map, size, x, y, moves, cost);
 }
@@ -320,11 +321,11 @@ void Algo::initializeElfMvt(int * map, int size, int x, int y, double * cost, in
 	{
 		for (j = 0; j < size; j++)
 		{
-			moves[i*size + j] = 0;
+			cost[i*size + j] = 0;
 		}
 	}
 	//On autorise la case initiale
-	moves[x*size + y] = INIT;
+	moves[x*size + y] = POSSIBLE;
 	cost[x*size + y] = movPt;
 	elfPossibleMovement(map, size, x, y, moves, cost);
 }
@@ -500,11 +501,11 @@ void Algo::initializeDwarfMvt(int * map, int size, int x, int y, double * cost, 
 	{
 		for (j = 0; j < size; j++)
 		{
-			moves[i*size + j] = 0;
+			cost[i*size + j] = 0;
 		}
 	}
 
-	moves[x*size + y] = INIT;
+	moves[x*size + y] = POSSIBLE;
 	cost[x*size + y] = movPt;
 	dwarfPossibleMovement(map, size, x, y, moves, cost);
 }
