@@ -317,9 +317,6 @@ namespace Small_World
                         PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
                         checkEndOfGame();
                     }
-
-
-
                 }
             }
             else

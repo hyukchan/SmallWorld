@@ -34,6 +34,8 @@ namespace IHM
             unitAttackPt.Tag = unit.AttackPt;
             unitDefensePt.Tag = unit.DefensePt;
             unitHitPt.Tag = unit.HitPt;
+            unitPosX.Tag = unit.Position.X;
+            unitPosY.Tag = unit.Position.Y;
         }
     }
 }

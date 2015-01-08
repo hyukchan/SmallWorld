@@ -8,6 +8,7 @@
         >
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -17,7 +18,17 @@
         </Grid>
 
         <Grid
-            Grid.Row="1"
+            Grid.Row="1">
+            <Button
+                Width="200"
+                Height="30"
+                Click="EndTurnOnClick">
+                End Turn
+            </Button>
+        </Grid>
+        
+        <Grid
+            Grid.Row="2"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>

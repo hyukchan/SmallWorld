@@ -30,5 +30,8 @@
         <Label Grid.Column="4" Name="unitDefensePt" VerticalAlignment="Center" Content="{Binding Tag, ElementName=unitDefensePt}"/>
         <Image Grid.Column="5" Source="textures/life.png" />
         <Label Grid.Column="6" Name="unitHitPt" VerticalAlignment="Center" Content="{Binding Tag, ElementName=unitHitPt}"/>
+        
+        <Label Visibility="Hidden" Name="unitPosX" Content="{Binding Tag, ElementName=unitPosX}"/>
+        <Label Visibility="Hidden" Name="unitPosY" Content="{Binding Tag, ElementName=unitPosY}"/>
     </Grid>
 </UserControl>

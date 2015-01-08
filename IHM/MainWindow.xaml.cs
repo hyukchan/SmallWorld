@@ -29,6 +29,7 @@ namespace IHM
         public MainWindow(Game g)
         {
             game = g;
+            selectedPolygon = null;
             int mapSize = (int) Math.Sqrt(game.Map.Size);
             double d = Hexagon.w / 2 * Math.Tan(30 * Math.PI / 180);
             double canvasHeight = (Hexagon.h - d) * mapSize + d;
@@ -53,8 +54,12 @@ namespace IHM
             MapView mv = new MapView(this.game);
             myCanvas.Children.Add(mv);
 
+            game.PlayerList[0].Units[0].Move(game.PlayerList[0].Units[0].Position.X, game.PlayerList[0].Units[0].Position.Y + 1);
+
             showUnits();
             showUnitsOnMap();
+
+            
 
             for (int j = 0; j < mapSize; j++)
             {
@@ -66,10 +71,10 @@ namespace IHM
                     {
                         posx += Hexagon.w / 2;
                     }
-                    Hexagon h = new Hexagon(posx, posy);
+                    Hexagon h = new Hexagon(posx, posy, i, j);
                     h.polygon.MouseEnter += new MouseEventHandler(mouseEnterHandler);
                     h.polygon.MouseLeave += new MouseEventHandler(mouseLeaveHandler);
-                    //h.polygon.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickHandler);
+                    h.polygon.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickHexaHandler);
                     listHexa.Add(h.polygon);
                     myCanvas.Children.Add(h.polygon);
                 }
@@ -78,10 +83,19 @@ namespace IHM
 
         public void showUnits()
         {
+            int pos = this.listHexa.IndexOf(selectedPolygon);
+            int x = pos % (int) Math.Sqrt(this.game.Map.Size);
+            int y = pos / (int) Math.Sqrt(this.game.Map.Size);
+
             playerOneUnitList.Children.Clear();
             foreach (Unit u in game.PlayerList[0].Units)
             {
                 UnitBox unitBox = new UnitBox(u);
+                unitBox.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickUnitboxHandler);
+                if (!(u.Position.X == x && u.Position.Y == y))
+                {
+                    unitBox.Opacity = 0.5;
+                }
                 playerOneUnitList.Children.Add(unitBox);
             }
 
@@ -89,6 +103,11 @@ namespace IHM
             foreach (Unit u in game.PlayerList[1].Units)
             {
                 UnitBox unitBox = new UnitBox(u);
+                unitBox.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickUnitboxHandler);
+                if (!(u.Position.X == x && u.Position.Y == y))
+                {
+                    unitBox.Opacity = 0.5;
+                }
                 playerTwoUnitList.Children.Add(unitBox);
             }
         }
@@ -129,59 +148,106 @@ namespace IHM
             double h = Hexagon.h;
 
             List<Position> positionList = new List<Position>();
-            foreach (Unit u in game.PlayerList[0].Units)
+            foreach (Player p in game.PlayerList)
             {
-                if (!positionList.Contains(u.Position))
+                foreach (Unit u in p.Units)
                 {
-                    positionList.Add(u.Position);
-
-                    double d = w / 2 * Math.Tan(30 * Math.PI / 180);
-
-                    double posx = u.Position.X * w;
-                    double posy = u.Position.Y * (h - d);
-                    if (u.Position.Y % 2 == 1)
+                    if (!positionList.Contains(u.Position))
                     {
-                        posx += w / 2;
-                    }
+                        positionList.Add(u.Position);
 
-                    Image imgP1 = new Image();
-                    imgP1.Source = new BitmapImage(u.GetUnitIcon());
-                    imgP1.Width = w;
-                    imgP1.Height = h;
-                    imgP1.SetValue(Canvas.ZIndexProperty, 9);
-                    imgP1.SetValue(Canvas.LeftProperty, posx);
-                    imgP1.SetValue(Canvas.TopProperty, posy);
-                    myCanvas.Children.Add(imgP1);
+                        double d = w / 2 * Math.Tan(30 * Math.PI / 180);
+
+                        double posx = u.Position.X * w;
+                        double posy = u.Position.Y * (h - d);
+                        if (u.Position.Y % 2 == 1)
+                        {
+                            posx += w / 2;
+                        }
+
+                        Image imgP1 = new Image();
+                        imgP1.Source = new BitmapImage(u.GetUnitIcon());
+                        imgP1.Width = w;
+                        imgP1.Height = h;
+                        imgP1.SetValue(Canvas.ZIndexProperty, 9);
+                        imgP1.SetValue(Canvas.LeftProperty, posx);
+                        imgP1.SetValue(Canvas.TopProperty, posy);
+                        myCanvas.Children.Add(imgP1);
+                    }
+                }
+            }
+        }
+
+        private void EndTurnOnClick(object sender, RoutedEventArgs e)
+        {
+            game.ChangePlayer();
+        }
+
+
+
+        private void mouseLeftClickHexaHandler(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Polygon p in this.listHexa)
+            {
+                if (p == selectedPolygon)
+                {
+                    if (this.listHexaReachable.Contains(selectedPolygon))
+                    {
+                        p.StrokeThickness = 3;
+                        p.Stroke = Brushes.GreenYellow;
+                        p.SetValue(Canvas.ZIndexProperty, 25);
+                    }
+                    else
+                    {
+                        p.StrokeThickness = 2;
+                        p.Stroke = Brushes.Black;
+                        p.SetValue(Canvas.ZIndexProperty, 10);
+                    }
                 }
             }
 
+            var polygon = sender as Polygon;
+            this.selectedPolygon = polygon;
+            polygon.StrokeThickness = 4;
+            polygon.Stroke = Brushes.White;
+            polygon.SetValue(Canvas.ZIndexProperty, 60);
 
+            showUnits();
+        }
 
-            foreach (Unit u2 in this.game.PlayerList[1].Units)
+        private void mouseLeftClickUnitboxHandler(object sender, MouseButtonEventArgs e)
+        {
+            UnitBox u = (UnitBox) sender;
+            int posX = (int) u.unitPosX.Content;
+            int posY = (int) u.unitPosY.Content;
+            Polygon unitPolygon = listHexa[posY * ((int)Math.Sqrt(game.Map.Size)) + posX];
+
+            foreach (Polygon p in this.listHexa)
             {
-                if (!positionList.Contains(u2.Position))
+                if (p == selectedPolygon)
                 {
-                    positionList.Add(u2.Position);
-
-                    double d = w / 2 * Math.Tan(30 * Math.PI / 180);
-
-                    double posx = u2.Position.X * w;
-                    double posy = u2.Position.Y * (h - d);
-                    if (u2.Position.Y % 2 == 1)
+                    if (this.listHexaReachable.Contains(selectedPolygon))
                     {
-                        posx += w / 2;
+                        p.StrokeThickness = 3;
+                        p.Stroke = Brushes.GreenYellow;
+                        p.SetValue(Canvas.ZIndexProperty, 25);
                     }
-
-                    Image imgP2 = new Image();
-                    imgP2.Source = new BitmapImage(u2.GetUnitIcon());
-                    imgP2.Width = w;
-                    imgP2.Height = h;
-                    imgP2.SetValue(Canvas.ZIndexProperty, 9);
-                    imgP2.SetValue(Canvas.LeftProperty, posx);
-                    imgP2.SetValue(Canvas.TopProperty, posy);
-                    myCanvas.Children.Add(imgP2);
+                    else
+                    {
+                        p.StrokeThickness = 2;
+                        p.Stroke = Brushes.Black;
+                        p.SetValue(Canvas.ZIndexProperty, 10);
+                    }
                 }
             }
+
+            var polygon = unitPolygon;
+            this.selectedPolygon = polygon;
+            polygon.StrokeThickness = 4;
+            polygon.Stroke = Brushes.White;
+            polygon.SetValue(Canvas.ZIndexProperty, 60);
+
+            showUnits();
         }
 
         public class Hexagon
@@ -191,8 +257,15 @@ namespace IHM
             public const double h = 80;
             public const double w = 69;
 
-            public Hexagon(double x, double y)
+            public int posX;
+            public int posY;
+            public Position pos;
+
+            public Hexagon(double x, double y, int posX, int posY)
             {
+                pos.X = posX;
+                pos.Y = posY;
+
                 polygon = new Polygon();
                 polygon.Stroke = Brushes.Black;
                 polygon.Fill = Brushes.Transparent;
