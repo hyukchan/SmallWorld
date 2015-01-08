@@ -24,7 +24,7 @@ namespace IHM
         Unit unit;
         MainWindow mainWindow;
 
-        public UnitBox(Unit u)
+        public UnitBox(Unit u, int unitNo, int playerNo)
         {
             unit = u;
             mainWindow = (Application.Current.MainWindow as MainWindow);
@@ -36,6 +36,8 @@ namespace IHM
             unitHitPt.Tag = unit.HitPt;
             unitPosX.Tag = unit.Position.X;
             unitPosY.Tag = unit.Position.Y;
+            unitNumber.Tag = unitNo;
+            playerNumber.Tag = playerNo;
         }
     }
 }

@@ -25,7 +25,9 @@ namespace IHM
         private List<Polygon> listHexa;
         private List<Polygon> listHexaReachable;
         public Polygon selectedPolygon;
-            
+        private Unit selectedUnit;
+        private Boolean currentPlayersUnit;
+
         public MainWindow(Game g)
         {
             game = g;
@@ -75,6 +77,7 @@ namespace IHM
                     h.polygon.MouseEnter += new MouseEventHandler(mouseEnterHandler);
                     h.polygon.MouseLeave += new MouseEventHandler(mouseLeaveHandler);
                     h.polygon.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickHexaHandler);
+                    h.polygon.MouseRightButtonDown += new MouseButtonEventHandler(mouseRightClickHexaHandler);
                     listHexa.Add(h.polygon);
                     myCanvas.Children.Add(h.polygon);
                 }
@@ -88,27 +91,32 @@ namespace IHM
             int y = pos / (int) Math.Sqrt(this.game.Map.Size);
 
             playerOneUnitList.Children.Clear();
+            int unitNumber = 0;
             foreach (Unit u in game.PlayerList[0].Units)
             {
-                UnitBox unitBox = new UnitBox(u);
+                UnitBox unitBox = new UnitBox(u, unitNumber, 0);
                 unitBox.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickUnitboxHandler);
-                if (!(u.Position.X == x && u.Position.Y == y))
+                if (!(u.Position.X == x && u.Position.Y == y) || (selectedUnit != null && selectedUnit != u))
                 {
                     unitBox.Opacity = 0.5;
                 }
                 playerOneUnitList.Children.Add(unitBox);
+                
+                unitNumber++;
             }
 
+            unitNumber = 0;
             playerTwoUnitList.Children.Clear();
             foreach (Unit u in game.PlayerList[1].Units)
             {
-                UnitBox unitBox = new UnitBox(u);
+                UnitBox unitBox = new UnitBox(u, unitNumber, 1);
                 unitBox.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickUnitboxHandler);
-                if (!(u.Position.X == x && u.Position.Y == y))
+                if (!(u.Position.X == x && u.Position.Y == y) || (selectedUnit != null && selectedUnit != u))
                 {
                     unitBox.Opacity = 0.5;
                 }
                 playerTwoUnitList.Children.Add(unitBox);
+                unitNumber++;
             }
         }
 
@@ -144,6 +152,20 @@ namespace IHM
 
         private void showUnitsOnMap()
         {
+            List<Image> imgToRemove = new List<Image>();
+            foreach (UIElement e in myCanvas.Children)
+            {
+                if (e.GetType() == typeof(Image))
+                {
+                    imgToRemove.Add((Image)e);
+                }
+            }
+
+            foreach (Image i in imgToRemove)
+            {
+                myCanvas.Children.Remove(i);
+            }
+
             double w = Hexagon.w;
             double h = Hexagon.h;
 
@@ -181,12 +203,19 @@ namespace IHM
         private void EndTurnOnClick(object sender, RoutedEventArgs e)
         {
             game.ChangePlayer();
+
+            playerOnePoints.Text = game.PlayerList[0].Points.ToString();
+            playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
+
+            playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
+            playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
         }
 
 
 
         private void mouseLeftClickHexaHandler(object sender, MouseButtonEventArgs e)
         {
+            selectedUnit = null;
             foreach (Polygon p in this.listHexa)
             {
                 if (p == selectedPolygon)
@@ -212,7 +241,42 @@ namespace IHM
             polygon.Stroke = Brushes.White;
             polygon.SetValue(Canvas.ZIndexProperty, 60);
 
+            int pos = this.listHexa.IndexOf(polygon);
+            int x = pos % (int)Math.Sqrt(this.game.Map.Size);
+            int y = pos / (int)Math.Sqrt(this.game.Map.Size);
+
+            int nbUnits = 0;
+            Unit tempSelectedUnit = null;
+            foreach (Unit u in game.PlayerList[game.CurrentPlayer].Units)
+            {
+                if (u.Position.X == x && u.Position.Y == y)
+                {
+                    nbUnits++;
+                    tempSelectedUnit = u;
+                }
+            }
+
+            if (nbUnits == 1)
+            {
+                selectedUnit = tempSelectedUnit;
+                currentPlayersUnit = true;
+            }
+
             showUnits();
+        }
+
+        private void mouseRightClickHexaHandler(object sender, MouseButtonEventArgs e)
+        {
+            if(selectedUnit != null && currentPlayersUnit) {
+                int pos = this.listHexa.IndexOf((Polygon) sender);
+                int x = pos % (int)Math.Sqrt(this.game.Map.Size);
+                int y = pos / (int)Math.Sqrt(this.game.Map.Size);
+
+                game.AskToMove(selectedUnit, x, y);
+
+                showUnits();
+                showUnitsOnMap();
+            }
         }
 
         private void mouseLeftClickUnitboxHandler(object sender, MouseButtonEventArgs e)
@@ -220,6 +284,7 @@ namespace IHM
             UnitBox u = (UnitBox) sender;
             int posX = (int) u.unitPosX.Content;
             int posY = (int) u.unitPosY.Content;
+            int unitNumber = (int) u.unitNumber.Content;
             Polygon unitPolygon = listHexa[posY * ((int)Math.Sqrt(game.Map.Size)) + posX];
 
             foreach (Polygon p in this.listHexa)
@@ -246,6 +311,13 @@ namespace IHM
             polygon.StrokeThickness = 4;
             polygon.Stroke = Brushes.White;
             polygon.SetValue(Canvas.ZIndexProperty, 60);
+
+            selectedUnit = game.PlayerList[(int)u.playerNumber.Content].Units[(int)u.unitNumber.Content];
+            if (((int)u.playerNumber.Content) == game.CurrentPlayer) {
+                currentPlayersUnit = true;
+            } else {
+                currentPlayersUnit = false;
+            }
 
             showUnits();
         }
