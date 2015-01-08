@@ -246,7 +246,7 @@ namespace Small_World
         public bool CanMove(Unit u, int x, int y)
         {
             //nains peuvent se déplacer de montagne en montagne
-            if((u.GetType() == new DwarfUnit().GetType()) && (SelectOpponentUnit(x,y).Count != 0) && (Math.Abs(x - u.Position.X) <= 1) && (Math.Abs(y-u.Position.Y) <= 1 ))
+            if((u.GetType() == new DwarfUnit().GetType()) && (SelectOpponentUnit(x,y).Count != 0) && (Math.Abs(x - u.Position.X) > 1) && (Math.Abs(y-u.Position.Y) > 1 ))
             {
                 return false;
             }
