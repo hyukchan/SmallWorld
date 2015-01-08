@@ -241,6 +241,27 @@ namespace IHM
             polygon.Stroke = Brushes.White;
             polygon.SetValue(Canvas.ZIndexProperty, 60);
 
+            int pos = this.listHexa.IndexOf(polygon);
+            int x = pos % (int)Math.Sqrt(this.game.Map.Size);
+            int y = pos / (int)Math.Sqrt(this.game.Map.Size);
+
+            int nbUnits = 0;
+            Unit tempSelectedUnit = null;
+            foreach (Unit u in game.PlayerList[game.CurrentPlayer].Units)
+            {
+                if (u.Position.X == x && u.Position.Y == y)
+                {
+                    nbUnits++;
+                    tempSelectedUnit = u;
+                }
+            }
+
+            if (nbUnits == 1)
+            {
+                selectedUnit = tempSelectedUnit;
+                currentPlayersUnit = true;
+            }
+
             showUnits();
         }
 
