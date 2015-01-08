@@ -272,7 +272,7 @@ namespace IHM
                 int x = pos % (int)Math.Sqrt(this.game.Map.Size);
                 int y = pos / (int)Math.Sqrt(this.game.Map.Size);
 
-                selectedUnit.Move(x, y);
+                game.AskToMove(selectedUnit, x, y);
 
                 showUnits();
                 showUnitsOnMap();
