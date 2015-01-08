@@ -236,6 +236,8 @@ namespace Small_World
 
         public abstract void CalculateMoves();
 
+        public abstract Uri GetUnitIcon();
+
         public void endTurn()
         {
             TurnEnded = true;

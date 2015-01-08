@@ -42,5 +42,11 @@ namespace Small_World
                 GamePt = BonusPt + 1;
             }
         }
+
+        public override Uri GetUnitIcon()
+        {
+            return new Uri("./textures/orc.png", UriKind.Relative);
+        }
+
     }
 }

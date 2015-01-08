@@ -38,5 +38,10 @@ namespace Small_World
             }
         }
 
+        public override Uri GetUnitIcon()
+        {
+            return new Uri("./textures/dwarf.png", UriKind.Relative);
+        }
+
     }
 }

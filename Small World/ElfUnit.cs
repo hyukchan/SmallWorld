@@ -30,5 +30,10 @@ namespace Small_World
             GamePt = 1;
         }
 
+        public override Uri GetUnitIcon()
+        {
+            return new Uri("./textures/elf.png", UriKind.Relative);
+        }
+
     }
 }
