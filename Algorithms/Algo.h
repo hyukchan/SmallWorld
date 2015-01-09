@@ -33,6 +33,4 @@ public:
 	void elfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost);
 	void elfMovement(int* map, double* cost, int size, int x, int y, double movPt, int* moves);
 
-	void orcPossibleMovement1(int* map, int size, int x, int y, int* moves, double* cost);
-
 };

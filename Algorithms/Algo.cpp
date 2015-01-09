@@ -142,7 +142,7 @@ void Algo::initializeOrcMvt(int * map, int size, int x, int y, double * cost, in
 	orcPossibleMovement(map, size, x, y, moves, cost);
 }
 
-void Algo::orcPossibleMovement1(int* map, int size, int x, int y, int* moves, double* cost)
+void Algo::orcPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
 {
 	if (x != 0)
 	{
@@ -202,112 +202,172 @@ void Algo::orcPossibleMovement1(int* map, int size, int x, int y, int* moves, do
 	}
 }
 
-void Algo::orcPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
-{
+//void Algo::orcPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+//{
+//	if (x != 0)
+//	{
+//		//case de gauche
+//		if (moves[(x - 1)*size + y] == INIT){
+//			orcMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+//			orcPossibleMovement2(map, size, (x - 1), y, moves, cost);
+//		}
+//		// case au dessous à gauche
+//		if (y != size - 1)
+//		{
+//			if (moves[(x - 1)*size + (y + 1)] == INIT)
+//			{
+//				orcMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+//				orcPossibleMovement2(map, size, (x - 1), (y + 1), moves, cost);
+//			}
+//		}
+//	}
+//
+//	if (y != 0)
+//	{
+//		// case de dessus à droite
+//		if (moves[x*size + (y - 1)] == INIT){
+//			orcMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+//			orcPossibleMovement2(map, size, x, (y - 1), moves, cost);
+//		}
+//	}
+//
+//	if (y != size - 1)
+//	{
+//		// case de dessous à droite
+//		if (moves[x*size + (y + 1)] == INIT){
+//			orcMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+//			orcPossibleMovement2(map, size, x, (y + 1), moves, cost);
+//		}
+//	}
+//
+//	if (x = !size - 1)
+//	{
+//		// case dessous à gauche
+//		if (moves[(x + 1)*size + y - 1] == INIT)
+//		{
+//			orcMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
+//			orcPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
+//		}
+//
+//		//case dessous à droite
+//		if (moves[(x + 1)*size + (y - 1)] == INIT)
+//		{
+//			orcMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//			orcPossibleMovement2(map, size, (x + 1), (y + 1), moves, cost);
+//		}
+//	}
+//}
+
+void Algo::orcPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost){
 	if (x != 0)
 	{
 		//case de gauche
 		if (moves[(x - 1)*size + y] == INIT){
 			orcMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
-			orcPossibleMovement2(map, size, (x - 1), y, moves, cost);
+
 		}
-		// case au dessous à gauche
-		if (y != size - 1)
-		{
-			if (moves[(x - 1)*size + (y + 1)] == INIT)
-			{
+		if (y != 0 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y - 1)] == INIT){
+				orcMovement(map, cost, size, (x - 1), (y - 1), cost[x*size + y], moves);
+
+			}
+		}
+		if (y != size - 1 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y + 1)] == INIT){
 				orcMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
-				orcPossibleMovement2(map, size, (x - 1), (y + 1), moves, cost);
+
 			}
 		}
 	}
 
-	if (y != 0)
-	{
-		// case de dessus à droite
-		if (moves[x*size + (y - 1)] == INIT){
-			orcMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
-			orcPossibleMovement2(map, size, x, (y - 1), moves, cost);
-		}
-	}
+	if (x != size - 1){
+		//case de droite
+		if (moves[(x + 1)*size + y] == INIT){
+			orcMovement(map, cost, size, (x + 1), y, cost[x*size + y], moves);
 
-	if (y != size - 1)
-	{
-		// case de dessous à droite
-		if (moves[x*size + (y + 1)] == INIT){
-			orcMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
-			orcPossibleMovement2(map, size, x, (y + 1), moves, cost);
-		}
-	}
+			if (y != 0){
+				if (x % 2 == 1 && moves[(x + 1)*size + y - 1]){
+					orcMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
 
-	if (x = !size - 1)
-	{
-		// case dessous à gauche
-		if (moves[(x + 1)*size + y - 1] == INIT)
-		{
-			orcMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
-			orcPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
+				}
+			}
+			if (y != size - 1){
+				//case au dessous gauche ou droite selon x pair ou impair
+				if (x % 2 == 1 && moves[(x + 1)*size + y + 1]){
+					orcMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+
+				}
+			}
 		}
 
-		//case dessous à droite
-		if (moves[(x + 1)*size + (y - 1)] == INIT)
-		{
-			orcMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
-			orcPossibleMovement2(map, size, (x + 1), (y + 1), moves, cost);
-		}
-	}
-}
+		if (y != 0){
+			//case au dessus gauche ou droite selon x pair ou impair
+			if (moves[x*size + (y - 1)] == INIT){
+				orcMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
 
-void Algo::orcPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
-{
-	//cases au dessus
-	if (x != 0)
-	{
-		//case au dessus a gauche
-		if (moves[(x - 1)*size + y] == INIT){
-			orcMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+			}
 		}
-		// case au dessus à droite
-		if (y != size - 1)
-		{
-			if (moves[(x - 1)*size + (y + 1)] == INIT)
-			{
-				orcMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+
+		if (y != size - 1){
+			if (moves[x*size + (y + 1)] == INIT){
+				orcMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+
 			}
 		}
 	}
-
-	if (y != 0)
-	{
-		// case de gauche
-		if (moves[x*size + (y - 1)] == INIT){
-			orcMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
-		}
-	}
-
-	if (y != size - 1)
-	{
-		// case de droite
-		if (moves[x*size + (y + 1)] == INIT){
-			orcMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
-		}
-	}
-	//case au dessous
-	if (x = !size - 1)
-	{
-		// case dessous à gauche
-		if (moves[(x + 1)*size + y - 1] == INIT)
-		{
-			orcMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
-		}
-
-		//case dessous à droite
-		if (moves[(x + 1)*size + (y - 1)] == INIT)
-		{
-			orcMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
-		}
-	}
 }
+
+//void Algo::orcPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
+//{
+//	//cases au dessus
+//	if (x != 0)
+//	{
+//		//case au dessus a gauche
+//		if (moves[(x - 1)*size + y] == INIT){
+//			orcMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+//		}
+//		// case au dessus à droite
+//		if (y != size - 1)
+//		{
+//			if (moves[(x - 1)*size + (y + 1)] == INIT)
+//			{
+//				orcMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+//			}
+//		}
+//	}
+//
+//	if (y != 0)
+//	{
+//		// case de gauche
+//		if (moves[x*size + (y - 1)] == INIT){
+//			orcMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+//		}
+//	}
+//
+//	if (y != size - 1)
+//	{
+//		// case de droite
+//		if (moves[x*size + (y + 1)] == INIT){
+//			orcMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+//		}
+//	}
+//	//case au dessous
+//	if (x = !size - 1)
+//	{
+//		// case dessous à gauche
+//		if (moves[(x + 1)*size + y - 1] == INIT)
+//		{
+//			orcMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//		}
+//
+//		//case dessous à droite
+//		if (moves[(x + 1)*size + (y - 1)] == INIT)
+//		{
+//			orcMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//		}
+//	}
+//}
+
 void Algo::orcMovement(int* map, double* cost, int size,int x, int y, double movPt, int* moves)
 {
 	double mvt = movPt;
@@ -389,110 +449,229 @@ void Algo::initializeElfMvt(int * map, int size, int x, int y, double * cost, in
 	elfPossibleMovement(map, size, x, y, moves, cost);
 }
 
+//void Algo::elfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+//{
+//	//cases au dessus
+//	if (x != 0)
+//	{
+//		//case au dessus a gauche
+//		if (moves[(x - 1)*size + y] == INIT){
+//			elfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+//			elfPossibleMovement2(map, size, (x - 1), y, moves, cost);
+//		}
+//		// case au dessus à droite
+//		if (y != size - 1)
+//		{
+//			if (moves[(x - 1)*size + (y + 1)] == INIT)
+//			{
+//				elfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+//				elfPossibleMovement2(map, size, (x - 1), (y + 1), moves, cost);
+//			}
+//		}
+//	}
+//
+//	if (y != 0)
+//	{
+//		// case de gauche
+//		if (moves[x*size + (y - 1)] == INIT){
+//			elfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+//			elfPossibleMovement2(map, size, x, (y - 1), moves, cost);
+//		}
+//	}
+//
+//	if (y != size - 1)
+//	{
+//		// case de droite
+//		if (moves[x*size + (y + 1)] == INIT){
+//			elfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+//			elfPossibleMovement2(map, size, x, (y + 1), moves, cost);
+//		}
+//	}
+//	//case au dessous
+//	if (x = !size - 1)
+//	{
+//		// case dessous à gauche
+//		if (moves[(x + 1)*size + y - 1] == INIT)
+//		{
+//			elfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
+//			elfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
+//		}
+//
+//		//case dessous à droite
+//		if (moves[(x + 1)*size + (y + 1)] == INIT)
+//		{
+//			elfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//			elfPossibleMovement2(map, size, (x + 1), (y + 1), moves, cost);
+//		}
+//	}
+//}
+
 void Algo::elfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
 {
-	//cases au dessus
 	if (x != 0)
 	{
-		//case au dessus a gauche
+		//case de gauche
 		if (moves[(x - 1)*size + y] == INIT){
 			elfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
 			elfPossibleMovement2(map, size, (x - 1), y, moves, cost);
 		}
-		// case au dessus à droite
-		if (y != size - 1)
-		{
-			if (moves[(x - 1)*size + (y + 1)] == INIT)
-			{
+		if (y != 0 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y - 1)] == INIT){
+				elfMovement(map, cost, size, (x - 1), (y - 1), cost[x*size + y], moves);
+				elfPossibleMovement2(map, size, (x - 1), (y - 1), moves, cost);
+			}
+		}
+		if (y != size - 1 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y + 1)] == INIT){
 				elfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
 				elfPossibleMovement2(map, size, (x - 1), (y + 1), moves, cost);
 			}
 		}
 	}
 
-	if (y != 0)
-	{
-		// case de gauche
+	if (x != size - 1){
+		//case de droite
+		if (moves[(x + 1)*size + y] == INIT){
+			elfMovement(map, cost, size, (x + 1), y, cost[x*size + y], moves);
+			elfPossibleMovement2(map, size, (x + 1), y, moves, cost);
+		}
+		if (y != 0){
+			if (x % 2 == 1 && moves[(x + 1)*size + y - 1]){
+				elfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
+				elfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
+			}
+		}
+		if (y != size - 1){
+			//case au dessous gauche ou droite selon x pair ou impair
+			if (x % 2 == 1 && moves[(x + 1)*size + y + 1]){
+				elfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+				elfPossibleMovement2(map, size, (x + 1), (y + 1), moves, cost);
+			}
+		}
+	}
+
+	if (y != 0){
+		//case au dessus gauche ou droite selon x pair ou impair
 		if (moves[x*size + (y - 1)] == INIT){
 			elfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
 			elfPossibleMovement2(map, size, x, (y - 1), moves, cost);
 		}
 	}
 
-	if (y != size - 1)
-	{
-		// case de droite
+	if (y != size - 1){
 		if (moves[x*size + (y + 1)] == INIT){
 			elfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
 			elfPossibleMovement2(map, size, x, (y + 1), moves, cost);
 		}
 	}
-	//case au dessous
-	if (x = !size - 1)
-	{
-		// case dessous à gauche
-		if (moves[(x + 1)*size + y - 1] == INIT)
-		{
-			elfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
-			elfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
-		}
-
-		//case dessous à droite
-		if (moves[(x + 1)*size + (y + 1)] == INIT)
-		{
-			elfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
-			elfPossibleMovement2(map, size, (x + 1), (y + 1), moves, cost);
-		}
-	}
 }
 
-void Algo::elfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
-{
-	//cases au dessus
+//void Algo::elfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
+//{
+//	//cases au dessus
+//	if (x != 0)
+//	{
+//		//case au dessus a gauche
+//		if (moves[(x - 1)*size + y] == INIT){
+//			elfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+//		}
+//		// case au dessus à droite
+//		if (y != size - 1)
+//		{
+//			if (moves[(x - 1)*size + (y + 1)] == INIT)
+//			{
+//				elfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+//			}
+//		}
+//	}
+//
+//	if (y != 0)
+//	{
+//		// case de gauche
+//		if (moves[x*size + (y - 1)] == INIT){
+//			elfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+//		}
+//	}
+//
+//	if (y != size - 1)
+//	{
+//		// case de droite
+//		if (moves[x*size + (y + 1)] == INIT){
+//			elfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+//		}
+//	}
+//	//case au dessous
+//	if (x = !size - 1)
+//	{
+//		// case dessous à gauche
+//		if (moves[(x + 1)*size + y - 1] == INIT)
+//		{
+//			elfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
+//		}
+//
+//		//case dessous à droite
+//		if (moves[(x + 1)*size + (y - 1)] == INIT)
+//		{
+//			elfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//		}
+//	}
+//}
+
+void Algo::elfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost){
 	if (x != 0)
 	{
-		//case au dessus a gauche
+		//case de gauche
 		if (moves[(x - 1)*size + y] == INIT){
 			elfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+
 		}
-		// case au dessus à droite
-		if (y != size - 1)
-		{
-			if (moves[(x - 1)*size + (y + 1)] == INIT)
-			{
+		if (y != 0 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y - 1)] == INIT){
+				elfMovement(map, cost, size, (x - 1), (y - 1), cost[x*size + y], moves);
+
+			}
+		}
+		if (y != size - 1 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y + 1)] == INIT){
 				elfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+
 			}
 		}
 	}
 
-	if (y != 0)
-	{
-		// case de gauche
-		if (moves[x*size + (y - 1)] == INIT){
-			elfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
-		}
-	}
+	if (x != size - 1){
+		//case de droite
+		if (moves[(x + 1)*size + y] == INIT){
+			elfMovement(map, cost, size, (x + 1), y, cost[x*size + y], moves);
 
-	if (y != size - 1)
-	{
-		// case de droite
-		if (moves[x*size + (y + 1)] == INIT){
-			elfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
-		}
-	}
-	//case au dessous
-	if (x = !size - 1)
-	{
-		// case dessous à gauche
-		if (moves[(x + 1)*size + y - 1] == INIT)
-		{
-			elfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
+			if (y != 0){
+				if (x % 2 == 1 && moves[(x + 1)*size + y - 1]){
+					elfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
+
+				}
+			}
+			if (y != size - 1){
+				//case au dessous gauche ou droite selon x pair ou impair
+				if (x % 2 == 1 && moves[(x + 1)*size + y + 1]){
+					elfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+
+				}
+			}
 		}
 
-		//case dessous à droite
-		if (moves[(x + 1)*size + (y - 1)] == INIT)
-		{
-			elfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+		if (y != 0){
+			//case au dessus gauche ou droite selon x pair ou impair
+			if (moves[x*size + (y - 1)] == INIT){
+				elfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+
+			}
+		}
+
+		if (y != size - 1){
+			if (moves[x*size + (y + 1)] == INIT){
+				elfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+
+			}
 		}
 	}
 }
@@ -569,114 +748,233 @@ void Algo::initializeDwarfMvt(int * map, int size, int x, int y, double * cost, 
 	dwarfPossibleMovement(map, size, x, y, moves, cost);
 }
 
+//void Algo::dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
+//{
+//	//cases au dessus
+//	if (x != 0)
+//	{   
+//		//case au dessus a gauche
+//		if(moves[(x-1)*size + y] == INIT){
+//			dwarfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+//			dwarfPossibleMovement2(map, size, (x-1), y, moves, cost);
+//		}
+//		// case au dessus à droite
+//		if (y != size - 1)
+//		{
+//			if (moves[(x-1)*size + (y+1)] == INIT)
+//			{
+//				dwarfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+//				dwarfPossibleMovement2(map, size, (x - 1), y, moves, cost);
+//			}
+//		}
+//	}
+//
+//	if (y != 0)
+//	{
+//		// case de gauche
+//		if (moves[x*size + (y-1)] == INIT){
+//			dwarfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+//			dwarfPossibleMovement2(map, size, x, (y-1), moves, cost);
+//		}
+//	}
+//
+//	if (y != size - 1)
+//	{
+//		// case de droite
+//		if (moves[x*size + (y+1)] == INIT){
+//			dwarfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+//			dwarfPossibleMovement2(map, size, x, (y+1), moves, cost);
+//		}
+//	}
+//	//case au dessous
+//	if (x = !size - 1)
+//	{
+//		// case dessous à gauche
+//		if (moves[(x + 1)*size + y - 1] == INIT)
+//		{
+//			dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//			dwarfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
+//		}
+//
+//		//case dessous à droite
+//		if (moves[(x + 1)*size + (y - 1)] == INIT)
+//		{
+//			dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//			dwarfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
+//		}
+//	}
+//}
+
+//void Algo::dwarfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
+//{
+//	//cases au dessus
+//	if (x != 0)
+//	{
+//		//case au dessus a gauche
+//		if (moves[(x - 1)*size + y] == INIT){
+//			dwarfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+//		}
+//		// case au dessus à droite
+//		if (y != size - 1)
+//		{
+//			if (moves[(x - 1)*size + (y + 1)] == INIT)
+//			{
+//				dwarfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+//			}
+//		}
+//	}
+//
+//	if (y != 0)
+//	{
+//		// case de gauche
+//		if (moves[x*size + (y - 1)] == INIT){
+//			dwarfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+//		}
+//	}
+//
+//	if (y != size - 1)
+//	{
+//		// case de droite
+//		if (moves[x*size + (y + 1)] == INIT){
+//			dwarfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+//		}
+//	}
+//	//case au dessous
+//	if (x = !size - 1)
+//	{
+//		// case dessous à gauche
+//		if (moves[(x + 1)*size + y - 1] == INIT)
+//		{
+//			dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//		}
+//
+//		//case dessous à droite
+//		if (moves[(x + 1)*size + (y - 1)] == INIT)
+//		{
+//			dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+//		}
+//	}
+//}
+
 void Algo::dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
 {
-	//cases au dessus
-	if (x != 0)
-	{   
-		//case au dessus a gauche
-		if(moves[(x-1)*size + y] == INIT){
-			dwarfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
-			dwarfPossibleMovement2(map, size, (x-1), y, moves, cost);
-		}
-		// case au dessus à droite
-		if (y != size - 1)
-		{
-			if (moves[(x-1)*size + (y+1)] == INIT)
-			{
-				dwarfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
-				dwarfPossibleMovement2(map, size, (x - 1), y, moves, cost);
-			}
-		}
-	}
-
-	if (y != 0)
-	{
-		// case de gauche
-		if (moves[x*size + (y-1)] == INIT){
-			dwarfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
-			dwarfPossibleMovement2(map, size, x, (y-1), moves, cost);
-		}
-	}
-
-	if (y != size - 1)
-	{
-		// case de droite
-		if (moves[x*size + (y+1)] == INIT){
-			dwarfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
-			dwarfPossibleMovement2(map, size, x, (y+1), moves, cost);
-		}
-	}
-	//case au dessous
-	if (x = !size - 1)
-	{
-		// case dessous à gauche
-		if (moves[(x + 1)*size + y - 1] == INIT)
-		{
-			dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
-			dwarfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
-		}
-
-		//case dessous à droite
-		if (moves[(x + 1)*size + (y - 1)] == INIT)
-		{
-			dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
-			dwarfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
-		}
-	}
-}
-
-void Algo::dwarfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost)
-{
-	//cases au dessus
 	if (x != 0)
 	{
-		//case au dessus a gauche
+		//case de gauche
 		if (moves[(x - 1)*size + y] == INIT){
 			dwarfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+			dwarfPossibleMovement2(map, size, (x - 1), y, moves, cost);
 		}
-		// case au dessus à droite
-		if (y != size - 1)
-		{
-			if (moves[(x - 1)*size + (y + 1)] == INIT)
-			{
+		if (y != 0 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y - 1)] == INIT){
+				dwarfMovement(map, cost, size, (x - 1), (y - 1), cost[x*size + y], moves);
+				dwarfPossibleMovement2(map, size, (x - 1), (y - 1), moves, cost);
+			}
+		}
+		if (y != size - 1 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y + 1)] == INIT){
 				dwarfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+				dwarfPossibleMovement2(map, size, (x - 1), (y + 1), moves, cost);
 			}
 		}
 	}
 
-	if (y != 0)
-	{
-		// case de gauche
+	if (x != size - 1){
+		//case de droite
+		if (moves[(x + 1)*size + y] == INIT){
+			dwarfMovement(map, cost, size, (x + 1), y, cost[x*size + y], moves);
+			dwarfPossibleMovement2(map, size, (x + 1), y, moves, cost);
+		}
+		if (y != 0){
+			if (x % 2 == 1 && moves[(x + 1)*size + y - 1]){
+				dwarfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
+				dwarfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
+			}
+		}
+		if (y != size - 1){
+			//case au dessous gauche ou droite selon x pair ou impair
+			if (x % 2 == 1 && moves[(x + 1)*size + y + 1]){
+				dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+				dwarfPossibleMovement2(map, size, (x + 1), (y + 1), moves, cost);
+			}
+		}
+	}
+
+	if (y != 0){
+		//case au dessus gauche ou droite selon x pair ou impair
 		if (moves[x*size + (y - 1)] == INIT){
 			dwarfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+			dwarfPossibleMovement2(map, size, x, (y - 1), moves, cost);
 		}
 	}
 
-	if (y != size - 1)
-	{
-		// case de droite
+	if (y != size - 1){
 		if (moves[x*size + (y + 1)] == INIT){
 			dwarfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
-		}
-	}
-	//case au dessous
-	if (x = !size - 1)
-	{
-		// case dessous à gauche
-		if (moves[(x + 1)*size + y - 1] == INIT)
-		{
-			dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
-		}
-
-		//case dessous à droite
-		if (moves[(x + 1)*size + (y - 1)] == INIT)
-		{
-			dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+			dwarfPossibleMovement2(map, size, x, (y + 1), moves, cost);
 		}
 	}
 }
 
+
+void Algo::dwarfPossibleMovement2(int* map, int size, int x, int y, int* moves, double* cost){
+	if (x != 0)
+	{
+		//case de gauche
+		if (moves[(x - 1)*size + y] == INIT){
+			dwarfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
+
+		}
+		if (y != 0 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y - 1)] == INIT){
+				dwarfMovement(map, cost, size, (x - 1), (y - 1), cost[x*size + y], moves);
+
+			}
+		}
+		if (y != size - 1 && x % 2 == 0){
+			if (moves[(x - 1)*size + (y + 1)] == INIT){
+				dwarfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
+
+			}
+		}
+	}
+
+	if (x != size - 1){
+		//case de droite
+		if (moves[(x + 1)*size + y] == INIT){
+			dwarfMovement(map, cost, size, (x + 1), y, cost[x*size + y], moves);
+
+			if (y != 0){
+				if (x % 2 == 1 && moves[(x + 1)*size + y - 1]){
+					dwarfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
+
+				}
+			}
+			if (y != size - 1){
+				//case au dessous gauche ou droite selon x pair ou impair
+				if (x % 2 == 1 && moves[(x + 1)*size + y + 1]){
+					dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
+
+				}
+			}
+		}
+
+		if (y != 0){
+			//case au dessus gauche ou droite selon x pair ou impair
+			if (moves[x*size + (y - 1)] == INIT){
+				dwarfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
+
+			}
+		}
+
+		if (y != size - 1){
+			if (moves[x*size + (y + 1)] == INIT){
+				dwarfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
+
+			}
+		}
+	}
+}
 
 void Algo::dwarfMovement(int* map, double* cost, int size, int x, int y, double movPt, int* moves)
 {
