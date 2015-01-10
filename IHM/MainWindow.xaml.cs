@@ -229,6 +229,8 @@ namespace IHM
 
             playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
             playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
+
+            checkGameEnded();
         }
 
 
@@ -280,6 +282,8 @@ namespace IHM
             {
                 selectedUnit = tempSelectedUnit;
                 currentPlayersUnit = true;
+
+                //Surbrillance 
             }
 
             showUnits();
@@ -296,6 +300,20 @@ namespace IHM
 
                 showUnits();
                 showUnitsOnMap();
+
+                checkGameEnded();
+            }
+        }
+
+        public void checkGameEnded()
+        {
+            if (game.GameEnded)
+            {
+                string messageBoxText = "The End\n" + game.winner().Name + " has won !";
+                string caption = "Word Processor";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
             }
         }
 
@@ -335,6 +353,7 @@ namespace IHM
             selectedUnit = game.PlayerList[(int)u.playerNumber.Content].Units[(int)u.unitNumber.Content];
             if (((int)u.playerNumber.Content) == game.CurrentPlayer) {
                 currentPlayersUnit = true;
+                //surbrillance
             } else {
                 currentPlayersUnit = false;
             }
