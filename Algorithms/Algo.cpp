@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h> 
 #include <time.h>
+#include <algorithm>
 using namespace std;
 
 #define PLAIN 0
@@ -378,7 +379,7 @@ void Algo::orcMovement(int* map, double* cost, int size,int x, int y, double mov
 		if (mvt >= 0.5){
 			mvt = mvt - 0.5;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -389,7 +390,7 @@ void Algo::orcMovement(int* map, double* cost, int size,int x, int y, double mov
 		if (mvt >= 1){
 			mvt--;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -399,7 +400,7 @@ void Algo::orcMovement(int* map, double* cost, int size,int x, int y, double mov
 		if (mvt >= 1){
 			mvt--;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -409,7 +410,7 @@ void Algo::orcMovement(int* map, double* cost, int size,int x, int y, double mov
 		if (mvt >= 1){
 			mvt--;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -686,7 +687,7 @@ void Algo::elfMovement(int* map, double* cost, int size, int x, int y, double mo
 		if (mvt >= 0.5){
 			mvt = mvt - 0.5;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -697,7 +698,7 @@ void Algo::elfMovement(int* map, double* cost, int size, int x, int y, double mo
 		if (mvt >= 1){
 			mvt--;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -707,7 +708,7 @@ void Algo::elfMovement(int* map, double* cost, int size, int x, int y, double mo
 		if (mvt >= 1){
 			mvt--;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -865,7 +866,7 @@ void Algo::dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, d
 			dwarfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
 			dwarfPossibleMovement2(map, size, (x - 1), y, moves, cost);
 		}
-		if (y != 0 && x % 2 == 0){
+		if (y != 0 && (x % 2 == 0)){
 			if (moves[(x - 1)*size + (y - 1)] == INIT){
 				dwarfMovement(map, cost, size, (x - 1), (y - 1), cost[x*size + y], moves);
 				dwarfPossibleMovement2(map, size, (x - 1), (y - 1), moves, cost);
@@ -986,7 +987,7 @@ void Algo::dwarfMovement(int* map, double* cost, int size, int x, int y, double 
 		if (mvt >= 0.5){
 			mvt = mvt - 0.5;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -997,7 +998,7 @@ void Algo::dwarfMovement(int* map, double* cost, int size, int x, int y, double 
 		if (mvt >= 1){
 			mvt--;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -1007,7 +1008,7 @@ void Algo::dwarfMovement(int* map, double* cost, int size, int x, int y, double 
 		if (mvt >= 1){
 			mvt--;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;
@@ -1017,7 +1018,7 @@ void Algo::dwarfMovement(int* map, double* cost, int size, int x, int y, double 
 		if (mvt >= 1){
 			mvt--;
 			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = mvt;
+			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
 			moves[x*size + y] = INIT;

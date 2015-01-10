@@ -249,5 +249,25 @@ namespace Small_World
             MovePt = MOVE_PT;
             CalculateMoves();
         }
+
+        public unsafe List<Position> PossibleMoves()
+        {
+            int i,j;
+            List<Position> res = new List<Position>();
+            for (i = 0; i < SizeMap; i++)
+            {
+                for (j = 0; j < SizeMap; j++)
+                {
+                    if (Moves[i * SizeMap + j] == 2)
+                    {
+                        res.Add(new Position { X = i, Y = j });
+                    }
+                }
+            }
+            return res;
+        }
+
     }
+
+    
 }
