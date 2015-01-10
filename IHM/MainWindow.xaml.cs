@@ -218,6 +218,27 @@ namespace IHM
             }
         }
 
+        public void showPossibleMoves()
+        {
+            List<Polygon> polygon = listHexa;
+            List<Position> l = selectedUnit.PossibleMoves();
+            foreach (Position p in l)
+            {
+                foreach (Polygon poly in polygon)
+                {
+                    int pos = this.listHexa.IndexOf(poly);
+                    int x = pos % (int)Math.Sqrt(this.game.Map.Size);
+                    int y = pos / (int)Math.Sqrt(this.game.Map.Size);
+
+                    if (p.X == x && p.Y == y)
+                    {
+                        poly.StrokeThickness = 4;
+                        poly.Stroke = Brushes.Blue;
+
+                    }
+                }
+            }
+        }
         private void EndTurnOnClick(object sender, RoutedEventArgs e)
         {
             game.ChangePlayer();
@@ -283,7 +304,7 @@ namespace IHM
                 selectedUnit = tempSelectedUnit;
                 currentPlayersUnit = true;
 
-                //Surbrillance 
+                showPossibleMoves();
             }
 
             showUnits();
@@ -353,7 +374,7 @@ namespace IHM
             selectedUnit = game.PlayerList[(int)u.playerNumber.Content].Units[(int)u.unitNumber.Content];
             if (((int)u.playerNumber.Content) == game.CurrentPlayer) {
                 currentPlayersUnit = true;
-                //surbrillance
+                showPossibleMoves();
             } else {
                 currentPlayersUnit = false;
             }
