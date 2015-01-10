@@ -53,10 +53,10 @@ namespace IHM
             myCanvas.Height = canvasHeight;
             myCanvas.Width = canvasWidth;
 
+            showCurrentPlayer();
+
             MapView mv = new MapView(this.game);
             myCanvas.Children.Add(mv);
-
-            game.PlayerList[0].Units[0].Move(game.PlayerList[0].Units[0].Position.X, game.PlayerList[0].Units[0].Position.Y + 1);
 
             showUnits();
             showUnitsOnMap();
@@ -81,6 +81,24 @@ namespace IHM
                     listHexa.Add(h.polygon);
                     myCanvas.Children.Add(h.polygon);
                 }
+            }
+        }
+
+        public void showCurrentPlayer()
+        {
+            var converter = new System.Windows.Media.BrushConverter();
+            var playerTwoUnactiveColor = (Brush)converter.ConvertFromString("#fff0f0");
+            var playerTwoActiveColor = (Brush)converter.ConvertFromString("#e6b0b0");
+
+            if (game.CurrentPlayer == 0)
+            {
+                playerOnePanel.Background = Brushes.PowderBlue;
+                playerTwoPanel.Background = playerTwoUnactiveColor;
+            }
+            if (game.CurrentPlayer == 1)
+            {
+                playerOnePanel.Background = Brushes.AliceBlue;
+                playerTwoPanel.Background = playerTwoActiveColor;
             }
         }
 
@@ -203,6 +221,8 @@ namespace IHM
         private void EndTurnOnClick(object sender, RoutedEventArgs e)
         {
             game.ChangePlayer();
+
+            showCurrentPlayer();
 
             playerOnePoints.Text = game.PlayerList[0].Points.ToString();
             playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();

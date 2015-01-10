@@ -49,6 +49,7 @@
                 <Grid
                     Grid.Row="0"
                     Background="PowderBlue"
+                    x:Name="playerOnePanel"
                     >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
@@ -161,6 +162,7 @@
                 <Grid
                     Grid.Row="0"
                     Background="#fff0f0"
+                    x:Name="playerTwoPanel"
                     >
                     <!-- Active color :  #e6b0b0 -->
                     <Grid.RowDefinitions>

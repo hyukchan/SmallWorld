@@ -30,6 +30,7 @@ namespace IHM
             mainWindow = (Application.Current.MainWindow as MainWindow);
             InitializeComponent();
 
+
             unitImage.Tag = unit.Position.X + " ; " + unit.Position.Y;
             unitAttackPt.Tag = unit.AttackPt;
             unitDefensePt.Tag = unit.DefensePt;

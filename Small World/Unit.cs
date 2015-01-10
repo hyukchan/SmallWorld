@@ -195,7 +195,6 @@ namespace Small_World
 
         public unsafe bool CanMove(int x, int y)
         {
-            //return true;
             return (Moves[x * SizeMap + y] > 1);
         }
 
