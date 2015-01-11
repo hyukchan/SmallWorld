@@ -252,6 +252,7 @@ namespace Small_World
 
         public unsafe List<Position> PossibleMoves()
         {
+            CalculateMoves();
             int i,j;
             List<Position> res = new List<Position>();
             for (i = 0; i < SizeMap; i++)
