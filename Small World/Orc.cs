@@ -21,5 +21,15 @@ namespace Small_World
         {
             return new OrcUnit();
         }
+
+        public override Uri getPeopleImage()
+        {
+            return new Uri("./textures/player_orc.png", UriKind.Relative);
+        }
+
+        public override Uri getUnactivePeopleImage()
+        {
+            return new Uri("./textures/unactive_player_orc.png", UriKind.Relative);
+        }
     }
 }

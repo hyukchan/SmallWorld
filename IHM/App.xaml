@@ -7,5 +7,9 @@
             <Setter Property="TextElement.FontFamily" 
                 Value="pack://application:,,,/fonts/#Action Man" />
         </Style>
+        <Style x:Key="Lato">
+            <Setter Property="TextElement.FontFamily" 
+                Value="pack://application:,,,/fonts/#Lato" />
+        </Style>
     </Application.Resources>
 </Application>

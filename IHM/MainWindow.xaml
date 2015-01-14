@@ -7,28 +7,14 @@
         WindowStartupLocation="CenterScreen"
         >
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="textures/game_background2.jpg" AlignmentX="Center" AlignmentY="Top"></ImageBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <Grid
-            Grid.Row="0">
-        </Grid>
-
-        <Grid
-            Grid.Row="1">
-            <Button
-                Width="200"
-                Height="30"
-                Click="EndTurnOnClick">
-                End Turn
-            </Button>
-        </Grid>
-        
-        <Grid
-            Grid.Row="2"
+            Grid.Row="0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -42,18 +28,20 @@
                 Grid.Column="0"
                 >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="350"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <!-- Player 1 Informations -->
                 <Grid
                     Grid.Row="0"
-                    Background="PowderBlue"
                     x:Name="playerOnePanel"
                     >
+                    <Grid.Background>
+                        <SolidColorBrush Color="#333333" Opacity="0.7" />
+                    </Grid.Background>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="150"></RowDefinition>
+                        <RowDefinition Height="200"></RowDefinition>
                         <RowDefinition Height="100"></RowDefinition>
                     </Grid.RowDefinitions>
 
@@ -62,12 +50,18 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         x:Name="playerOneName"
+                        Foreground="White"
+                        Style="{StaticResource Lato}"
+                        FontWeight="Medium"
+                        FontSize="25"
                         >
                         Hyukchan
                     </TextBlock>
 
                     <!-- Player 1 Avatar -->
-                    <Image Grid.Row="1">
+                    <Image
+                        Grid.Row="1"
+                        x:Name="playerOneAvatar">
                     </Image>
 
                     <!-- Player 1 Points and Unit numbers -->
@@ -87,7 +81,8 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            Foreground="White">
                             Points
                         </TextBlock>
 
@@ -96,7 +91,8 @@
                             Grid.Column="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            x:Name="playerOnePoints">
+                            x:Name="playerOnePoints"
+                            Foreground="White">
                             0
                         </TextBlock>
 
@@ -105,7 +101,8 @@
                             Grid.Row="1"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            Foreground="White">
                             Units
                         </TextBlock>
 
@@ -114,7 +111,8 @@
                             Grid.Column="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            x:Name="playerOneUnitNumbers">
+                            x:Name="playerOneUnitNumbers"
+                            Foreground="White">
                             0
                         </TextBlock>
                     </Grid>
@@ -125,8 +123,10 @@
                 <!-- Player 1 Units -->
                 <ScrollViewer
                     Grid.Row="1"
-                    Background="AliceBlue"
                     VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer.Background>
+                        <SolidColorBrush Color="#555555" Opacity="0.7" />
+                    </ScrollViewer.Background>
                     <StackPanel
                         x:Name="playerOneUnitList"
                         Margin="0,10,0,10">
@@ -137,37 +137,69 @@
             </Grid>
             <!-- Player 1 Panel End -->
 
-            <!-- The Map -->
-            <ScrollViewer
-                Grid.Column="1"
-                Padding="20"
-                VerticalScrollBarVisibility="Auto"
-                HorizontalScrollBarVisibility="Auto"
-                Margin="30"
-                Background="#eceebc">
-                <Canvas Name="myCanvas" Height="{Binding Height, ElementName=myCanvas}" Width="{Binding Width, ElementName=myCanvas}">
-                </Canvas>
-                <!--<IHM:MapView/>-->
-            </ScrollViewer>
+            <!-- Second Column with the Map -->
+            <Grid
+                Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid
+                    Grid.Row="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <Button
+                        Width="200"
+                        Height="30"
+                        Click="EndTurnOnClick">
+                        End Turn
+                    </Button>
+                </Grid>
+
+                <Grid
+                    Grid.Row="1">
+                    <!-- The Map -->
+                    <ScrollViewer
+                        Grid.Column="1"
+                        Padding="20"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"
+                        Margin="30,0,30,0">
+                        <ScrollViewer.Background>
+                            <SolidColorBrush Color="#eceebc" Opacity="0.5" />
+                        </ScrollViewer.Background>
+                        <Canvas Name="myCanvas" Height="{Binding Height, ElementName=myCanvas}" Width="{Binding Width, ElementName=myCanvas}">
+                        </Canvas>
+                        <!--<IHM:MapView/>-->
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <!-- Second Column with the Map End -->
+
 
             <!-- Player 2 Panel -->
             <Grid
                 Grid.Column="2"
                 >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="350"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <!-- Player 2 Informations -->
                 <Grid
                     Grid.Row="0"
-                    Background="#fff0f0"
                     x:Name="playerTwoPanel"
                     >
+                    <Grid.Background>
+                        <SolidColorBrush Color="#333333" Opacity="0.7" />
+                    </Grid.Background>
                     <!-- Active color :  #e6b0b0 -->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="150"></RowDefinition>
+                        <RowDefinition Height="200"></RowDefinition>
                         <RowDefinition Height="100"></RowDefinition>
                     </Grid.RowDefinitions>
 
@@ -176,12 +208,18 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         x:Name="playerTwoName"
+                        Foreground="White"
+                        Style="{StaticResource Lato}"
+                        FontWeight="Medium"
+                        FontSize="25"
                         >
                         Hyukchan
                     </TextBlock>
 
                     <!-- Player 2 Avatar -->
-                    <Image Grid.Row="1">
+                    <Image
+                        Grid.Row="1"
+                        x:Name="playerTwoAvatar">
                     </Image>
 
                     <!-- Player 2 Points and Unit numbers -->
@@ -201,7 +239,8 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            Foreground="White">
                             Points
                         </TextBlock>
 
@@ -210,7 +249,8 @@
                             Grid.Column="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            x:Name="playerTwoPoints">
+                            x:Name="playerTwoPoints"
+                            Foreground="White">
                             0
                         </TextBlock>
 
@@ -219,7 +259,8 @@
                             Grid.Row="1"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            Foreground="White">
                             Units
                         </TextBlock>
 
@@ -228,7 +269,8 @@
                             Grid.Column="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            x:Name="playerTwoUnitNumbers">
+                            x:Name="playerTwoUnitNumbers"
+                            Foreground="White">
                             0
                         </TextBlock>
                     </Grid>
@@ -239,8 +281,10 @@
                 <!-- Player 2 Units -->
                 <ScrollViewer
                     Grid.Row="1"
-                    Background="#fff0f0"
                     VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer.Background>
+                        <SolidColorBrush Color="#555555" Opacity="0.7" />
+                    </ScrollViewer.Background>
                     <StackPanel
                         x:Name="playerTwoUnitList"
                         Margin="0,10,0,10">
