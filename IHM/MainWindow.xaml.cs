@@ -318,7 +318,7 @@ namespace IHM
                 selectedUnit = tempSelectedUnit;
                 currentPlayersUnit = true;
 
-                showPossibleMoves();
+               // showPossibleMoves();
             }
 
             showUnits();
@@ -388,7 +388,7 @@ namespace IHM
             selectedUnit = game.PlayerList[(int)u.playerNumber.Content].Units[(int)u.unitNumber.Content];
             if (((int)u.playerNumber.Content) == game.CurrentPlayer) {
                 currentPlayersUnit = true;
-                showPossibleMoves();
+               // showPossibleMoves();
             } else {
                 currentPlayersUnit = false;
             }
