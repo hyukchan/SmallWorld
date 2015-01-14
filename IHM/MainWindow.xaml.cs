@@ -25,8 +25,10 @@ namespace IHM
         private List<Polygon> listHexa;
         private List<Polygon> listHexaReachable;
         public Polygon selectedPolygon;
+        private Polygon lastMouseEnteredPolygon;
         private Unit selectedUnit;
         private List<Unit> selectedTileUnits;
+        private Brush possibleMovesColor;
 
         public MainWindow(Game g)
         {
@@ -41,6 +43,9 @@ namespace IHM
             listHexaReachable = new List<Polygon>();
 
             InitializeComponent();
+
+            var converter = new System.Windows.Media.BrushConverter();
+            possibleMovesColor = (Brush)converter.ConvertFromString("#fffd50");
 
             //initialize player's informations
             playerOneName.Text = game.PlayerList[0].Name;
@@ -97,6 +102,8 @@ namespace IHM
             Brush unactiveColor = (Brush)converter.ConvertFromString("#555555");
             Brush activeColor = (Brush)converter.ConvertFromString("#333333");
 
+            
+            
             BitmapImage playerOneActiveAvatar = new BitmapImage(game.PlayerList[0].getPlayerAvatar());
             BitmapImage playerTwoActiveAvatar = new BitmapImage(game.PlayerList[1].getPlayerAvatar());
             BitmapImage playerOneUnactiveAvatar = new BitmapImage(game.PlayerList[0].getUnactivePlayerAvatar());
@@ -185,6 +192,9 @@ namespace IHM
         private void mouseEnterHandler(object sender, MouseEventArgs e)
         {
             var polygon = sender as Polygon;
+            lastMouseEnteredPolygon = new Polygon();
+            lastMouseEnteredPolygon.Stroke = polygon.Stroke;
+            lastMouseEnteredPolygon.StrokeThickness = polygon.StrokeThickness;
             if (polygon != this.selectedPolygon)
             {
                 polygon.StrokeThickness = 4;
@@ -203,9 +213,17 @@ namespace IHM
             var polygon = sender as Polygon;
             if (polygon != this.selectedPolygon)
             {
-                polygon.StrokeThickness = 2;
-                polygon.Stroke = Brushes.Black;
-                polygon.SetValue(Canvas.ZIndexProperty, 10);
+                polygon.StrokeThickness = lastMouseEnteredPolygon.StrokeThickness;
+                polygon.Stroke = lastMouseEnteredPolygon.Stroke;
+                if (polygon.Stroke == possibleMovesColor)
+                {
+                    polygon.SetValue(Canvas.ZIndexProperty, 50);
+                }
+                else
+                {
+                    polygon.SetValue(Canvas.ZIndexProperty, 10);
+                }
+                
             }
         }
 
@@ -271,7 +289,7 @@ namespace IHM
                     if (selectedUnit.Moves[i * selectedUnit.SizeMap + j] == 1)
                     {
                         Polygon hexa = listHexa[i * selectedUnit.SizeMap + j];
-                        hexa.Stroke = Brushes.Yellow;
+                        hexa.Stroke = possibleMovesColor;
                         hexa.StrokeThickness = 3;
                         hexa.SetValue(Canvas.ZIndexProperty, 25);
                     }
@@ -288,6 +306,8 @@ namespace IHM
         {
             game.ChangePlayer();
 
+            resetPolygonStroke();
+
             showCurrentPlayer();
 
             endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
@@ -301,6 +321,18 @@ namespace IHM
             checkGameEnded();
         }
 
+        /// <summary>
+        /// Permet de mettre les bordures de tous les polygones à noir
+        /// </summary>
+        private void resetPolygonStroke()
+        {
+            foreach (Polygon p in this.listHexa)
+            {
+                p.StrokeThickness = 2;
+                p.Stroke = Brushes.Black;
+                p.SetValue(Canvas.ZIndexProperty, 10);
+            }
+        }
 
         /// <summary>
         /// Permet de sélectionner une case
@@ -310,24 +342,8 @@ namespace IHM
         private void mouseLeftClickHexaHandler(object sender, MouseButtonEventArgs e)
         {
             selectedUnit = null;
-            foreach (Polygon p in this.listHexa)
-            {
-                if (p == selectedPolygon)
-                {
-                    if (this.listHexaReachable.Contains(selectedPolygon))
-                    {
-                        p.StrokeThickness = 3;
-                        p.Stroke = Brushes.GreenYellow;
-                        p.SetValue(Canvas.ZIndexProperty, 25);
-                    }
-                    else
-                    {
-                        p.StrokeThickness = 2;
-                        p.Stroke = Brushes.Black;
-                        p.SetValue(Canvas.ZIndexProperty, 10);
-                    }
-                }
-            }
+
+            resetPolygonStroke();
 
             var polygon = sender as Polygon;
             this.selectedPolygon = polygon;
@@ -372,6 +388,10 @@ namespace IHM
         {
             if (selectedTileUnits.Count() > 0)
             {
+                if (selectedTileUnits.Count() == 1)
+                {
+                    resetPolygonStroke();
+                }
                 int pos = this.listHexa.IndexOf((Polygon)sender);
                 int x = pos % this.game.Map.Size;
                 int y = pos / this.game.Map.Size;
