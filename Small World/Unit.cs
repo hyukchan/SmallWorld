@@ -11,7 +11,7 @@ namespace Small_World
         const int ATTACK_PT = 2;
         const int DEFENSE_PT = 1;
         const int HIT_PT = 5;
-        const int MOVE_PT = 1;
+        public const int MOVE_PT = 1;
 
        
         private Position position;
@@ -193,16 +193,12 @@ namespace Small_World
             }
         }
 
-        public unsafe bool CanMove(int x, int y)
-        {
-            return (Moves[x * SizeMap + y] > 1);
-        }
-
+        
         public unsafe bool Move(int x, int y)
         {
             if (CanMove(x, y))
             {
-                MovePt = Costs[x * SizeMap + y];
+                MovePt--;
                 Position = new Position { X = x, Y = y };
                 this.CalculateMoves();
                 if (MovePt == 0)
@@ -229,6 +225,8 @@ namespace Small_World
 
                 
         }
+
+        public abstract bool CanMove(int x, int y);
 
         public abstract void UpdateGamePoints();
             // calcule le point du jeu en fonction de la case où l'unité se situe etc...
@@ -261,7 +259,7 @@ namespace Small_World
                 {
                     if (Moves[i * SizeMap + j] == 2)
                     {
-                        res.Add(new Position { X = i, Y = j });
+                        res.Add(new Position { X = j, Y = i });
                     }
                 }
             }

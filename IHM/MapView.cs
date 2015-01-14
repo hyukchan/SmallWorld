@@ -29,7 +29,7 @@ namespace IHM
             BitmapImage mountainImg = new BitmapImage(new Uri("./textures/mountain.png", UriKind.Relative));
             BitmapImage forestImg = new BitmapImage(new Uri("./textures/foret.png", UriKind.Relative));
 
-            BitmapImage[] tilesImg = { plainImg, desertImg, mountainImg, forestImg };
+            BitmapImage[] tilesImg = { plainImg, desertImg, forestImg, mountainImg };
 
             for (int j = 0; j < mapSize; j++)
             {

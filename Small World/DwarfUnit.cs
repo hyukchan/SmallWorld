@@ -12,14 +12,40 @@ namespace Small_World
             
         }
 
-        //TODOSW to fill
-        public void Move(Position p)
+        
+        public override unsafe bool CanMove(int x, int y)
         {
-            if (MovePt > 0)
+            int _x = Position.X;
+            int _y = Position.Y;
+            if (tabMap[y * SizeMap + x] == Tile.PLAIN)
             {
-                MovePt--;
+                if (_y % 2 == 0)
+                {
+                    return (x - _x) <= 1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT / 2;
+                }
+                else
+                {
+                    return (x - _x) <= 0 && (x - _x) >= -1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT / 2;
+                }
+            }
+            else if (tabMap[_y*SizeMap + _x] == Tile.MOUNTAIN && tabMap[y * SizeMap + x] == Tile.MOUNTAIN && MovePt >= Unit.MOVE_PT)
+            {
+                return true;
+            }
+            else
+            {
+                if (_y % 2 == 0)
+                {
+                    return (x - _x) <= 1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT;
+                }
+                else
+                {
+                    return (x - _x) <= 0 && (x - _x) >= -1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT;
+                }
             }
         }
+        
+        
 
         public override unsafe void CalculateMoves()
         {
@@ -28,7 +54,7 @@ namespace Small_World
 
         public override unsafe void UpdateGamePoints()
         {
-            if (TabMap[Position.X * SizeMap + Position.Y] == Tile.PLAIN)
+            if (TabMap[Position.Y * SizeMap + Position.X] == Tile.PLAIN)
             {
                 GamePt = 0;
             }

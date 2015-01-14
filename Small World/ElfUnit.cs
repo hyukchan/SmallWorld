@@ -12,11 +12,35 @@ namespace Small_World
         }
 
         //TODO to fill
-        public void Move(Position p)
+        public override unsafe bool CanMove(int x, int y)
         {
-            if (MovePt > 0)
+            int _x = Position.X;
+            int _y = Position.Y;
+            if (tabMap[y * SizeMap + x] == Tile.DESERT)
             {
-                MovePt--;
+                return false;
+            }
+            else if (tabMap[y * SizeMap + x] == Tile.FOREST)
+            {
+                if (_y % 2 == 0)
+                {
+                    return (x - _x) <= 1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT / 2;
+                }
+                else
+                {
+                    return (x - _x) <= 0 && (x - _x) >= -1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT / 2;
+                }
+            }
+            else
+            {
+                if (_y % 2 == 0)
+                {
+                    return (x - _x) <= 1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT;
+                }
+                else
+                {
+                    return (x - _x) <= 0 && (x - _x) >= -1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT;
+                }
             }
         }
 
