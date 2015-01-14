@@ -11,7 +11,7 @@ namespace Small_World
 
     public interface GameInterface
     {
-        Player winner();
+        string winner();
 
         void ChangePlayer();
 

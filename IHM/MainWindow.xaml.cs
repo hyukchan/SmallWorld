@@ -236,27 +236,28 @@ namespace IHM
             }
         }
 
-        public void showPossibleMoves()
-        {
-            List<Polygon> polygon = listHexa;
-            List<Position> l = selectedUnit.PossibleMoves();
-            foreach (Position p in l)
-            {
-                foreach (Polygon poly in polygon)
-                {
-                    int pos = this.listHexa.IndexOf(poly);
-                    int x = pos % (int)Math.Sqrt(this.game.Map.Size);
-                    int y = pos / (int)Math.Sqrt(this.game.Map.Size);
+        //public void showPossibleMoves()
+        //{
+        //    List<Polygon> polygon = listHexa;
+        //    List<Position> l = selectedUnit.PossibleMoves();
+        //    foreach (Position p in l)
+        //    {
+        //        foreach (Polygon poly in polygon)
+        //        {
+        //            int pos = this.listHexa.IndexOf(poly);
+        //            int x = pos % (int)Math.Sqrt(this.game.Map.Size);
+        //            int y = pos / (int)Math.Sqrt(this.game.Map.Size);
 
-                    if (p.X == x && p.Y == y)
-                    {
-                        poly.StrokeThickness = 4;
-                        poly.Stroke = Brushes.Blue;
+        //            if (p.X == x && p.Y == y)
+        //            {
+        //                poly.StrokeThickness = 4;
+        //                poly.Stroke = Brushes.Blue;
 
-                    }
-                }
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //}
+
         private void EndTurnOnClick(object sender, RoutedEventArgs e)
         {
             game.ChangePlayer();
@@ -350,7 +351,11 @@ namespace IHM
         {
             if (game.GameEnded)
             {
-                string messageBoxText = "The End\n" + game.winner().Name + " has won !";
+                string messageBoxText = "The End\n" + game.winner() + " has won !";
+                if (game.winner() == "egalite")
+                {
+                    messageBoxText = "Egalité !";
+                }
                 string caption = "Word Processor";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Warning;
