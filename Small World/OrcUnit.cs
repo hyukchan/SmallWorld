@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Small_World
 {
-    
+    [Serializable]
     public class OrcUnit : Unit
     {
         /// <summary>
@@ -73,6 +73,13 @@ namespace Small_World
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="movePt">Les points de déplacement de l'unité</param>
+        /// <returns></returns>
+        
 
         /// <summary>
         /// Donne l'adresse de l'image d'une unité dont le tour n'est pas fini

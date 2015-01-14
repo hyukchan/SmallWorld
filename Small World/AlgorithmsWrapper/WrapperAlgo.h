@@ -17,6 +17,7 @@ namespace Wrapper {
 		int * startingPositions(int * map, int size){ return algo->startingPositions(map, size); }
 		int * mapCreation(int size){ return algo->mapCreation(size); }
 		void freeMap(int * map){ algo->freeMap(map); }
+		int* possibleMoves(double movePt, int* moves, int x, int y, int size, int* map, int peuple){ return algo->possibleMoves(movePt, moves, x, y,size,map,peuple); }
 		
 	};
 }

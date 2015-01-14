@@ -11,6 +11,7 @@ namespace Small_World
         List<Tile> build();
     }
 
+    [Serializable]
     public class BuilderMediumGameBoard : BuilderGameBoard, StrategyMediumInterface
     {
         public const int NB_TILES_MEDIUM = 10;

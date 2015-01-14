@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Small_World
 {
+    [Serializable]
     public class DwarfUnit : Unit
     {
         /// <summary>

@@ -10,6 +10,7 @@ namespace Small_World
 
     }
 
+    [Serializable]
     public class Elf : People, ElfInterface
     {
         /// <summary>

@@ -9,6 +9,8 @@ namespace Small_World
     {
         People CreatePeople(string people);
     }
+
+    [Serializable]
     public class PeopleFactory : peopleFactoryInterface
     {
         public const string DWARF = "Dwarf";

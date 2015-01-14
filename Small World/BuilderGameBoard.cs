@@ -12,6 +12,7 @@ namespace Small_World
         List<Tile> build();
     }
 
+    [Serializable]
     public abstract class BuilderGameBoard : StrategyInterface
     {
         protected int size;

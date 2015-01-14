@@ -11,8 +11,13 @@ namespace Small_World
         Uri getPeopleImage();
     }
 
+    [Serializable]
     public abstract class People : PeopleInterface
     {
+        public const int NAIN = 0;
+        public const int ELF = 1;
+        public const int ORC = 2;
+
         public abstract Unit CreateUnit();
 
         public abstract Uri getPeopleImage();

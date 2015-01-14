@@ -18,6 +18,7 @@ public:
 	int* startingPositions(int* map, int size);
 	int* mapCreation(int size);
 	void freeMap(int* map);
+	int* possibleMoves(double movePt, int* moves, int x, int y, int size, int* map, int peuple);
 
 
 };

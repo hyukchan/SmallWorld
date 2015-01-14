@@ -6,6 +6,7 @@ using Wrapper;
 
 namespace Small_World
 {
+    [Serializable]
     public abstract class Unit
     {
         const int ATTACK_PT = 2;
@@ -17,13 +18,10 @@ namespace Small_World
         private Position position;
         protected unsafe int* tabMap;
         private unsafe int* moves;
-        private unsafe double* costs;
         private int sizeMap;
 
         private bool turnEnded;
 
-        private int attackPt;
-        private int defensePt;
         private int hitPt;
         private double movePt;
         private int gamePt;
@@ -265,13 +263,22 @@ namespace Small_World
         {
             WrapperAlgo wrapper = new WrapperAlgo();
             TabMap = tiles;
-            Moves = wrapper.mapCreation(SizeMap);
-            
-
-
-                
+            Moves = wrapper.mapCreation(SizeMap);      
         }
         
+       /// <summary>
+       /// Calcule les déplacements possibles de l'unité
+       /// </summary>
+       /// <param name="movePt">points de mouvements disponibles</param>
+       /// <param name="moves">tableau des déplacements</param>
+       /// <param name="x">Abscisse de l'unité</param>
+       /// <param name="y">Ordonnée de l'unité</param>
+       /// <param name="size">Taille du plateai</param>
+       /// <param name="map">plateau</param>
+       /// <param name="peuple">peuple courant</param>
+       /// <returns></returns>
+       public abstract unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map, int peuple);
+
         /// <summary>
         /// Fonction abstraite pour indiquer si le déplacement demandé est possible
         /// </summary>

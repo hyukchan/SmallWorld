@@ -33,6 +33,7 @@ namespace Small_World
 
     }
 
+    [Serializable]
     public class Game : GameInterface
     {
 

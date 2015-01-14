@@ -11,7 +11,6 @@ namespace Small_World
 
     }
 
-
     public class MediumGameBuilder : GameBuilder, MediumGameBuilderInterface
     {
         /// <summary>

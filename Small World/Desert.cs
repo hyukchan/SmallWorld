@@ -9,6 +9,8 @@ namespace Small_World
     {
 
     }
+
+    [Serializable]
     public class Desert : Tile, DesertInterface
     {
         /// <summary>

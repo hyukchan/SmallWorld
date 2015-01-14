@@ -8,6 +8,7 @@ namespace Small_World
     /// <summary>
     /// Structure pour les positions des unités et des cases
     /// </summary>
+    [Serializable]
     public struct Position
     {
 

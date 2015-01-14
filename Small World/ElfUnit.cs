@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Small_World
 {
+    [Serializable]
     public class ElfUnit : Unit
     {
         /// <summary>
@@ -51,6 +52,13 @@ namespace Small_World
                 }
             }
         }
+
+
+        public abstract unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map, int peuple)
+        {
+            Moves = wrapperAlgo.possibleMoves(movePt, moves, x, y, size, map, peuple);
+        }
+
 
         /// <summary>
         /// Calcule les points de l'unité courante selon sa position

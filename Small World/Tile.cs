@@ -9,6 +9,8 @@ namespace Small_World
     public interface TileInterface
     {
     }
+
+    [Serializable]
     public abstract class Tile : TileInterface
     {
         public const int PLAIN = 0;
