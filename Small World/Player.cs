@@ -113,5 +113,15 @@ namespace Small_World
             }
             Points = pointsCount;
         }
+
+        public Uri getPlayerAvatar()
+        {
+            return People.getPeopleImage();
+        }
+
+        public Uri getUnactivePlayerAvatar()
+        {
+            return People.getUnactivePeopleImage();
+        }
     }
 }

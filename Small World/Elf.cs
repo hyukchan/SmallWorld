@@ -21,5 +21,15 @@ namespace Small_World
         {
             return new ElfUnit();
         }
+
+        public override Uri getPeopleImage()
+        {
+            return new Uri("./textures/player_elf.png", UriKind.Relative);
+        }
+
+        public override Uri getUnactivePeopleImage()
+        {
+            return new Uri("./textures/unactive_player_elf.png", UriKind.Relative);
+        }
     }
 }

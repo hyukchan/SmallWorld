@@ -87,19 +87,33 @@ namespace IHM
         public void showCurrentPlayer()
         {
             var converter = new System.Windows.Media.BrushConverter();
-            var playerTwoUnactiveColor = (Brush)converter.ConvertFromString("#fff0f0");
-            var playerTwoActiveColor = (Brush)converter.ConvertFromString("#e6b0b0");
+
+            Brush unactiveColor = (Brush)converter.ConvertFromString("#555555");
+            Brush activeColor = (Brush)converter.ConvertFromString("#333333");
+
+            BitmapImage playerOneActiveAvatar = new BitmapImage(game.PlayerList[0].getPlayerAvatar());
+            BitmapImage playerTwoActiveAvatar = new BitmapImage(game.PlayerList[1].getPlayerAvatar());
+            BitmapImage playerOneUnactiveAvatar = new BitmapImage(game.PlayerList[0].getUnactivePlayerAvatar());
+            BitmapImage playerTwoUnactiveAvatar = new BitmapImage(game.PlayerList[1].getUnactivePlayerAvatar());
 
             if (game.CurrentPlayer == 0)
             {
-                playerOnePanel.Background = Brushes.PowderBlue;
-                playerTwoPanel.Background = playerTwoUnactiveColor;
+                playerOnePanel.Background = activeColor;
+                playerTwoPanel.Background = unactiveColor;
+
+                playerOneAvatar.Source = playerOneActiveAvatar;
+                playerTwoAvatar.Source = playerTwoUnactiveAvatar;
             }
             if (game.CurrentPlayer == 1)
             {
-                playerOnePanel.Background = Brushes.AliceBlue;
-                playerTwoPanel.Background = playerTwoActiveColor;
+                playerOnePanel.Background = unactiveColor;
+                playerTwoPanel.Background = activeColor;
+
+                playerOneAvatar.Source = playerOneUnactiveAvatar;
+                playerTwoAvatar.Source = playerTwoActiveAvatar;
             }
+            playerOnePanel.Background.Opacity = 0.7;
+            playerTwoPanel.Background.Opacity = 0.7;
         }
 
         public void showUnits()
