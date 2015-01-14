@@ -61,6 +61,8 @@ namespace IHM
             showUnits();
             showUnitsOnMap();
 
+            endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
+
             
 
             for (int j = 0; j < mapSize; j++)
@@ -260,6 +262,8 @@ namespace IHM
             game.ChangePlayer();
 
             showCurrentPlayer();
+
+            endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
 
             playerOnePoints.Text = game.PlayerList[0].Points.ToString();
             playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();

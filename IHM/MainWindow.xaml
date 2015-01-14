@@ -154,7 +154,8 @@
                     <Button
                         Width="200"
                         Height="30"
-                        Click="EndTurnOnClick">
+                        Click="EndTurnOnClick"
+                        Name="endTurnButton">
                         End Turn
                     </Button>
                 </Grid>
