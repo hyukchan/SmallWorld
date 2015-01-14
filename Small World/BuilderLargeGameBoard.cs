@@ -17,6 +17,9 @@ namespace Small_World
         public const int NB_UNITS_LARGE = 8;
         public const int NB_TURNS_LARGE = 30;
 
+        /// <summary>
+        /// Monteur d'un grand plateau
+        /// </summary>
         public BuilderLargeGameBoard()
         {
             size = NB_TILES_LARGE;

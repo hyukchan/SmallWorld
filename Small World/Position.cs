@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Small_World
 {
+    /// <summary>
+    /// Structure pour les positions des unités et des cases
+    /// </summary>
     public struct Position
     {
 
@@ -20,6 +23,11 @@ namespace Small_World
             set;
         }
 
+        /// <summary>
+        /// Redéfinition de la fonction Equals pour comparer deux positions
+        /// </summary>
+        /// <param name="p">La position avec laquelle comparer</param>
+        /// <returns></returns>
         public bool Equals(Position p)
         {
             bool res = this.X == p.X;

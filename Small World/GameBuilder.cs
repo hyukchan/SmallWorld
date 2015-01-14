@@ -37,6 +37,9 @@ namespace Small_World
 
         private BuilderGameBoard strategy;
 
+        /// <summary>
+        /// Getter/Setter de lu nombre de cases
+        /// </summary>
         public int NbTiles
         {
             get
@@ -45,6 +48,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter du nombre de tours
+        /// </summary>
         public int NbTurns
         {
             get
@@ -53,6 +59,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter de la fabrique de cases
+        /// </summary>
         public int NbUnits
         {
             get
@@ -61,6 +70,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter de la fabrique de peuples
+        /// </summary>
         public PeopleFactory PeopleFactory
         {
             get
@@ -73,6 +85,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter de la partie
+        /// </summary>
         public Game Game
         {
             get
@@ -85,6 +100,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter du plateau de jeu
+        /// </summary>
         public GameBoard GameBoard
         {
             get
@@ -97,6 +115,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter de la stratégie à employer
+        /// </summary>
         public BuilderGameBoard Strategy
         {
             get
@@ -109,6 +130,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Ajoute la carte à la partie
+        /// </summary>
         public void addMap()
         {
             List<Tile> listTiles;
@@ -117,6 +141,11 @@ namespace Small_World
             Game.Map.ListTiles = listTiles;
         }
 
+        /// <summary>
+        /// Ajoute un joueur à la partie
+        /// </summary>
+        /// <param name="playername">Le nom du joueur à ajouter</param>
+        /// <param name="people">Le peuple du joueur à ajouter</param>
         public void addPlayer(string playername, string people)
         {
             People p = PeopleFactory.FactoryInstance.CreatePeople(people);
@@ -130,6 +159,14 @@ namespace Small_World
             
         }
 
+        /// <summary>
+        /// Crée une partie avec les apramètres donnés
+        /// </summary>
+        /// <param name="player1">Le nom du joueur1</param>
+        /// <param name="people1">Le peuple du joueur1</param>
+        /// <param name="player2">Le nom du joueur2</param>
+        /// <param name="people2">Le peuple du joueur2</param>
+        /// <returns>La partie créée</returns>
         public Game CreateGame(string player1, string people1, string player2, string people2)
         {
             this.addPlayer(player1, people1);
@@ -140,11 +177,17 @@ namespace Small_World
             return Game;
         }
 
+        /// <summary>
+        /// Initialise le nombre de tours de la partie
+        /// </summary>
         public void initNbTurns()
         {
-            Game.NbRemainingTurns = nbTurns;
+            Game.NbRemainingTurns = NbTurns;
         }
 
+        /// <summary>
+        /// Donne les positions de départ des joueurs
+        /// </summary>
         public unsafe void placeUnits()
         {
             int i, j;
@@ -199,10 +242,8 @@ namespace Small_World
                 {
                     Game.PlayerList[i].Units[j].Position = new Position { X = pos[i].X, Y = pos[i].Y };
                     Game.PlayerList[i].Units[j].TabMap = map;
-                    Game.PlayerList[i].Units[j].Costs = wrapper.costTab(NbTiles);
                     Game.PlayerList[i].Units[j].Moves = wrapper.createGameBoard(NbTiles);
                     Game.PlayerList[i].Units[j].SizeMap = NbTiles;
-                    Game.PlayerList[i].Units[j].CalculateMoves();
                     Game.PlayerList[i].Units[j].endTurn();
                 }
 

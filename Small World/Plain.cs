@@ -15,6 +15,10 @@ namespace Small_World
         {
 
         }
+
+        /// <summary>
+        /// Constructeur d'une case "Plaine"
+        /// </summary>
         public Plain()
         {
 

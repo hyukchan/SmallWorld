@@ -7,12 +7,20 @@ namespace Small_World
 {
     public class DwarfUnit : Unit
     {
+        /// <summary>
+        /// Constructeur d'une unité naine
+        /// </summary>
         public DwarfUnit()
         {
             
         }
 
-        
+        /// <summary>
+        /// Indique si la case visée est accessible pour un nain
+        /// </summary>
+        /// <param name="x"> l'abscisse de l'unité</param>
+        /// <param name="y">l'ordonnée de l'unité</param>
+        /// <returns>True si la case est accessible, false sinon</returns>
         public override unsafe bool CanMove(int x, int y)
         {
             int _x = Position.X;
@@ -21,42 +29,33 @@ namespace Small_World
             {
                 if (_y % 2 == 0)
                 {
-                    //this.MovePt = this.MovePt - Unit.MOVE_PT / 2;
                     return ((x == _x + 1 && y == _y) || ((x == _x - 1 || x == _x) && Math.Abs(y - _y) <= 1)) && this.MovePt >= Unit.MOVE_PT / 2;
                 }
                 else
                 {
-                    //this.MovePt = this.MovePt - Unit.MOVE_PT / 2;
                     return ((x == _x - 1 && y == _y) || ((x == _x + 1 || x == _x) && Math.Abs(y - _y) <= 1)) && this.MovePt >= Unit.MOVE_PT / 2;
                 }
             }
             else if (tabMap[_y * SizeMap + _x] == Tile.MOUNTAIN && tabMap[y * SizeMap + x] == Tile.MOUNTAIN && this.MovePt >= Unit.MOVE_PT)
             {
-               // this.MovePt = this.MovePt - Unit.MOVE_PT;
                 return true;
             }
             else
             {
                 if (_y % 2 == 0)
                 {
-                   // this.MovePt = this.MovePt - Unit.MOVE_PT / 2;
                     return ((x == _x + 1 && y == _y) || ((x == _x - 1 || x == _x) && Math.Abs(y - _y) <= 1)) && this.MovePt >= Unit.MOVE_PT;
                 }
                 else
                 {
-                   // this.MovePt = this.MovePt - Unit.MOVE_PT / 2;
                     return ((x == _x - 1 && y == _y) || ((x == _x + 1 || x == _x) && Math.Abs(y - _y) <= 1)) && this.MovePt >= Unit.MOVE_PT;
                 }
             }
         }
-        
-        
 
-        public override unsafe void CalculateMoves()
-        {
-            wrapperAlgo.initializeDwarfMvt(TabMap, SizeMap, Position.X, Position.Y, Costs, Moves, MovePt);
-        }
-
+        /// <summary>
+        /// Indique le nombre de points de l'unité selon la case
+        /// </summary>
         public override unsafe void UpdateGamePoints()
         {
             if (TabMap[Position.Y * SizeMap + Position.X] == Tile.PLAIN)
@@ -68,12 +67,19 @@ namespace Small_World
                 GamePt = 1;
             }
         }
-
+        /// <summary>
+        /// Donne l'image d'une unité dont le tour n'est pas fini
+        /// </summary>
+        /// <returns>L'uri de l'image</returns>
         public override Uri GetUnitIcon()
         {
             return new Uri("./textures/dwarf.png", UriKind.Relative);
         }
 
+        /// <summary>
+        /// Donne l'image d'une unité dont le tour est fini
+        /// </summary>
+        /// <returns>L'uri de l'image</returns>
         public override Uri GetUnactiveUnitIcon()
         {
             return new Uri("./textures/unactive_dwarf.png", UriKind.Relative);

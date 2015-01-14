@@ -16,6 +16,9 @@ namespace Small_World
     {
         protected int size;
 
+        /// <summary>
+        /// Getter/Setter de la taille du plateau
+        /// </summary>
         public int Size
         {
             get
@@ -24,6 +27,10 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Contruit la liste des cases du plateau en fonction de la création du wrapper
+        /// </summary>
+        /// <returns>La liste des cases</returns>
         public unsafe List<Tile> build()
         {
 

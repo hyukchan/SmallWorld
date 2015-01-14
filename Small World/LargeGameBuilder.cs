@@ -13,6 +13,10 @@ namespace Small_World
 
     public class LargeGameBuilder : GameBuilder, LargeGameBuilderInterface
     {
+
+        /// <summary>
+        /// Constructeur d'une partie sur un grand plateau
+        /// </summary>
         public LargeGameBuilder()
         {
             nbTiles = BuilderLargeGameBoard.NB_TILES_LARGE;

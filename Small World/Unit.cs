@@ -30,6 +30,9 @@ namespace Small_World
 
         protected WrapperAlgo wrapperAlgo;
 
+        /// <summary>
+        /// Getter / Setter de la position de l'unité
+        /// </summary>
         public Position Position
         {
             get
@@ -42,6 +45,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter / Setter du tableau représentant la carte de l'unité
+        /// </summary>
         public unsafe int* TabMap
         {
             get
@@ -54,6 +60,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter / Setter des mouvements possibles de l'unité
+        /// </summary>
         public unsafe int* Moves
         {
             get
@@ -66,18 +75,10 @@ namespace Small_World
             }
         }
 
-        public unsafe double* Costs
-        {
-            get
-            {
-                return costs;
-            }
-            set
-            {
-                costs = value;
-            }
-        }
 
+        /// <summary>
+        /// Getter/Setter de la taille de la carte sur laquelle est l'unité
+        /// </summary>
         public int SizeMap
         {
             get
@@ -90,6 +91,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter de l'état de l'unité courante
+        /// </summary>
         public bool TurnEnded
         {
             get
@@ -106,16 +110,25 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Retourne les points d'attaque de l'unité
+        /// </summary>
         public int AttackPt
         {
             get { return ATTACK_PT; }
         }
 
+        /// <summary>
+        /// Retourne les points de défense de l'unité
+        /// </summary>
         public int DefensePt
         {
             get { return DEFENSE_PT; }
         }
 
+        /// <summary>
+        /// Retourne les points de vie de l'unité
+        /// </summary>
         public int HitPt
         {
             get
@@ -128,6 +141,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter des points de jeu de l'unité
+        /// </summary>
         public int GamePt
         {
             get
@@ -141,6 +157,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter des points de mouvement de l'unité
+        /// </summary>
         public double MovePt
         {
             get
@@ -153,6 +172,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Constructeur par défaut d'une unité
+        /// </summary>
         public Unit()
         {
             HitPt = HIT_PT;
@@ -161,6 +183,11 @@ namespace Small_World
             wrapperAlgo = new WrapperAlgo();
         }
 
+        /// <summary>
+        /// Simule un combat entre 2 unités
+        /// </summary>
+        /// <param name="u"> L'unité à attaquer</param>
+        /// <param name="rounds"> Le nombre de tours de combat</param>
         public void Attack(Unit u, int rounds)
         {
             double ptDef = u.DefensePt * (u.HitPt / HIT_PT);
@@ -193,7 +220,12 @@ namespace Small_World
             }
         }
 
-        
+        /// <summary>
+        /// Effectue le déplacement de l'unité
+        /// </summary>
+        /// <param name="x">L'abscisse à atteindre</param>
+        /// <param name="y">L'ordonnée à atteindre</param>
+        /// <returns>True si le déplacement a réussi, false sinon</returns>
         public unsafe bool Move(int x, int y)
         {
             if (CanMove(x, y))
@@ -212,7 +244,7 @@ namespace Small_World
                 }
 
                 Position = new Position { X = x, Y = y };
-                this.CalculateMoves();
+                
                 if (this.MovePt == 0)
                 {
                     this.endTurn();
@@ -225,59 +257,61 @@ namespace Small_World
             }
                    
         }
-
+         /// <summary>
+         /// Restaure l'unité suite à un chargement de partie
+         /// </summary>
+         /// <param name="tiles">La carte sur laquelle placer les unités</param>
         public unsafe void restore(int* tiles)
         {
             WrapperAlgo wrapper = new WrapperAlgo();
             TabMap = tiles;
-            Costs = wrapper.costTab(SizeMap);
             Moves = wrapper.mapCreation(SizeMap);
-            CalculateMoves();
+            
 
 
                 
         }
-
+        
+        /// <summary>
+        /// Fonction abstraite pour indiquer si le déplacement demandé est possible
+        /// </summary>
+        /// <param name="x">L'abscisse à atteindre</param>
+        /// <param name="y">L'ordonnée à atteindre</param>
+        /// <returns>True si l'opération s'est bien passée, false sinon</returns>
         public abstract bool CanMove(int x, int y);
 
+        /// <summary>
+        /// Fonction absraite pour calculer les points de l'unité
+        /// </summary>
         public abstract void UpdateGamePoints();
-            // calcule le point du jeu en fonction de la case où l'unité se situe etc...
-            // défini dans les unités de chaque classe
 
-        public abstract void CalculateMoves();
-
+        /// <summary>
+        /// Fonction abstraite pour rendre l'URI de l'unité dont le tour est en cours
+        /// </summary>
+        /// <returns></returns>
         public abstract Uri GetUnitIcon();
 
+        /// <summary>
+        /// Fonction abstraite pour rendre l'URI de l'unité dont le tour est en cours
+        /// </summary>
+        /// <returns></returns>
         public abstract Uri GetUnactiveUnitIcon();
 
+        /// <summary>
+        /// Termine le tour de l'unité
+        /// </summary>
         public void endTurn()
         {
             TurnEnded = true;
         }
 
+        /// <summary>
+        /// Initialise les mouvements de autorise l'unité à jouer
+        /// </summary>
         public void newTurn()
         {
             TurnEnded = false;
             MovePt = MOVE_PT;
-            CalculateMoves();
-        }
-
-        public unsafe List<Position> PossibleMoves()
-        {
-            CalculateMoves();
-            int i,j;
-            List<Position> res = new List<Position>();
-            for (i = 0; i < SizeMap; i++)
-            {
-                for (j = 0; j < SizeMap; j++)
-                {
-                    if (Moves[i * SizeMap + j] == 2)
-                    {
-                        res.Add(new Position { X = j, Y = i });
-                    }
-                }
-            }
-            return res;
         }
 
     }

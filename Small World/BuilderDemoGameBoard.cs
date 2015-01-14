@@ -18,7 +18,9 @@ namespace Small_World
         public const int NB_UNITS_DEMO = 4;
         public const int NB_TURNS_DEMO = 5;
 
-        
+        /// <summary>
+        /// Monteur d'un plateau de démonstration
+        /// </summary>
         public BuilderDemoGameBoard()
         {
             size = NB_TILES_DEMO;

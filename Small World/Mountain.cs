@@ -11,6 +11,9 @@ namespace Small_World
     }
     public class Mountain : Tile, MountainInterface
     {
+        /// <summary>
+        /// Constructeur d'une case "Montagne"
+        /// </summary>
         public Mountain()
         {
             

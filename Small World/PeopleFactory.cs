@@ -7,7 +7,7 @@ namespace Small_World
 {
     public interface peopleFactoryInterface
     {
-        People peopleFactory(string people);
+        People CreatePeople(string people);
     }
     public class PeopleFactory : peopleFactoryInterface
     {
@@ -17,11 +17,17 @@ namespace Small_World
 
         private static PeopleFactory peoplefactoryInstance;
 
+        /// <summary>
+        /// Constructeur par défaut de la fabrique de peuples
+        /// </summary>
         public PeopleFactory()
         {
 
         }
 
+        /// <summary>
+        /// Getter de l'unique instance de la fabrique
+        /// </summary>
         public static PeopleFactory FactoryInstance
         {
             get
@@ -34,6 +40,11 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Crée un peuple
+        /// </summary>
+        /// <param name="people">Le peuple à créer</param>
+        /// <returns>Le peuple crée</returns>
         public People CreatePeople(string people)
         {
             switch (people)
@@ -48,12 +59,7 @@ namespace Small_World
                     return null;
 
             }
-        }
-
-        public People peopleFactory(string people)
-        {
-            throw new System.NotImplementedException();
-        }
+        }        
     }
 }
 

@@ -15,6 +15,8 @@ using namespace std;
 #define IMPOSSIBLE 1
 #define POSSIBLE 2
 
+#define MVTPT 1
+
 /**
 * Constructeur
 */
@@ -714,9 +716,102 @@ void Algo::initializeDwarfMvt(int * map, int size, int x, int y, double * cost, 
 		}
 	}
 
-	moves[x*size + y] = POSSIBLE;
-	cost[x*size + y] = movPt;
-	dwarfPossibleMovement(map, size, x, y, moves, cost);
+	if (x != 0)
+	{
+		//case de gauche
+		if (moves[y*size + x - 1] == INIT){
+			moves[y*size + x + 1] = POSSIBLE;
+			if (map[y*size + x + 1] == PLAIN){
+				cost[y*size + x + 1] = MVTPT / 2;
+			}
+			else{
+				cost[y*size + x + 1] = MVTPT;
+			}
+	}
+		if (y != 0 && (y % 2 == 0)){
+			if (moves[(y - 1)*size + (x - 1)] == INIT){
+				moves[(y- 1)*size + x - 1] = POSSIBLE;
+				if (map[(y-1)*size + x - 1] == PLAIN){
+					cost[(y - 1)*size + x - 1] = MVTPT / 2;
+				}
+				else{
+					cost[(y - 1)*size + x - 1] = MVTPT;
+				}
+			}
+		}
+		if (y != size - 1 && y % 2 == 0){
+			if (moves[(y + 1)*size + (x - 1)] == INIT){
+				moves[(y + 1)*size + x - 1] = POSSIBLE;
+				if (map[(y + 1)*size + x - 1] == PLAIN){
+					cost[(y + 1)*size + x - 1] = MVTPT / 2;
+				}
+				else{
+					cost[(y + 1)*size + x - 1] = MVTPT;
+				}
+			}
+		}
+	}
+
+	if (x != size - 1){
+		//case de droite
+		if (moves[y*size + (x + 1)] == INIT){
+			moves[y*size + x + 1] = POSSIBLE;
+			if (map[y*size + x + 1] == PLAIN){
+				cost[y*size + x + 1] = MVTPT / 2;
+			}
+			else{
+				cost[y*size + x + 1] = MVTPT;
+			}
+		}
+		if (y != 0){
+			if (y % 2 == 1 && moves[(y - 1)*size + x + 1]){
+				moves[(y - 1)*size + x + 1] = POSSIBLE;
+				if (map[(y - 1)*size + x + 1] == PLAIN){
+					cost[(y - 1)*size + x + 1] = MVTPT / 2;
+				}
+				else{
+					cost[(y - 1)*size + x + 1] = MVTPT;
+				};
+			}
+		}
+		if (y != size - 1){
+			//case au dessous gauche ou droite selon x pair ou impair
+			if (y % 2 == 1 && moves[(y + 1)*size + x + 1]){
+				moves[(y + 1)*size + x + 1] = POSSIBLE;
+				if (map[(y + 1)*size + x + 1] == PLAIN){
+					cost[(y + 1)*size + x +1] = MVTPT / 2;
+				}
+				else{
+					cost[(y + 1)*size + x + 1] = MVTPT;
+				}
+			}
+		}
+	}
+
+	if (y != 0){
+		//case au dessus gauche ou droite selon x pair ou impair
+		if (moves[(y - 1)*size + x] == INIT){
+			moves[(y - 1)*size + x] = POSSIBLE;
+			if (map[(y - 1)*size + x] == PLAIN){
+				cost[(y - 1)*size + x] = MVTPT / 2;
+			}
+			else{
+				cost[(y - 1)*size + x] = MVTPT;
+			}
+		}
+	}
+
+	if (y != size - 1){
+		if (moves[(y + 1)*size + x] == INIT){
+			moves[(y + 1)*size + x] = POSSIBLE;
+			if (map[(y + 1)*size + x] == PLAIN){
+				cost[(y + 1)*size + x] = MVTPT / 2;
+			}
+			else{
+				cost[(y - 1)*size + x] = MVTPT;
+			}
+		}
+	}
 }
 
 //void Algo::dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, double* cost)
@@ -832,18 +927,18 @@ void Algo::dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, d
 	if (x != 0)
 	{
 		//case de gauche
-		if (moves[(x - 1)*size + y] == INIT){
+		if (moves[y*size + x - 1] == INIT){
 			dwarfMovement(map, cost, size, (x - 1), y, cost[x*size + y], moves);
 			dwarfPossibleMovement2(map, size, (x - 1), y, moves, cost);
 		}
 		if (y != 0 && (y % 2 == 0)){
-			if (moves[(x - 1)*size + (y - 1)] == INIT){
+			if (moves[(y - 1)*size + (x - 1)] == INIT){
 				dwarfMovement(map, cost, size, (x - 1), (y - 1), cost[x*size + y], moves);
 				dwarfPossibleMovement2(map, size, (x - 1), (y - 1), moves, cost);
 			}
 		}
 		if (y != size - 1 && y % 2 == 0){
-			if (moves[(x - 1)*size + (y + 1)] == INIT){
+			if (moves[(y + 1)*size + (x - 1)] == INIT){
 				dwarfMovement(map, cost, size, (x - 1), (y + 1), cost[x*size + y], moves);
 				dwarfPossibleMovement2(map, size, (x - 1), (y + 1), moves, cost);
 			}
@@ -852,19 +947,19 @@ void Algo::dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, d
 
 	if (x != size - 1){
 		//case de droite
-		if (moves[(x + 1)*size + y] == INIT){
+		if (moves[y*size +(x + 1)] == INIT){
 			dwarfMovement(map, cost, size, (x + 1), y, cost[x*size + y], moves);
 			dwarfPossibleMovement2(map, size, (x + 1), y, moves, cost);
 		}
 		if (y != 0){
-			if (y % 2 == 1 && moves[(x + 1)*size + y - 1]){
+			if (y % 2 == 1 && moves[(y - 1)*size + x + 1]){
 				dwarfMovement(map, cost, size, (x + 1), (y - 1), cost[x*size + y], moves);
 				dwarfPossibleMovement2(map, size, (x + 1), (y - 1), moves, cost);
 			}
 		}
 		if (y != size - 1){
 			//case au dessous gauche ou droite selon x pair ou impair
-			if (y % 2 == 1 && moves[(x + 1)*size + y + 1]){
+			if (y % 2 == 1 && moves[(y + 1)*size + x + 1]){
 				dwarfMovement(map, cost, size, (x + 1), (y + 1), cost[x*size + y], moves);
 				dwarfPossibleMovement2(map, size, (x + 1), (y + 1), moves, cost);
 			}
@@ -873,14 +968,14 @@ void Algo::dwarfPossibleMovement(int* map, int size, int x, int y, int* moves, d
 
 	if (y != 0){
 		//case au dessus gauche ou droite selon x pair ou impair
-		if (moves[x*size + (y - 1)] == INIT){
+		if (moves[(y-1)*size + x] == INIT){
 			dwarfMovement(map, cost, size, x, (y - 1), cost[x*size + y], moves);
 			dwarfPossibleMovement2(map, size, x, (y - 1), moves, cost);
 		}
 	}
 
 	if (y != size - 1){
-		if (moves[x*size + (y + 1)] == INIT){
+		if (moves[(y+1)*size + x] == INIT){
 			dwarfMovement(map, cost, size, x, (y + 1), cost[x*size + y], moves);
 			dwarfPossibleMovement2(map, size, x, (y + 1), moves, cost);
 		}
@@ -951,47 +1046,47 @@ void Algo::dwarfMovement(int* map, double* cost, int size, int x, int y, double 
 {
 	double mvt = movPt;
 
-	switch (map[size*x + y])
+	switch (map[size*y + x])
 	{
 	case PLAIN :
 		if (mvt >= 0.5){
 			mvt = mvt - 0.5;
-			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
+			moves[y*size + x] = POSSIBLE;
+			cost[y*size + x] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
-			moves[x*size + y] = INIT;
+			moves[y*size + x] = INIT;
 		}
 		break;
 
 	case MOUNTAIN:
 		if (mvt >= 1){
 			mvt--;
-			moves[x*size + y] = POSSIBLE;
+			moves[y*size + x] = POSSIBLE;
 			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
-			moves[x*size + y] = INIT;
+			moves[y*size + x] = INIT;
 		}
 		break;
 	case FOREST:
 		if (mvt >= 1){
 			mvt--;
-			moves[x*size + y] = POSSIBLE;
+			moves[y*size + x] = POSSIBLE;
 			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
-			moves[x*size + y] = INIT;
+			moves[y*size + x] = INIT;
 		}
 		break;
 	case DESERT:
 		if (mvt >= 1){
 			mvt--;
-			moves[x*size + y] = POSSIBLE;
-			cost[x*size + y] = std::max(mvt, cost[x*size + y]);
+			moves[y*size + x] = POSSIBLE;
+			cost[x*size + x] = std::max(mvt, cost[x*size + y]);
 		}
 		else{
-			moves[x*size + y] = INIT;
+			moves[y*size + x] = INIT;
 		}
 		break;
 	default:

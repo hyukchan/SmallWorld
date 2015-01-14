@@ -14,6 +14,9 @@ namespace Small_World
 
     public class MediumGameBuilder : GameBuilder, MediumGameBuilderInterface
     {
+        /// <summary>
+        /// Constructeur d'une partie sur un plateau moyen
+        /// </summary>
         public MediumGameBuilder()
         {
             nbTiles = BuilderMediumGameBoard.NB_TILES_MEDIUM;

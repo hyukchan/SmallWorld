@@ -12,10 +12,18 @@ namespace Small_World
         private string name;
         private List<Unit> units;
 
+        /// <summary>
+        /// Constructeur par défaut d'un joueur
+        /// </summary>
         public Player()
         {
         }
 
+        /// <summary>
+        /// Constructeur d'un joueur à partir de deux paramètres
+        /// </summary>
+        /// <param name="name">Le nom du joueur</param>
+        /// <param name="people">Le peuple du joueur</param>
         public Player(string name, People people)
         {
             Name = name;
@@ -23,6 +31,9 @@ namespace Small_World
             Units = new List<Unit>();
         }
 
+        /// <summary>
+        /// Getter/Setter du peuple du joueur
+        /// </summary>
         public People People
         {
             get
@@ -35,6 +46,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter des points du joueur
+        /// </summary>
         public int Points
         {
             get
@@ -47,6 +61,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter du nom du joueur
+        /// </summary>
         public string Name
         {
             get
@@ -59,6 +76,9 @@ namespace Small_World
             }
         }
 
+        /// <summary>
+        /// Getter/Setter de la liste des unités du joueur
+        /// </summary>
         public List<Unit> Units
         {
             get
@@ -70,7 +90,10 @@ namespace Small_World
                 units = value;
             }
         }
-    
+
+        /// <summary>
+        /// Calcule les points du joueur en fonction de la position de ses unités
+        /// </summary>
         public void GetGamePoints()
         {
             List<Position> posOwned = new List<Position>();
@@ -114,11 +137,19 @@ namespace Small_World
             Points = pointsCount;
         }
 
+        /// <summary>
+        /// Donne l'image du joueur dont le tour est en cours
+        /// </summary>
+        /// <returns>L'URI de l'image</returns>
         public Uri getPlayerAvatar()
         {
             return People.getPeopleImage();
         }
 
+        /// <summary>
+        /// Donne l'image du joueur dont le tour n'est pas en cours
+        /// </summary>
+        /// <returns>L'URI de l'image</returns>
         public Uri getUnactivePlayerAvatar()
         {
             return People.getUnactivePeopleImage();

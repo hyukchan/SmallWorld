@@ -14,6 +14,9 @@ namespace Small_World
         private Forest forest;
         private Mountain mountain;
 
+        /// <summary>
+        /// Constructeur de la fabrique de cases
+        /// </summary>
         public TileFactory()
         {
             desert = new Desert();
@@ -22,6 +25,9 @@ namespace Small_World
             mountain = new Mountain();
         }
 
+        /// <summary>
+        /// Getter de l'unique instance de la fabrique
+        /// </summary>
         public static TileFactory TileFactory_Instance
         {
             get
@@ -34,27 +40,37 @@ namespace Small_World
             }
         }
 
-        public Tile GetTile()
-        {
-            // TODOSW utile de le garder ?
-            throw new System.NotImplementedException();
-        }
-
+        /// <summary>
+        /// Accesseur de l'instance de la case Desert
+        /// </summary>
+        /// <returns>L'instance de la case</returns>
         public Desert GetDesert()
         {
             return desert;
         }
 
+        /// <summary>
+        /// Accesseur de l'instance de la case Montagne
+        /// </summary>
+        /// <returns>L'instance de la case</returns>
         public Mountain GetMountain()
         {
             return mountain;
         }
 
+        /// <summary>
+        /// Accesseur de l'instance de la case Plaine
+        /// </summary>
+        /// <returns>L'instance de la case</returns>
         public Plain GetPlain()
         {
             return plain;  
         }
 
+        /// <summary>
+        /// Accesseur de l'instance de la case Foret
+        /// </summary>
+        /// <returns>L'instance de la case</returns>
         public Forest GetForest()
         {
             return forest;

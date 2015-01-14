@@ -11,6 +11,9 @@ namespace Small_World
     }
     public class Desert : Tile, DesertInterface
     {
+        /// <summary>
+        /// Constructeur d'une case "Desert"
+        /// </summary>
         public Desert()
         {
             

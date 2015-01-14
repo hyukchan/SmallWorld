@@ -11,6 +11,9 @@ namespace Small_World
     }
     public class Forest : Tile, ForestInterface
     {
+        /// <summary>
+        /// Constructeur d'une case "Foret"
+        /// </summary>
         public Forest()
         {
             

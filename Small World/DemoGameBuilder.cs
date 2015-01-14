@@ -13,6 +13,9 @@ namespace Small_World
 
     public class DemoGameBuilder : GameBuilder, DemoGameBuilderInterface
     {
+        /// <summary>
+        /// Constructeur d'une partie de démonstration
+        /// </summary>
         public DemoGameBuilder()
         {
             nbTiles = BuilderDemoGameBoard.NB_TILES_DEMO;
