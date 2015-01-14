@@ -30,8 +30,6 @@ namespace IHM
             mainWindow = (Application.Current.MainWindow as MainWindow);
             InitializeComponent();
 
-
-            unitImage.Tag = unit.Position.X + " ; " + unit.Position.Y;
             unitAttackPt.Tag = unit.AttackPt;
             unitDefensePt.Tag = unit.DefensePt;
             unitHitPt.Tag = unit.HitPt;
@@ -39,6 +37,15 @@ namespace IHM
             unitPosY.Tag = unit.Position.Y;
             unitNumber.Tag = unitNo;
             playerNumber.Tag = playerNo;
+
+            if (unit.MovePt > 0)
+            {
+                unitImage.Source = new BitmapImage(unit.GetUnitIcon());
+            }
+            else
+            {
+                unitImage.Source = new BitmapImage(unit.GetUnactiveUnitIcon());
+            }
         }
     }
 }

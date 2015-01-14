@@ -248,6 +248,8 @@ namespace Small_World
 
         public abstract Uri GetUnitIcon();
 
+        public abstract Uri GetUnactiveUnitIcon();
+
         public void endTurn()
         {
             TurnEnded = true;

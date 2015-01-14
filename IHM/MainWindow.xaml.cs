@@ -114,6 +114,8 @@ namespace IHM
             }
             playerOnePanel.Background.Opacity = 0.7;
             playerTwoPanel.Background.Opacity = 0.7;
+
+            showUnits();
         }
 
         public void showUnits()

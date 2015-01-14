@@ -81,5 +81,9 @@ namespace Small_World
             return new Uri("./textures/orc.png", UriKind.Relative);
         }
 
+        public override Uri GetUnactiveUnitIcon()
+        {
+            return new Uri("./textures/unactive_orc.png", UriKind.Relative);
+        }
     }
 }

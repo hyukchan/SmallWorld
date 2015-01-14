@@ -63,5 +63,9 @@ namespace Small_World
             return new Uri("./textures/elf.png", UriKind.Relative);
         }
 
+        public override Uri GetUnactiveUnitIcon()
+        {
+            return new Uri("./textures/unactive_elf.png", UriKind.Relative);
+        }
     }
 }

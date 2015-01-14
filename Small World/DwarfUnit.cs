@@ -74,5 +74,9 @@ namespace Small_World
             return new Uri("./textures/dwarf.png", UriKind.Relative);
         }
 
+        public override Uri GetUnactiveUnitIcon()
+        {
+            return new Uri("./textures/unactive_dwarf.png", UriKind.Relative);
+        }
     }
 }
