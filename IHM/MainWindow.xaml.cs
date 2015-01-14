@@ -342,7 +342,12 @@ namespace IHM
 
                 showUnits();
                 showUnitsOnMap();
+                //TODOSW actualisation des points en mode barbare
+                playerOnePoints.Text = game.PlayerList[0].Points.ToString();
+                playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
 
+                playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
+                playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
                 checkGameEnded();
             }
         }
