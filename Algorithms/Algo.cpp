@@ -17,21 +17,25 @@ using namespace std;
 
 #define MVTPT 1
 
-/**
-* Constructeur
+/*
+  Constructeur
 */
 Algo* Algo::Algo_new()
 {
 	return new Algo();
 }
-/**
-* Destructeur
+/*
+Destructeur
 */
 void Algo::delete_Algo(Algo* algo){
 	delete algo;
 }
 
-
+/*
+Crée le tableau représentant le plateau de jeu
+@param n La largeur du tableau
+@return Le tableau
+*/
 int* Algo::createGameBoard(int n){
 	srand(time(NULL));
 
@@ -58,6 +62,12 @@ int* Algo::createGameBoard(int n){
 	return tiles;
 }
 
+/*
+Place les unités en début de partie
+@param map le tableau représentant la carte
+@param size la taille de la carte
+@return Le tableau contenant les abscisses et ordonnées
+*/
 int* Algo::startingPositions(int* map, int size){
 
 	srand((unsigned int)time(NULL));
@@ -91,11 +101,19 @@ int* Algo::startingPositions(int* map, int size){
 		return coordinates;
 }
 
+/*
+Crée un tableau d'entiers
+@param size La largeur du tableau
+@return Le tableau
+*/
 int* Algo::mapCreation(int size){
 	int* map = (int*)malloc(size * size * sizeof(int));
 	return map;
 }
 
+/*
+Libère l'espace alloué à un tableau d'entiers
+*/
 void Algo::freeMap(int* map){
 	free(map);
 }
