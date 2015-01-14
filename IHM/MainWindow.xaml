@@ -82,7 +82,10 @@
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="White">
+                            Foreground="White"
+                            Style="{StaticResource Lato}"
+                            FontWeight="Light"
+                            FontSize="18">
                             Points
                         </TextBlock>
 
@@ -92,7 +95,10 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             x:Name="playerOnePoints"
-                            Foreground="White">
+                            Foreground="White"
+                            Style="{StaticResource Lato}"
+                            FontWeight="Light"
+                            FontSize="18">
                             0
                         </TextBlock>
 
@@ -102,7 +108,10 @@
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="White">
+                            Foreground="White"
+                            Style="{StaticResource Lato}"
+                            FontWeight="Light"
+                            FontSize="18">
                             Units
                         </TextBlock>
 
@@ -112,7 +121,10 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             x:Name="playerOneUnitNumbers"
-                            Foreground="White">
+                            Foreground="White"
+                            Style="{StaticResource Lato}"
+                            FontWeight="Light"
+                            FontSize="18">
                             0
                         </TextBlock>
                     </Grid>
@@ -241,7 +253,10 @@
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="White">
+                            Foreground="White"
+                            Style="{StaticResource Lato}"
+                            FontWeight="Light"
+                            FontSize="18">
                             Points
                         </TextBlock>
 
@@ -251,7 +266,10 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             x:Name="playerTwoPoints"
-                            Foreground="White">
+                            Foreground="White"
+                            Style="{StaticResource Lato}"
+                            FontWeight="Light"
+                            FontSize="18">
                             0
                         </TextBlock>
 
@@ -261,7 +279,10 @@
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="White">
+                            Foreground="White"
+                            Style="{StaticResource Lato}"
+                            FontWeight="Light"
+                            FontSize="18">
                             Units
                         </TextBlock>
 
@@ -271,7 +292,10 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             x:Name="playerTwoUnitNumbers"
-                            Foreground="White">
+                            Foreground="White"
+                            Style="{StaticResource Lato}"
+                            FontWeight="Thin"
+                            FontSize="18">
                             0
                         </TextBlock>
                     </Grid>
