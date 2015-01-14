@@ -54,9 +54,9 @@ namespace Small_World
         }
 
 
-        public abstract unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map, int peuple)
+        public override unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map)
         {
-            Moves = wrapperAlgo.possibleMoves(movePt, moves, x, y, size, map, peuple);
+            Moves = wrapperAlgo.possibleMoves(movePt, moves, x, y, size, map, People.ELF);
         }
 
 

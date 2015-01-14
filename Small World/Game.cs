@@ -326,7 +326,7 @@ namespace Small_World
         /// <param name="x">L'abscisse de la case visée</param>
         /// <param name="y">L'ordonée de la case visée</param>
         /// <returns>1 si un déplacement a eu lieu, 2 si un combat a eu lieu</returns>
-        public int AskToMove(Unit u, int x, int y)
+        public unsafe int AskToMove(Unit u, int x, int y)
         {
             if (CanMove(u, x, y))
             {
@@ -334,6 +334,7 @@ namespace Small_World
                 if (listUnits.Count == 0)
                 {
                     u.Move(x, y);
+                    u.PossibleMoves(u.MovePt, u.Moves, u.Position.X, u.Position.Y, u.SizeMap, u.TabMap);
                     PlayerList[CurrentPlayer].GetGamePoints();
                     return 1;
                 }
@@ -341,6 +342,14 @@ namespace Small_World
                 {
                     if (u.CanMove(x, y))
                     {
+                        if ((u.GetType() == new ElfUnit().GetType() && TabMap[y * u.SizeMap + x] == Tile.FOREST) || ((u.GetType() == new OrcUnit().GetType() || u.GetType() == new DwarfUnit().GetType()) && TabMap[y*u.SizeMap + x] == Tile.PLAIN))
+                        {
+                            u.MovePt -= Unit.MOVE_PT / 2;
+                        }
+                        else
+                        {
+                            u.MovePt -= Unit.MOVE_PT;
+                        }
                         Unit best = listUnits[0];
                         foreach (Unit unit in listUnits)
                         {
@@ -372,6 +381,7 @@ namespace Small_World
                             if (SelectOpponentUnit(x, y).Count == 0)
                             {
                                 u.Move(x, y);
+                                u.PossibleMoves(u.MovePt, u.Moves, u.Position.X, u.Position.Y, u.SizeMap, u.TabMap);
                                 checkEndOfGame();
                                 return 2;
                             }

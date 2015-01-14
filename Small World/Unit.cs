@@ -277,7 +277,7 @@ namespace Small_World
        /// <param name="map">plateau</param>
        /// <param name="peuple">peuple courant</param>
        /// <returns></returns>
-       public abstract unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map, int peuple);
+       public abstract unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map);
 
         /// <summary>
         /// Fonction abstraite pour indiquer si le déplacement demandé est possible

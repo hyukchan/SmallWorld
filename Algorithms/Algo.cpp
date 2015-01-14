@@ -120,7 +120,7 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 	//reinitialisation tableau
 	for (i = 0; i < size; i++){
 		for (j = 0; j < size; j++){
-			moves[i * size + j] = 0;
+			moves[i * size + j] = IMPOSSIBLE;
 		}
 	}
 

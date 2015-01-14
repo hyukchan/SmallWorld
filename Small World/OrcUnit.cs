@@ -79,7 +79,10 @@ namespace Small_World
         /// </summary>
         /// <param name="movePt">Les points de déplacement de l'unité</param>
         /// <returns></returns>
-        
+        public override unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map)
+        {
+            Moves = wrapperAlgo.possibleMoves(movePt, moves, x, y, size, map, People.ORC);
+        }
 
         /// <summary>
         /// Donne l'adresse de l'image d'une unité dont le tour n'est pas fini

@@ -68,6 +68,12 @@ namespace Small_World
                 GamePt = 1;
             }
         }
+
+        public override unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map)
+        {
+            Moves = wrapperAlgo.possibleMoves(movePt, moves, x, y, size, map, People.DWARF);
+        }
+
         /// <summary>
         /// Donne l'image d'une unité dont le tour n'est pas fini
         /// </summary>

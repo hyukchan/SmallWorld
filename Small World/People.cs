@@ -14,7 +14,7 @@ namespace Small_World
     [Serializable]
     public abstract class People : PeopleInterface
     {
-        public const int NAIN = 0;
+        public const int DWARF = 0;
         public const int ELF = 1;
         public const int ORC = 2;
 
