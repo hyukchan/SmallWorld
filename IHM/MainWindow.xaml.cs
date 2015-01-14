@@ -141,19 +141,25 @@ namespace IHM
                 int unitNumber = 0;
                 foreach (Unit u in game.PlayerList[i].Units)
                 {
-                    UnitBox unitBox = new UnitBox(u, unitNumber, 0);
+                    UnitBox unitBox = new UnitBox(u, unitNumber, i);
                     unitBox.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickUnitboxHandler);
 
                     if (!(u.Position.X == x && u.Position.Y == y))
                     {
-                        if (selectedTileUnits.Count() > 0 && selectedTileUnits.Contains(u))
-                        {
-                            unitBox.Opacity = 1;
-                        }
-                        else
-                        {
-                            unitBox.Opacity = 0.5;
-                        }
+                        unitBox.Opacity = 0.4;
+                    }
+
+                    if (selectedTileUnits.Count() > 0 && selectedTileUnits.Contains(u))
+                    {
+                        unitBox.Opacity = 1;
+                    }
+
+                    if ((selectedUnit == u) || (selectedTileUnits.Count() > 0 && selectedTileUnits[0] == u && selectedUnit == null))
+                    {
+                        var converter = new System.Windows.Media.BrushConverter();
+                        Brush activeColor = (Brush)converter.ConvertFromString("#FFFFFF");
+                        activeColor.Opacity = 0.7;
+                        unitBox.unitBoxGrid.Background = activeColor;
                     }
 
                     if (i == 0)
@@ -457,9 +463,9 @@ namespace IHM
             polygon.SetValue(Canvas.ZIndexProperty, 60);
 
             selectedUnit = game.PlayerList[(int)u.playerNumber.Content].Units[(int)u.unitNumber.Content];
+            selectedTileUnits = new List<Unit>();
             if ((int)u.playerNumber.Content == game.CurrentPlayer)
             {
-                selectedTileUnits = new List<Unit>();
                 selectedTileUnits.Add(selectedUnit);
             }
 

@@ -156,7 +156,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Grid
@@ -180,7 +180,7 @@
                         Padding="20"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto"
-                        Margin="30,0,30,0">
+                        Margin="30,0,30,20">
                         <ScrollViewer.Background>
                             <SolidColorBrush Color="#eceebc" Opacity="0.5" />
                         </ScrollViewer.Background>
@@ -188,6 +188,13 @@
                         </Canvas>
                         <!--<IHM:MapView/>-->
                     </ScrollViewer>
+                </Grid>
+
+                <Grid
+                    Grid.Row="2">
+                    <Grid.Background>
+                        <SolidColorBrush Color="#222222" Opacity="0.9" />
+                    </Grid.Background>
                 </Grid>
             </Grid>
             <!-- Second Column with the Map End -->
