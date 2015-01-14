@@ -11,7 +11,7 @@ namespace Small_World
         const int ATTACK_PT = 2;
         const int DEFENSE_PT = 1;
         const int HIT_PT = 5;
-        public const int MOVE_PT = 1;
+        public const double MOVE_PT = 1;
 
        
         private Position position;
@@ -101,7 +101,7 @@ namespace Small_World
                 turnEnded = value;
                 if (turnEnded)
                 {
-                    MovePt = 0;
+                    this.MovePt = 0;
                 }
             }
         }
@@ -198,10 +198,22 @@ namespace Small_World
         {
             if (CanMove(x, y))
             {
-                MovePt--;
+                if ((this.GetType() == new DwarfUnit().GetType() || this.GetType() == new OrcUnit().GetType()) && TabMap[y * SizeMap + x] == Tile.PLAIN)
+                {
+                    this.MovePt = this.MovePt - MOVE_PT / 2;
+                }
+                else if (this.GetType() == new ElfUnit().GetType() && TabMap[y * SizeMap + x] == Tile.FOREST)
+                {
+                    this.MovePt = this.MovePt - MOVE_PT / 2;
+                }
+                else
+                {
+                    this.MovePt = this.MovePt - MOVE_PT;
+                }
+
                 Position = new Position { X = x, Y = y };
                 this.CalculateMoves();
-                if (MovePt == 0)
+                if (this.MovePt == 0)
                 {
                     this.endTurn();
                 }

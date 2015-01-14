@@ -269,53 +269,56 @@ namespace Small_World
                 }
                 else
                 {
-                    Unit best = listUnits[0];
-                    foreach (Unit unit in listUnits)
+                    if (u.CanMove(x, y))
                     {
-                        if ((unit.DefensePt + unit.HitPt) > (best.DefensePt + best.HitPt))
+                        Unit best = listUnits[0];
+                        foreach (Unit unit in listUnits)
                         {
-                            best = u;
+                            if ((unit.DefensePt + unit.HitPt) > (best.DefensePt + best.HitPt))
+                            {
+                                best = u;
+                            }
                         }
-                    }
 
-                    int rounds = 0;
-                    Random r = new Random();
-                    while (rounds < 3)
-                    {
-                        rounds = r.Next(Math.Max(u.HitPt, best.HitPt) + 2);
-                    }
-                    u.Attack(best, rounds);
-
-                    // unite defensive meurt
-                    if (best.HitPt == 0)
-                    {
-                        if (u.GetType() == new OrcUnit().GetType())
+                        int rounds = 0;
+                        Random r = new Random();
+                        while (rounds < 3)
                         {
-                            ((OrcUnit)u).BonusPt++;
+                            rounds = r.Next(Math.Max(u.HitPt, best.HitPt) + 2);
                         }
-                        PlayerList[(CurrentPlayer + 1) % PlayerList.Count].Units.Remove(best);
-                        PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
-                        PlayerList[CurrentPlayer].GetGamePoints();
+                        u.Attack(best, rounds);
 
-                        if (SelectOpponentUnit(x, y).Count == 0)
+                        // unite defensive meurt
+                        if (best.HitPt == 0)
                         {
-                            u.Move(x, y);
+                            if (u.GetType() == new OrcUnit().GetType())
+                            {
+                                ((OrcUnit)u).BonusPt++;
+                            }
+                            PlayerList[(CurrentPlayer + 1) % PlayerList.Count].Units.Remove(best);
+                            PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
+                            PlayerList[CurrentPlayer].GetGamePoints();
+
+                            if (SelectOpponentUnit(x, y).Count == 0)
+                            {
+                                u.Move(x, y);
+                                checkEndOfGame();
+                                return 2;
+                            }
+                        }
+
+                        //unite attaquante meurt
+                        if (u.HitPt == 0)
+                        {
+                            if (best.GetType() == new OrcUnit().GetType())
+                            {
+                                ((OrcUnit)best).BonusPt++;
+                            }
+                            PlayerList[CurrentPlayer].Units.Remove(u);
+                            PlayerList[CurrentPlayer].GetGamePoints();
+                            PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
                             checkEndOfGame();
-                            return 2;
                         }
-                    }
-
-                    //unite attaquante meurt
-                    if (u.HitPt == 0)
-                    {
-                        if (best.GetType() == new OrcUnit().GetType())
-                        {
-                            ((OrcUnit)best).BonusPt++;
-                        }
-                        PlayerList[CurrentPlayer].Units.Remove(u);
-                        PlayerList[CurrentPlayer].GetGamePoints();
-                        PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
-                        checkEndOfGame();
                     }
                 }
             }

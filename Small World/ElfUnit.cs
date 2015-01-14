@@ -24,22 +24,26 @@ namespace Small_World
             {
                 if (_y % 2 == 0)
                 {
-                    return (x - _x) <= 1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT / 2;
+                    //this.MovePt = this.MovePt - Unit.MOVE_PT / 2;
+                    return ((x == _x + 1 && y == _y) || ((x == _x - 1 || x == _x) && Math.Abs(y - _y) <= 1)) && this.MovePt >= Unit.MOVE_PT / 2;
                 }
                 else
                 {
-                    return (x - _x) <= 0 && (x - _x) >= -1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT / 2;
+                    //this.MovePt = this.MovePt - Unit.MOVE_PT / 2;
+                    return ((x == _x - 1 && y == _y) || ((x == _x + 1 || x == _x) && Math.Abs(y - _y) <= 1)) && this.MovePt >= Unit.MOVE_PT / 2;
                 }
             }
             else
             {
                 if (_y % 2 == 0)
                 {
-                    return (x - _x) <= 1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT;
+                   // this.MovePt = this.MovePt - Unit.MOVE_PT / 2;
+                    return ((x == _x + 1 && y == _y) || ((x == _x - 1 || x == _x) && Math.Abs(y - _y) <= 1)) && this.MovePt >= Unit.MOVE_PT;
                 }
                 else
                 {
-                    return (x - _x) <= 0 && (x - _x) >= -1 && Math.Abs(y - _y) <= 1 && MovePt >= Unit.MOVE_PT;
+                    //this.MovePt = this.MovePt - Unit.MOVE_PT / 2;
+                    return ((x == _x - 1 && y == _y) || ((x == _x + 1 || x == _x) && Math.Abs(y - _y) <= 1)) && this.MovePt >= Unit.MOVE_PT;
                 }
             }
         }
