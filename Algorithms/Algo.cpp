@@ -144,15 +144,17 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 						moves[(y - 1)*size + x - 1] = POSSIBLE;
 					}
 				}
-				if (peuple == ELF && map[(y - 1)*size + x] == DESERT){ moves[y*size + x - 1] = IMPOSSIBLE; }
+				if (peuple == ELF && map[(y - 1)*size + x-1] == DESERT){
+					moves[(y-1)*size + x - 1] = IMPOSSIBLE;
+				}
 				else{
-					moves[(y - 1)*size + x] = POSSIBLE;
+					moves[(y - 1)*size + x-1] = POSSIBLE;
 				}
 			}
 			//cases du dessous
 			if (y != size){
 				if (peuple == ELF && map[(y + 1)*size + x] == DESERT){ 
-					moves[y*size + x - 1] = IMPOSSIBLE; 
+					moves[(y+1)*size + x] = IMPOSSIBLE; 
 				}
 				else{
 					moves[(y + 1)*size + x] = POSSIBLE;
@@ -160,10 +162,10 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 				//dessous gauche pair
 				if (pair){
 					if (peuple == ELF && map[(y + 1)*size + x - 1] == DESERT){ 
-					moves[y*size + x - 1] = IMPOSSIBLE; 
+					moves[(y+1)*size + x - 1] = IMPOSSIBLE; 
 				}
 					else{
-						moves[(y + 1)*size + x - 1] = POSSIBLE;
+						moves[(y+1)*size + x - 1] = POSSIBLE;
 					}
 				}
 			}
@@ -171,7 +173,7 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 		//case de droite
 		if (x != size - 1){
 			if (peuple == ELF && map[y*size + x + 1] == DESERT){ 
-				moves[y*size + x - 1] = IMPOSSIBLE; 
+				moves[y*size + x + 1] = IMPOSSIBLE; 
 			}
 			else{
 				moves[y*size + x + 1] = POSSIBLE;
@@ -179,7 +181,7 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 			//case dessus droite impair
 			if (y != 0 && !pair){
 				if (peuple == ELF && map[(y - 1)*size + x + 1] == DESERT){ 
-					moves[y*size + x - 1] = IMPOSSIBLE; 
+					moves[(y-1)*size + x + 1] = IMPOSSIBLE; 
 				}
 				else{
 					moves[(y-1)*size + x + 1] = POSSIBLE;
@@ -187,12 +189,97 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 			}
 			//case dessous droite impair
 			if (y != size - 1 && !pair){
-				if (peuple == ELF && map[(y - 1)*size + x + 1] == DESERT){ 
-					moves[y*size + x - 1] = IMPOSSIBLE; 
+				if (peuple == ELF && map[(y + 1)*size + x + 1] == DESERT){ 
+					moves[(y+1)*size + x + 1] = IMPOSSIBLE; 
 				}
 				else{
 					moves[(y + 1)*size + x + 1] = POSSIBLE;
 				}
+			}
+		}
+	}
+	else {
+		if (movePt == 0.5){
+			if (x != 0){
+				//case gauche
+				if (peuple == ELF && map[y*size + x - 1] == FOREST){
+					moves[y*size + x - 1] = POSSIBLE;
+				}
+				if ((peuple == NAIN || peuple == ORC) && map[y*size + x - 1] == PLAIN){
+					moves[y*size + x - 1] = POSSIBLE;
+				}
+				
+				//cases dessus
+				if (y != 0){
+					//dessus gauche pair
+					if (pair){
+						if (peuple == ELF && map[(y-1)*size + x - 1] == FOREST){
+							moves[(y-1)*size + x - 1] = POSSIBLE;
+						}
+						if ((peuple == NAIN || peuple == ORC) && map[(y- 1)*size + x - 1] == PLAIN){
+							moves[(y-1)*size + x - 1] = POSSIBLE;
+						}
+					}
+					if (peuple == ELF && map[(y - 1)*size + x] == FOREST){
+						moves[(y - 1)*size + x] = POSSIBLE;
+					}
+					if ((peuple == NAIN || peuple == ORC) && map[(y - 1)*size + x] == PLAIN){
+						moves[(y - 1)*size + x] = POSSIBLE;
+					}
+				}
+				//cases du dessous
+				if (y != size){
+					if (peuple == ELF && map[(y - 1)*size + x] == FOREST){
+						moves[(y + 1)*size + x] = POSSIBLE;
+					}
+					if ((peuple == NAIN || peuple == ORC) && map[(y - 1)*size + x] == PLAIN){
+						moves[(y + 1)*size + x] = POSSIBLE;
+					}
+					//dessous gauche pair
+					if (pair){
+						if (peuple == ELF && map[(y - 1)*size + x - 1] == FOREST){
+							moves[(y + 1)*size + x - 1] = POSSIBLE;
+						}
+						if ((peuple == NAIN || peuple == ORC) && map[(y - 1)*size + x - 1] == PLAIN){
+							moves[(y + 1)*size + x - 1] = POSSIBLE;
+						}
+					}
+				}
+			}
+			//case de droite
+			if (x != size - 1){
+				if (peuple == ELF && map[y*size + x + 1] == FOREST){
+					moves[y*size + x+1] = POSSIBLE;
+				}
+				if ((peuple == NAIN || peuple == ORC) && map[(y - 1)*size + x] == PLAIN){
+					moves[y*size + x + 1] = POSSIBLE;
+				}
+				//case dessus droite impair
+				if (y != 0 && !pair){
+					if (peuple == ELF && map[(y - 1)*size + x + 1] == FOREST){
+						moves[(y - 1)*size + x + 1] = POSSIBLE;
+					}
+					if ((peuple == NAIN || peuple == ORC) && map[(y - 1)*size + x + 1] == PLAIN){
+						moves[(y - 1)*size + x + 1] = POSSIBLE;
+					}
+				}
+				//case dessous droite impair
+				if (y != size - 1 && !pair){
+					if (peuple == ELF && map[(y + 1)*size + x+1] == FOREST){
+						moves[(y + 1)*size + x+1] = POSSIBLE;
+					}
+					if ((peuple == NAIN || peuple == ORC) && map[(y - 1)*size + x+1] == PLAIN){
+						moves[(y + 1)*size + x+1] = POSSIBLE;
+					}
+				}
+			}
+		}
+	}
+	if (peuple == NAIN && map[y*size + x] == MOUNTAIN)
+	for (i = 0; i < size; i++){
+		for (j = 0; j < size; j++){
+			if (i != y && j != x && map[i*size+j] == MOUNTAIN){
+				moves[i*size + j] = POSSIBLE;
 			}
 		}
 	}
