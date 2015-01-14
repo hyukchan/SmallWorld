@@ -23,7 +23,7 @@ namespace IHM
 
         unsafe protected override void OnRender(System.Windows.Media.DrawingContext dc)
         {
-            int mapSize = (int) Math.Sqrt(game.Map.Size);
+            int mapSize = game.Map.Size;
             BitmapImage plainImg = new BitmapImage(new Uri("./textures/plain.png", UriKind.Relative));
             BitmapImage desertImg = new BitmapImage(new Uri("./textures/desert.png", UriKind.Relative));
             BitmapImage mountainImg = new BitmapImage(new Uri("./textures/mountain.png", UriKind.Relative));
