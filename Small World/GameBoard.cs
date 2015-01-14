@@ -59,7 +59,7 @@ namespace Small_World
             set
             {
                 listTiles = value;
-                size = value.Count;
+                size = (int) Math.Sqrt(value.Count);
             }
         }
 

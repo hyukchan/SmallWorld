@@ -33,7 +33,7 @@ namespace IHM
             game = g;
             selectedPolygon = null;
             selectedTileUnits = new List<Unit>();
-            int mapSize = (int)Math.Sqrt(game.Map.Size);
+            int mapSize = game.Map.Size;
             double d = Hexagon.w / 2 * Math.Tan(30 * Math.PI / 180);
             double canvasHeight = (Hexagon.h - d) * mapSize + d;
             double canvasWidth = Hexagon.w * (mapSize + 0.5);
@@ -130,8 +130,8 @@ namespace IHM
         public void showUnits()
         {
             int pos = this.listHexa.IndexOf(selectedPolygon);
-            int x = pos % (int)Math.Sqrt(this.game.Map.Size);
-            int y = pos / (int)Math.Sqrt(this.game.Map.Size);
+            int x = pos % this.game.Map.Size;
+            int y = pos / this.game.Map.Size;
 
             playerOneUnitList.Children.Clear();
             playerTwoUnitList.Children.Clear();
@@ -207,12 +207,6 @@ namespace IHM
                 polygon.Stroke = Brushes.Black;
                 polygon.SetValue(Canvas.ZIndexProperty, 10);
             }
-            if (this.listHexaReachable.Contains(polygon))
-            {
-                polygon.StrokeThickness = 3;
-                polygon.Stroke = Brushes.GreenYellow;
-                polygon.SetValue(Canvas.ZIndexProperty, 25);
-            }
         }
 
         /// <summary>
@@ -268,27 +262,22 @@ namespace IHM
             }
         }
 
-        //public void showPossibleMoves()
-        //{
-        //    List<Polygon> polygon = listHexa;
-        //    List<Position> l = selectedUnit.PossibleMoves();
-        //    foreach (Position p in l)
-        //    {
-        //        foreach (Polygon poly in polygon)
-        //        {
-        //            int pos = this.listHexa.IndexOf(poly);
-        //            int x = pos % (int)Math.Sqrt(this.game.Map.Size);
-        //            int y = pos / (int)Math.Sqrt(this.game.Map.Size);
-
-        //            if (p.X == x && p.Y == y)
-        //            {
-        //                poly.StrokeThickness = 4;
-        //                poly.Stroke = Brushes.Blue;
-
-        //            }
-        //        }
-        //    }
-        //}
+        public unsafe void showPossibleMoves()
+        {
+            for (int i = 0; i < game.Map.Size; i++)
+            {
+                for (int j = 0; j < game.Map.Size; j++)
+                {
+                    if (selectedUnit.Moves[i * game.Map.Size + j] == 1)
+                    {
+                        Polygon hexa = listHexa[i * game.Map.Size + j];
+                        hexa.Stroke = Brushes.Yellow;
+                        hexa.StrokeThickness = 3;
+                        hexa.SetValue(Canvas.ZIndexProperty, 25);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Permet de passer le tour lors du clique sur le bouton endTurnButton
@@ -347,15 +336,15 @@ namespace IHM
             polygon.SetValue(Canvas.ZIndexProperty, 60);
 
             int pos = this.listHexa.IndexOf(polygon);
-            int x = pos % (int)Math.Sqrt(this.game.Map.Size);
-            int y = pos / (int)Math.Sqrt(this.game.Map.Size);
+            int x = pos % this.game.Map.Size;
+            int y = pos / this.game.Map.Size;
 
             getSelectedTileUnits(x, y);
 
-            if (selectedTileUnits.Count() == 1)
+            if (selectedTileUnits.Count() > 0)
             {
                 selectedUnit = selectedTileUnits[0];
-
+                showPossibleMoves();
                 // showPossibleMoves();
             }
 
@@ -384,8 +373,8 @@ namespace IHM
             if (selectedTileUnits.Count() > 0)
             {
                 int pos = this.listHexa.IndexOf((Polygon)sender);
-                int x = pos % (int)Math.Sqrt(this.game.Map.Size);
-                int y = pos / (int)Math.Sqrt(this.game.Map.Size);
+                int x = pos % this.game.Map.Size;
+                int y = pos / this.game.Map.Size;
 
                 int hasMoved = game.AskToMove(selectedTileUnits[0], x, y);
                 if (hasMoved != 0)
@@ -435,7 +424,7 @@ namespace IHM
             int posX = (int)u.unitPosX.Content;
             int posY = (int)u.unitPosY.Content;
             int unitNumber = (int)u.unitNumber.Content;
-            Polygon unitPolygon = listHexa[posY * ((int)Math.Sqrt(game.Map.Size)) + posX];
+            Polygon unitPolygon = listHexa[posY * game.Map.Size + posX];
 
             foreach (Polygon p in this.listHexa)
             {
