@@ -6,8 +6,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="200">
     <Grid
-        Background="#999999"
-        Margin="5,2,5,2">
+        Margin="5,2,5,2"
+        x:Name="unitBoxGrid">
+        
+        <Grid.Background>
+            <SolidColorBrush Color="#999999" Opacity="0.7" />
+        </Grid.Background>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="50">
                 

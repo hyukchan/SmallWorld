@@ -26,13 +26,14 @@ namespace IHM
         private List<Polygon> listHexaReachable;
         public Polygon selectedPolygon;
         private Unit selectedUnit;
-        private Boolean currentPlayersUnit;
+        private List<Unit> selectedTileUnits;
 
         public MainWindow(Game g)
         {
             game = g;
             selectedPolygon = null;
-            int mapSize = (int) Math.Sqrt(game.Map.Size);
+            selectedTileUnits = new List<Unit>();
+            int mapSize = (int)Math.Sqrt(game.Map.Size);
             double d = Hexagon.w / 2 * Math.Tan(30 * Math.PI / 180);
             double canvasHeight = (Hexagon.h - d) * mapSize + d;
             double canvasWidth = Hexagon.w * (mapSize + 0.5);
@@ -63,7 +64,7 @@ namespace IHM
 
             endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
 
-            
+
 
             for (int j = 0; j < mapSize; j++)
             {
@@ -86,6 +87,9 @@ namespace IHM
             }
         }
 
+        /// <summary>
+        /// Donne les indications visuelles pour montrer à qui est le tour
+        /// </summary>
         public void showCurrentPlayer()
         {
             var converter = new System.Windows.Media.BrushConverter();
@@ -120,44 +124,64 @@ namespace IHM
             showUnits();
         }
 
+        /// <summary>
+        /// Ajoute les unités dans la liste des unités de chaque joueur
+        /// </summary>
         public void showUnits()
         {
             int pos = this.listHexa.IndexOf(selectedPolygon);
-            int x = pos % (int) Math.Sqrt(this.game.Map.Size);
-            int y = pos / (int) Math.Sqrt(this.game.Map.Size);
+            int x = pos % (int)Math.Sqrt(this.game.Map.Size);
+            int y = pos / (int)Math.Sqrt(this.game.Map.Size);
 
             playerOneUnitList.Children.Clear();
-            int unitNumber = 0;
-            foreach (Unit u in game.PlayerList[0].Units)
-            {
-                UnitBox unitBox = new UnitBox(u, unitNumber, 0);
-                unitBox.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickUnitboxHandler);
-                if (!(u.Position.X == x && u.Position.Y == y) || (selectedUnit != null && selectedUnit != u))
-                {
-                    unitBox.Opacity = 0.5;
-                }
-                playerOneUnitList.Children.Add(unitBox);
-                
-                unitNumber++;
-            }
-
-            unitNumber = 0;
             playerTwoUnitList.Children.Clear();
-            foreach (Unit u in game.PlayerList[1].Units)
+
+            for (int i = 0; i < 2; i++)
             {
-                UnitBox unitBox = new UnitBox(u, unitNumber, 1);
-                unitBox.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickUnitboxHandler);
-                if (!(u.Position.X == x && u.Position.Y == y) || (selectedUnit != null && selectedUnit != u))
+                int unitNumber = 0;
+                foreach (Unit u in game.PlayerList[i].Units)
                 {
-                    unitBox.Opacity = 0.5;
+                    UnitBox unitBox = new UnitBox(u, unitNumber, i);
+                    unitBox.MouseLeftButtonDown += new MouseButtonEventHandler(mouseLeftClickUnitboxHandler);
+
+                    if (!(u.Position.X == x && u.Position.Y == y))
+                    {
+                        unitBox.Opacity = 0.4;
+                    }
+
+                    if (selectedTileUnits.Count() > 0 && selectedTileUnits.Contains(u))
+                    {
+                        unitBox.Opacity = 1;
+                    }
+
+                    if ((selectedUnit == u) || (selectedTileUnits.Count() > 0 && selectedTileUnits[0] == u && selectedUnit == null))
+                    {
+                        var converter = new System.Windows.Media.BrushConverter();
+                        Brush activeColor = (Brush)converter.ConvertFromString("#FFFFFF");
+                        activeColor.Opacity = 0.7;
+                        unitBox.unitBoxGrid.Background = activeColor;
+                    }
+
+                    if (i == 0)
+                    {
+                        playerOneUnitList.Children.Add(unitBox);
+                    }
+                    else
+                    {
+                        playerTwoUnitList.Children.Add(unitBox);
+                    }
+
+                    unitNumber++;
                 }
-                playerTwoUnitList.Children.Add(unitBox);
-                unitNumber++;
             }
         }
 
 
-
+        /// <summary>
+        /// Colorie la case sur laquelle la souris vient d'entrer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mouseEnterHandler(object sender, MouseEventArgs e)
         {
             var polygon = sender as Polygon;
@@ -169,6 +193,11 @@ namespace IHM
             }
         }
 
+        /// <summary>
+        /// Décolorie la case qu'on vient de sortir
+        /// </summary>
+        /// <param name="sender">Polygon</param>
+        /// <param name="e"></param>
         private void mouseLeaveHandler(object sender, MouseEventArgs e)
         {
             var polygon = sender as Polygon;
@@ -186,6 +215,9 @@ namespace IHM
             }
         }
 
+        /// <summary>
+        /// Permet d'afficher les unités sur la carte
+        /// </summary>
         private void showUnitsOnMap()
         {
             List<Image> imgToRemove = new List<Image>();
@@ -258,6 +290,11 @@ namespace IHM
         //    }
         //}
 
+        /// <summary>
+        /// Permet de passer le tour lors du clique sur le bouton endTurnButton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EndTurnOnClick(object sender, RoutedEventArgs e)
         {
             game.ChangePlayer();
@@ -276,7 +313,11 @@ namespace IHM
         }
 
 
-
+        /// <summary>
+        /// Permet de sélectionner une case
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mouseLeftClickHexaHandler(object sender, MouseButtonEventArgs e)
         {
             selectedUnit = null;
@@ -309,36 +350,48 @@ namespace IHM
             int x = pos % (int)Math.Sqrt(this.game.Map.Size);
             int y = pos / (int)Math.Sqrt(this.game.Map.Size);
 
-            int nbUnits = 0;
-            Unit tempSelectedUnit = null;
-            foreach (Unit u in game.PlayerList[game.CurrentPlayer].Units)
-            {
-                if (u.Position.X == x && u.Position.Y == y)
-                {
-                    nbUnits++;
-                    tempSelectedUnit = u;
-                }
-            }
+            getSelectedTileUnits(x, y);
 
-            if (nbUnits == 1)
+            if (selectedTileUnits.Count() == 1)
             {
-                selectedUnit = tempSelectedUnit;
-                currentPlayersUnit = true;
+                selectedUnit = selectedTileUnits[0];
 
-               // showPossibleMoves();
+                // showPossibleMoves();
             }
 
             showUnits();
         }
 
+        private void getSelectedTileUnits(int posX, int posY)
+        {
+            selectedTileUnits = new List<Unit>();
+            foreach (Unit u in game.PlayerList[game.CurrentPlayer].Units)
+            {
+                if (u.Position.X == posX && u.Position.Y == posY)
+                {
+                    selectedTileUnits.Add(u);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Permet de bouger une unité si il y a eu précédemment une sélection d'unité
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mouseRightClickHexaHandler(object sender, MouseButtonEventArgs e)
         {
-            if(selectedUnit != null && currentPlayersUnit) {
-                int pos = this.listHexa.IndexOf((Polygon) sender);
+            if (selectedTileUnits.Count() > 0)
+            {
+                int pos = this.listHexa.IndexOf((Polygon)sender);
                 int x = pos % (int)Math.Sqrt(this.game.Map.Size);
                 int y = pos / (int)Math.Sqrt(this.game.Map.Size);
 
-                game.AskToMove(selectedUnit, x, y);
+                int hasMoved = game.AskToMove(selectedTileUnits[0], x, y);
+                if (hasMoved != 0)
+                {
+                    selectedTileUnits.Remove(selectedTileUnits[0]);
+                }
 
                 showUnits();
                 showUnitsOnMap();
@@ -352,6 +405,9 @@ namespace IHM
             }
         }
 
+        /// <summary>
+        /// vérifie si le jeu est terminé
+        /// </summary>
         public void checkGameEnded()
         {
             if (game.GameEnded)
@@ -368,12 +424,17 @@ namespace IHM
             }
         }
 
+        /// <summary>
+        /// Permet de sélectionner une unitBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mouseLeftClickUnitboxHandler(object sender, MouseButtonEventArgs e)
         {
-            UnitBox u = (UnitBox) sender;
-            int posX = (int) u.unitPosX.Content;
-            int posY = (int) u.unitPosY.Content;
-            int unitNumber = (int) u.unitNumber.Content;
+            UnitBox u = (UnitBox)sender;
+            int posX = (int)u.unitPosX.Content;
+            int posY = (int)u.unitPosY.Content;
+            int unitNumber = (int)u.unitNumber.Content;
             Polygon unitPolygon = listHexa[posY * ((int)Math.Sqrt(game.Map.Size)) + posX];
 
             foreach (Polygon p in this.listHexa)
@@ -402,11 +463,10 @@ namespace IHM
             polygon.SetValue(Canvas.ZIndexProperty, 60);
 
             selectedUnit = game.PlayerList[(int)u.playerNumber.Content].Units[(int)u.unitNumber.Content];
-            if (((int)u.playerNumber.Content) == game.CurrentPlayer) {
-                currentPlayersUnit = true;
-               // showPossibleMoves();
-            } else {
-                currentPlayersUnit = false;
+            selectedTileUnits = new List<Unit>();
+            if ((int)u.playerNumber.Content == game.CurrentPlayer)
+            {
+                selectedTileUnits.Add(selectedUnit);
             }
 
             showUnits();
