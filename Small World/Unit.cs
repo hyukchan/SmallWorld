@@ -315,10 +315,21 @@ namespace Small_World
         /// <summary>
         /// Initialise les mouvements de autorise l'unité à jouer
         /// </summary>
-        public void newTurn()
+        public unsafe void newTurn()
         {
             TurnEnded = false;
             MovePt = MOVE_PT;
+            if(this.GetType() == new DwarfUnit().GetType()){
+            Moves = wrapperAlgo.possibleMoves(MovePt,Moves,Position.X,Position.Y,SizeMap,TabMap,People.DWARF);
+            }
+            else if (this.GetType() == new OrcUnit().GetType())
+            {
+                Moves = wrapperAlgo.possibleMoves(MovePt, Moves, Position.X, Position.Y, SizeMap, TabMap, People.ORC);
+            }
+            else
+            {
+                Moves = wrapperAlgo.possibleMoves(MovePt, Moves, Position.X, Position.Y, SizeMap, TabMap, People.ELF);
+            }
         }
 
     }

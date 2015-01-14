@@ -268,9 +268,9 @@ namespace IHM
             {
                 for (int j = 0; j < game.Map.Size; j++)
                 {
-                    if (selectedUnit.Moves[i * game.Map.Size + j] == 1)
+                    if (selectedUnit.Moves[i * selectedUnit.SizeMap + j] == 1)
                     {
-                        Polygon hexa = listHexa[i * game.Map.Size + j];
+                        Polygon hexa = listHexa[i * selectedUnit.SizeMap + j];
                         hexa.Stroke = Brushes.Yellow;
                         hexa.StrokeThickness = 3;
                         hexa.SetValue(Canvas.ZIndexProperty, 25);

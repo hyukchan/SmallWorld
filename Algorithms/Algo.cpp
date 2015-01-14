@@ -112,7 +112,6 @@ int* Algo::startingPositions(int* map, int size){
  @param y l'ordonnée de l'unité courante
  @return Le tableau contenant 1 si le déplacement est possible, 0 sinon
  */
-
 int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int* map, int peuple)
 {
 	int i, j;
@@ -128,7 +127,9 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 	if (movePt == 1){
 		if (x != 0){
 			//case gauche
-			if (peuple == ELF && map[y*size + x - 1] == DESERT){}
+			if (peuple == ELF && map[y*size + x - 1] == DESERT){
+				moves[y*size + x - 1] = IMPOSSIBLE;
+			}
 			else{
 				moves[y*size + x - 1] = POSSIBLE;
 			}
@@ -136,25 +137,31 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 			if (y != 0){
 				//dessus gauche pair
 				if (pair){
-					if (peuple == ELF && map[(y - 1)*size + x - 1] == DESERT){}
+					if (peuple == ELF && map[(y - 1)*size + x - 1] == DESERT){
+						moves[(y-1)*size + x - 1] = IMPOSSIBLE;
+					}
 					else{
 						moves[(y - 1)*size + x - 1] = POSSIBLE;
 					}
 				}
-				if (peuple == ELF && map[(y - 1)*size + x] == DESERT){}
+				if (peuple == ELF && map[(y - 1)*size + x] == DESERT){ moves[y*size + x - 1] = IMPOSSIBLE; }
 				else{
 					moves[(y - 1)*size + x] = POSSIBLE;
 				}
 			}
 			//cases du dessous
 			if (y != size){
-				if (peuple == ELF && map[(y + 1)*size + x] == DESERT){}
+				if (peuple == ELF && map[(y + 1)*size + x] == DESERT){ 
+					moves[y*size + x - 1] = IMPOSSIBLE; 
+				}
 				else{
 					moves[(y + 1)*size + x] = POSSIBLE;
 				}
 				//dessous gauche pair
 				if (pair){
-					if (peuple == ELF && map[(y + 1)*size + x - 1] == DESERT){}
+					if (peuple == ELF && map[(y + 1)*size + x - 1] == DESERT){ 
+					moves[y*size + x - 1] = IMPOSSIBLE; 
+				}
 					else{
 						moves[(y + 1)*size + x - 1] = POSSIBLE;
 					}
@@ -163,20 +170,26 @@ int* Algo::possibleMoves(double movePt, int* moves, int x, int y, int size, int*
 		}
 		//case de droite
 		if (x != size - 1){
-			if (peuple == ELF && map[y*size + x + 1] == DESERT){}
+			if (peuple == ELF && map[y*size + x + 1] == DESERT){ 
+				moves[y*size + x - 1] = IMPOSSIBLE; 
+			}
 			else{
 				moves[y*size + x + 1] = POSSIBLE;
 			}
 			//case dessus droite impair
 			if (y != 0 && !pair){
-				if (peuple == ELF && map[(y-1)*size + x + 1] == DESERT){}
+				if (peuple == ELF && map[(y - 1)*size + x + 1] == DESERT){ 
+					moves[y*size + x - 1] = IMPOSSIBLE; 
+				}
 				else{
 					moves[(y-1)*size + x + 1] = POSSIBLE;
 				}
 			}
 			//case dessous droite impair
 			if (y != size - 1 && !pair){
-				if (peuple == ELF && map[(y - 1)*size + x + 1] == DESERT){}
+				if (peuple == ELF && map[(y - 1)*size + x + 1] == DESERT){ 
+					moves[y*size + x - 1] = IMPOSSIBLE; 
+				}
 				else{
 					moves[(y + 1)*size + x + 1] = POSSIBLE;
 				}
@@ -194,6 +207,10 @@ Crée un tableau d'entiers
 */
 int* Algo::mapCreation(int size){
 	int* map = (int*)malloc(size * size * sizeof(int));
+	int i;
+	for (i = 0; i < size * size; i++){
+		map[i] = IMPOSSIBLE;
+	}
 	return map;
 }
 
