@@ -31,7 +31,6 @@ namespace Small_World
 
         Game load(string filename);
 
-        //TODOSW restaurer ?
     }
 
     public class Game : GameInterface
@@ -334,6 +333,7 @@ namespace Small_World
                 if (listUnits.Count == 0)
                 {
                     u.Move(x, y);
+                    PlayerList[CurrentPlayer].GetGamePoints();
                     return 1;
                 }
                 else
