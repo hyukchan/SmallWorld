@@ -156,7 +156,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Grid
@@ -193,7 +193,7 @@
                 <Grid
                     Grid.Row="2">
                     <Grid.Background>
-                        <SolidColorBrush Color="#222222" Opacity="0.9" />
+                        <SolidColorBrush Color="#333333" Opacity="0.7" />
                     </Grid.Background>
                 </Grid>
             </Grid>

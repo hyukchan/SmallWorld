@@ -447,17 +447,18 @@ namespace IHM
         /// </summary>
         public void checkGameEnded()
         {
-            if (game.GameEnded)
-            {
-                string messageBoxText = "The End\n" + game.winner() + " has won !";
+            if (game.GameEnded) {
+                EndWindow endWindow;
                 if (game.winner() == "egalite")
                 {
-                    messageBoxText = "Egalité !";
+                    endWindow = new EndWindow(this);
                 }
-                string caption = "Word Processor";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                MessageBox.Show(messageBoxText, caption, button, icon);
+                else
+                {
+                    endWindow = new EndWindow(this, game.winner());
+                }
+
+                endWindow.Show();
             }
         }
 
