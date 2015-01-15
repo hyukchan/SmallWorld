@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="StartWindow.xaml">
     <Application.Resources>
+        <FontFamily x:Key="ActionManFont">pack://application:,,,/fonts/#Action Man</FontFamily>
+
         <Style x:Key="ActionMan">
             <Setter Property="TextElement.FontFamily" 
                 Value="pack://application:,,,/fonts/#Action Man" />
+        </Style>
+        <Style x:Key="ActionManFontStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource ActionManFont}" />
         </Style>
         <Style x:Key="Lato">
             <Setter Property="TextElement.FontFamily" 

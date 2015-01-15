@@ -4,8 +4,7 @@
         Title="MainWindow"
         Height="800"
         Width="1200"
-        WindowStartupLocation="CenterScreen"
-        >
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="textures/game_background2.jpg" AlignmentX="Center" AlignmentY="Top"></ImageBrush>
@@ -154,29 +153,40 @@
                 Grid.Column="1">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Grid
                     Grid.Row="0"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
-                    <Button
-                        Width="200"
-                        Height="30"
-                        Click="EndTurnOnClick"
-                        Name="endTurnButton">
-                        End Turn
-                    </Button>
+                    <StackPanel>
+                        <TextBlock
+                            Style="{StaticResource ActionManFontStyle}"
+                            FontSize="18"
+                            HorizontalAlignment="Center"
+                            Margin="0,5,0,5"
+                            Name="remainingTurns"
+                            >
+                            Remaining turns : 8
+                        </TextBlock>
+                        <Button
+                            Width="200"
+                            Height="30"
+                            Click="EndTurnOnClick"
+                            Name="endTurnButton"
+                            Style="{StaticResource ActionMan}">
+                            End Turn
+                        </Button>
+                    </StackPanel>
                 </Grid>
 
                 <Grid
                     Grid.Row="1">
                     <!-- The Map -->
                     <ScrollViewer
-                        Grid.Column="1"
                         Padding="20"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto"
@@ -195,6 +205,14 @@
                     <Grid.Background>
                         <SolidColorBrush Color="#333333" Opacity="0.7" />
                     </Grid.Background>
+                    <ScrollViewer
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"
+                        Margin="5,5,5,5"
+                        Name="gameMessages"
+                        Foreground="White">
+                        
+                    </ScrollViewer>
                 </Grid>
             </Grid>
             <!-- Second Column with the Map End -->

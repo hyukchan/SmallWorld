@@ -173,7 +173,5 @@ namespace Small_World
             }
         }
         #endregion
-
-
     }
 }

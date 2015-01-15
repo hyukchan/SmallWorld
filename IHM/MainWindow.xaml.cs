@@ -34,8 +34,11 @@ namespace IHM
         public MainWindow(Game g)
         {
             game = g;
+            g.PropertyChanged += new PropertyChangedEventHandler(update);
             g.PlayerList[1].PropertyChanged += new PropertyChangedEventHandler(update);
             g.PlayerList[0].PropertyChanged += new PropertyChangedEventHandler(update);
+            GameMessages.Instance.PropertyChanged += new PropertyChangedEventHandler(update);
+
             selectedPolygon = null;
             selectedTileUnits = new List<Unit>();
             int mapSize = game.Map.Size;
@@ -52,6 +55,7 @@ namespace IHM
 
             //initialize player's informations
             playerOneName.Text = game.PlayerList[0].Name;
+            playerOnePoints.DataContext = game.PlayerList[0].Points;
             playerOnePoints.Text = game.PlayerList[0].Points.ToString();
             playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
 
@@ -70,11 +74,11 @@ namespace IHM
             showUnits();
             showUnitsOnMap();
 
-            endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
+            remainingTurns.Text = "Remaining turns : " + game.NbRemainingTurns.ToString();
+            GameMessages.Instance.addMessage("Game Start !\n");
+            GameMessages.Instance.addMessage(game.PlayerList[game.CurrentPlayer].Name + "'s Turn !\n");
 
             game.saveAs("Test");
-
-
 
             for (int j = 0; j < mapSize; j++)
             {
@@ -106,8 +110,6 @@ namespace IHM
 
             Brush unactiveColor = (Brush)converter.ConvertFromString("#555555");
             Brush activeColor = (Brush)converter.ConvertFromString("#333333");
-
-            
             
             BitmapImage playerOneActiveAvatar = new BitmapImage(game.PlayerList[0].getPlayerAvatar());
             BitmapImage playerTwoActiveAvatar = new BitmapImage(game.PlayerList[1].getPlayerAvatar());
@@ -162,7 +164,7 @@ namespace IHM
 
                     if (!(u.Position.X == x && u.Position.Y == y))
                     {
-                        unactiveColor.Opacity = 0.3;
+                        unactiveColor.Opacity = 0.1;
                         unitBox.unitBoxGrid.Background = unactiveColor;
                     }
 
@@ -181,6 +183,7 @@ namespace IHM
                     {
                         playerOneUnitList.Children.Add(unitBox);
                     }
+
                     else
                     {
                         playerTwoUnitList.Children.Add(unitBox);
@@ -323,14 +326,6 @@ namespace IHM
             selectedPolygon = null;
             showUnits();
 
-            endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
-
-            //playerOnePoints.Text = game.PlayerList[0].Points.ToString();
-            //playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
-
-            //playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
-            //playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
-
             checkGameEnded();
         }
 
@@ -372,13 +367,27 @@ namespace IHM
 
             getSelectedTileUnits(x, y);
 
-            if (selectedTileUnits.Count() > 0)
-            {
-                selectedUnit = selectedTileUnits[0];
-                showPossibleMoves();
-            }
+            getNextSelectedUnit();
 
             showUnits();
+        }
+
+        private void getNextSelectedUnit()
+        {
+            selectedUnit = null;
+            if (selectedTileUnits.Count() > 0)
+            {
+                int i = 0;
+                while (selectedUnit == null && i < selectedTileUnits.Count())
+                {
+                    if (selectedTileUnits[i].MovePt > 0)
+                    {
+                        selectedUnit = selectedTileUnits[i];
+                        showPossibleMoves();
+                    }
+                    i++;
+                }
+            }
         }
 
         private void getSelectedTileUnits(int posX, int posY)
@@ -416,6 +425,10 @@ namespace IHM
                     moved = true;
                     game.AskToMove(selectedUnit, x, y);
                 }
+                else
+                {
+                    GameMessages.Instance.addMessage("[Error] " + game.PlayerList[game.CurrentPlayer].Name + ": You can't move that unit there !\n");
+                }
 
                 if (moved)
                 {
@@ -428,18 +441,16 @@ namespace IHM
                 }
                 else
                 {
-                    selectedUnit = selectedTileUnits[0];
+                    getNextSelectedUnit();
                 }
 
                 showUnits();
                 showUnitsOnMap();
-                //TODOSW actualisation des points en mode moins barbare
-                
-                //playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
-
-                //playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
-                //playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
                 checkGameEnded();
+            }
+            else
+            {
+                GameMessages.Instance.addMessage("[Error] " + game.PlayerList[game.CurrentPlayer].Name + ": You need to select an unit first !\n");
             }
         }
 
@@ -452,13 +463,15 @@ namespace IHM
                 EndWindow endWindow;
                 if (game.winner() == "egalite")
                 {
+                    GameMessages.Instance.addMessage("You did a draw !\n");
                     endWindow = new EndWindow(this);
                 }
                 else
                 {
+                    GameMessages.Instance.addMessage(game.winner() + " has won !\n");
                     endWindow = new EndWindow(this, game.winner());
                 }
-
+                this.IsEnabled = false;
                 endWindow.Show();
             }
         }
@@ -503,12 +516,20 @@ namespace IHM
                     playerOnePoints.Text = game.PlayerList[0].Points.ToString();
                     playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
                     break;
-                case"Units":
-                    playerTwoUnitNumbers.Text = "9";
+                case "Units":
+                    playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count().ToString();
+                    playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count().ToString();
                     break;
-
+                case "GameMessages":
+                    gameMessages.Content = gameMessages.Content + GameMessages.Instance.getLastMessage();
+                    gameMessages.ScrollToBottom();
+                    break;
+                case "RemainingTurns":
+                    remainingTurns.Text = "Remaining turns : " + game.NbRemainingTurns.ToString();
+                    break;
             }
         }
+
         public class Hexagon
         {
 

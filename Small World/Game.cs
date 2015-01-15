@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using Wrapper;
@@ -34,7 +36,7 @@ namespace Small_World
     }
 
     [Serializable()]
-    public class Game : GameInterface
+    public class Game : GameInterface, INotifyPropertyChanged
     {
 
         private int firstPlayer;
@@ -110,6 +112,7 @@ namespace Small_World
             set
             {
                 nbRemainingTurns = value;
+                OnPropertyChanged("RemainingTurns");
             }
         }
 
@@ -198,7 +201,6 @@ namespace Small_World
             int first = r.Next(PlayerList.Count);
             FirstPlayer = first;
             CurrentPlayer = FirstPlayer;
- 
         }
 
         /// <summary>
@@ -248,6 +250,8 @@ namespace Small_World
             {
                 GameEnded = true;
             }
+
+            GameMessages.Instance.addMessage(PlayerList[CurrentPlayer].Name + "'s Turn !\n");
         }
 
         /// <summary>
@@ -365,16 +369,34 @@ namespace Small_World
                         {
                             rounds = r.Next(Math.Max(u.HitPt, best.HitPt) + 2);
                         }
+                        int attackUnitHpLost = 0;
+                        int defenseUnitHpLost = 0;
+                        int attackUnitHpBefore = u.HitPt;
+                        int defenseUnitHpBefore = best.HitPt;
                         u.Attack(best, rounds);
+                        attackUnitHpLost = attackUnitHpBefore - u.HitPt;
+                        defenseUnitHpLost = defenseUnitHpBefore - best.HitPt;
+
+                        if (attackUnitHpLost > 0)
+                        {
+                            GameMessages.Instance.addMessage(PlayerList[CurrentPlayer].Name + "'s unit has lost "+attackUnitHpLost+" hp\n");
+                        }
+
+                        if (defenseUnitHpLost > 0)
+                        {
+                            GameMessages.Instance.addMessage(PlayerList[(CurrentPlayer + 1)%2].Name + "'s unit has lost " + defenseUnitHpLost + " hp\n");
+                        }
 
                         // unite defensive meurt
                         if (best.HitPt == 0)
                         {
+                            GameMessages.Instance.addMessage(PlayerList[CurrentPlayer].Name + " killed an unit !\n");
                             if (u.GetType() == new OrcUnit().GetType())
                             {
                                 ((OrcUnit)u).BonusPt++;
                             }
                             PlayerList[(CurrentPlayer + 1) % PlayerList.Count].Units.Remove(best);
+                            OnPropertyChanged("Units");
                             PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
                             PlayerList[CurrentPlayer].GetGamePoints();
 
@@ -390,6 +412,7 @@ namespace Small_World
                         //unite attaquante meurt
                         if (u.HitPt == 0)
                         {
+                            GameMessages.Instance.addMessage(PlayerList[CurrentPlayer].Name + "'s unit died trying to attack !\n");
                             if (best.GetType() == new OrcUnit().GetType())
                             {
                                 ((OrcUnit)best).BonusPt++;
@@ -414,7 +437,7 @@ namespace Small_World
             }
             else
             {
-                
+                GameMessages.Instance.addMessage("The unit can't move !\n");
             }
             return 1;
         }
@@ -502,5 +525,19 @@ namespace Small_World
             }
             return this;
         }
+
+        #region INotifyPropertyChanged
+
+        [field: NonSerialized()]
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
     }
 }
