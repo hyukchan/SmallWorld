@@ -264,9 +264,18 @@ namespace Small_World
          /// <param name="tiles">La carte sur laquelle placer les unités</param>
         public unsafe void restore(int* tiles)
         {
-            WrapperAlgo wrapper = new WrapperAlgo();
+            wrapperAlgo = new WrapperAlgo();
             TabMap = tiles;
-            Moves = wrapper.mapCreation(SizeMap);
+            Moves = wrapperAlgo.mapCreation(SizeMap);
+            this.PossibleMoves(this.MovePt,Moves,this.Position.X, this.Position.Y,SizeMap,TabMap);
+            //int i, j;
+            //for (i = 0; i < SizeMap; i++)
+            //{
+            //    for (j = 0; j < SizeMap; j++)
+            //    {
+            //        Moves[i * SizeMap + j] = 0;
+            //    }
+            //}
         }
         
        /// <summary>

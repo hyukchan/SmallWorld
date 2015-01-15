@@ -23,7 +23,7 @@ namespace Small_World
         /// <returns>La partie chargée</returns>
         public override unsafe Game CreateGame()
         {
-            WrapperAlgo w = new WrapperAlgo();
+            
             Game g = new Game();
             
 

@@ -51,6 +51,7 @@ namespace Small_World
 
         private GameBoard map;
 
+        [field:NonSerialized]
         unsafe private int* tabMap;
 
         private String saveName;
@@ -526,44 +527,71 @@ namespace Small_World
         public unsafe Game load(Game g)
         {
             WrapperAlgo w = new WrapperAlgo();
+            this.Map = new GameBoard();
             this.FirstPlayer = g.FirstPlayer;
             this.CurrentPlayer = g.CurrentPlayer;
+            this.Map = g.Map;
             this.NbRemainingTurns = g.NbRemainingTurns;
             this.PlayerList = g.PlayerList;
             this.SaveName = g.SaveName;
-            this.TabMap = g.TabMap;
-            this.Map = g.Map;
+            this.TabMap = w.mapCreation(g.Map.Size);
             this.GameEnded = g.GameEnded;
+            this.PlayerList[0].Units = g.PlayerList[0].Units;
+            this.PlayerList[1].Units = g.PlayerList[1].Units;
 
-            
 
-            //int i, j, k;
+
+            int i, j, l;
             //for (i = 0; i < g.Map.Size; i++)
             //{
             //    for (j = 0; j < g.Map.Size; j++)
             //    {
-            //        k = this.TabMap[i * g.Map.Size + j];
-
-            //        switch (k)
-            //        {
-            //            case Tile.DESERT:
-            //                this.Map.ListTiles.Add(TileFactory.TileFactory_Instance.GetDesert());
-            //                break;
-            //            case Tile.PLAIN:
-            //                this.Map.ListTiles.Add(TileFactory.TileFactory_Instance.GetPlain());
-            //                break;
-            //            case Tile.FOREST:
-            //                this.Map.ListTiles.Add(TileFactory.TileFactory_Instance.GetForest());
-            //                break;
-            //            case Tile.MOUNTAIN:
-            //                this.Map.ListTiles.Add(TileFactory.TileFactory_Instance.GetMountain());
-            //                break;
-            //            default:
-            //                break;
-
-            //        }
+            //        this.TabMap[i * g.Map.Size + j] = 0;
             //    }
             //}
+
+            Tile k;
+            for (i = 0; i < g.Map.Size; i++)
+            {
+                for (j = 0; j < g.Map.Size; j++)
+                {
+                    k = this.Map.ListTiles[i * g.Map.Size + j];
+                    if (k.GetType() == new Mountain().GetType())
+                    {
+                        l = Tile.MOUNTAIN;
+                    }
+                    else if (k.GetType() == new Forest().GetType())
+                    {
+                        l = Tile.FOREST;
+                    }
+                    else if (k.GetType() == new Desert().GetType())
+                    {
+                        l = Tile.DESERT;
+                    }
+                    else
+                    {
+                        l = Tile.PLAIN;
+                    }
+                    switch (l)
+                    {
+                        case Tile.DESERT:
+                            this.TabMap[i * g.Map.Size + j] = Tile.DESERT;
+                            break;
+                        case Tile.PLAIN:
+                            this.TabMap[i * g.Map.Size + j] = Tile.PLAIN;
+                            break;
+                        case Tile.FOREST:
+                            this.TabMap[i * g.Map.Size + j] = Tile.FOREST;
+                            break;
+                        case Tile.MOUNTAIN:
+                            this.TabMap[i * g.Map.Size + j] = Tile.MOUNTAIN;
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+            }
 
             foreach (Player player in PlayerList)
             {
