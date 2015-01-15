@@ -433,7 +433,7 @@ namespace IHM
                 }
                 else
                 {
-                    GameMessages.Instance.addMessage("[Error] " + game.PlayerList[game.CurrentPlayer].Name + ": You can't move that unit there !\n");
+                    GameMessages.Instance.addMessage("[Error] " + game.PlayerList[game.CurrentPlayer].Name + ", you can't move that unit there !\n");
                 }
 
                 if (moved)
@@ -456,7 +456,7 @@ namespace IHM
             }
             else
             {
-                GameMessages.Instance.addMessage("[Error] " + game.PlayerList[game.CurrentPlayer].Name + ": You need to select an unit first !\n");
+                GameMessages.Instance.addMessage("[Error] " + game.PlayerList[game.CurrentPlayer].Name + ", you need to select an unit first !\n");
             }
         }
 
