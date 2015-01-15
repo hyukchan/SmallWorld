@@ -6,7 +6,7 @@ using Wrapper;
 
 namespace Small_World
 {
-    [Serializable]
+    [Serializable()]
     public abstract class Unit
     {
         const int ATTACK_PT = 2;
@@ -26,7 +26,10 @@ namespace Small_World
         private double movePt;
         private int gamePt;
 
+        
+        [NonSerializedAttribute()]
         protected WrapperAlgo wrapperAlgo;
+        
 
         /// <summary>
         /// Getter / Setter de la position de l'unité

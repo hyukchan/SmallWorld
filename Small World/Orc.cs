@@ -10,7 +10,7 @@ namespace Small_World
 
     }
 
-    [Serializable]
+    [Serializable()]
     public class Orc : People, OrcInterface
     {
         /// <summary>

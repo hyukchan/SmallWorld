@@ -10,7 +10,7 @@ namespace Small_World
         People CreatePeople(string people);
     }
 
-    [Serializable]
+    [Serializable()]
     public class PeopleFactory : peopleFactoryInterface
     {
         public const string DWARF = "Dwarf";

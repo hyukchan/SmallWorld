@@ -11,7 +11,7 @@ namespace Small_World
         Uri getPeopleImage();
     }
 
-    [Serializable]
+    [Serializable()]
     public abstract class People : PeopleInterface
     {
         public const int DWARF = 0;

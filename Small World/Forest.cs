@@ -9,6 +9,7 @@ namespace Small_World
     {
 
     }
+    [Serializable()]
     public class Forest : Tile, ForestInterface
     {
         /// <summary>

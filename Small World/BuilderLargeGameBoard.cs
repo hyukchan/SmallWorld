@@ -11,7 +11,7 @@ namespace Small_World
         List<Tile> build();
     }
 
-    [Serializable]
+    [Serializable()]
     public class BuilderLargeGameBoard : BuilderGameBoard, StrategyLargeInterface
     {
         public const int NB_TILES_LARGE = 14;

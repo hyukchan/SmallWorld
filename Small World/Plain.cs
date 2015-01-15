@@ -10,7 +10,7 @@ namespace Small_World
 
     }
 
-    [Serializable]
+    [Serializable()]
     public class Plain : Tile, PlainInterface
     {
         public interface PlainInterface

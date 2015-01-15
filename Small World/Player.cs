@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Small_World
 {
-    [Serializable]
+    [Serializable()]
     public class Player : System.ComponentModel.INotifyPropertyChanged
     {
         private People people;
@@ -160,6 +160,9 @@ namespace Small_World
             return People.getUnactivePeopleImage();
         }
 
+        #region INotifyPropertyChanged
+
+        [field : NonSerialized()]
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -169,7 +172,8 @@ namespace Small_World
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        
-        
+        #endregion
+
+
     }
 }
