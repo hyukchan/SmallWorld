@@ -20,7 +20,7 @@ namespace Small_World
         /// Monteur d'une partie sauvegardée
         /// </summary>
         /// <returns>La partie chargée</returns>
-        public Game CreateGame()
+        public override Game CreateGame()
         {
             Game g = new Game();
             if(File.Exists(saveName)){

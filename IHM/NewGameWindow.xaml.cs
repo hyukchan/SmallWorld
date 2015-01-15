@@ -60,7 +60,7 @@ namespace IHM
             }
             else
             {
-                GameCreator gameCreator = new GameCreator();
+                GameCreator gameCreator = new NewGameCreator();
                 gameCreator.AddPlayer(playerOneNameString, playerOnePeopleString);
                 gameCreator.AddPlayer(playerTwoNameString, playerTwoPeopleString);
 

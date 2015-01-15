@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Small_World
 {
-    public class GameCreator
+    public abstract class GameCreator
     {
         public const string DEMO = "Demo";
         public const string MEDIUM = "Medium";
@@ -82,9 +82,6 @@ namespace Small_World
         /// Crée la partie avec les paramètres courants
         /// </summary>
         /// <returns>La partie créée</returns>
-        public Game CreateGame()
-        {
-            return GameBuilder.CreateGame(playerList[0], playerList[1], playerList[2], playerList[3]);
-        }
+        public abstract Game CreateGame();
     }
 }
