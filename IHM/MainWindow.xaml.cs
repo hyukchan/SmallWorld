@@ -78,6 +78,9 @@ namespace IHM
             GameMessages.Instance.addMessage("Game Start !\n");
             GameMessages.Instance.addMessage(game.PlayerList[game.CurrentPlayer].Name + "'s Turn !\n");
 
+            menuImage.MouseEnter += new MouseEventHandler(onMouseEnterMenu);
+            menuImage.MouseLeave += new MouseEventHandler(onMouseLeaveMenu);
+
             game.saveAs("Test");
 
             for (int j = 0; j < mapSize; j++)
@@ -293,16 +296,19 @@ namespace IHM
 
         public unsafe void showPossibleMoves()
         {
-            for (int i = 0; i < game.Map.Size; i++)
+            if (game.PlayerList[game.CurrentPlayer].Units.Contains(selectedUnit))
             {
-                for (int j = 0; j < game.Map.Size; j++)
+                for (int i = 0; i < game.Map.Size; i++)
                 {
-                    if (selectedUnit.Moves[i * selectedUnit.SizeMap + j] == 1)
+                    for (int j = 0; j < game.Map.Size; j++)
                     {
-                        Polygon hexa = listHexa[i * selectedUnit.SizeMap + j];
-                        hexa.Stroke = possibleMovesColor;
-                        hexa.StrokeThickness = 3;
-                        hexa.SetValue(Canvas.ZIndexProperty, 25);
+                        if (selectedUnit.Moves[i * selectedUnit.SizeMap + j] == 1)
+                        {
+                            Polygon hexa = listHexa[i * selectedUnit.SizeMap + j];
+                            hexa.Stroke = possibleMovesColor;
+                            hexa.StrokeThickness = 3;
+                            hexa.SetValue(Canvas.ZIndexProperty, 25);
+                        }
                     }
                 }
             }
@@ -506,6 +512,16 @@ namespace IHM
             showPossibleMoves();
 
             showUnits();
+        }
+
+        private void onMouseEnterMenu(object sender, MouseEventArgs e)
+        {
+            menuImage.Source = new BitmapImage(new Uri("./textures/active_menu.png", UriKind.Relative));
+        }
+
+        private void onMouseLeaveMenu(object sender, MouseEventArgs e)
+        {
+            menuImage.Source = new BitmapImage(new Uri("./textures/menu.png", UriKind.Relative));
         }
 
         public void update(object sender, PropertyChangedEventArgs e)
