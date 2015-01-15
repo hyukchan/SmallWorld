@@ -74,7 +74,9 @@ namespace IHM
             showUnits();
             showUnitsOnMap();
 
-            endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
+            remainingTurns.Text = "Remaining turns : " + game.NbRemainingTurns.ToString();
+            GameMessages.Instance.addMessage("Game Start !\n");
+            GameMessages.Instance.addMessage(game.PlayerList[game.CurrentPlayer].Name + "'s Turn !\n");
 
             game.saveAs("Test");
 
@@ -324,8 +326,6 @@ namespace IHM
             selectedPolygon = null;
             showUnits();
 
-            endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
-
             checkGameEnded();
         }
 
@@ -523,6 +523,9 @@ namespace IHM
                 case "GameMessages":
                     gameMessages.Content = gameMessages.Content + GameMessages.Instance.getLastMessage();
                     gameMessages.ScrollToBottom();
+                    break;
+                case "RemainingTurns":
+                    remainingTurns.Text = "Remaining turns : " + game.NbRemainingTurns.ToString();
                     break;
             }
         }

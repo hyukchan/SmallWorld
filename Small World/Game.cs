@@ -112,6 +112,7 @@ namespace Small_World
             set
             {
                 nbRemainingTurns = value;
+                OnPropertyChanged("RemainingTurns");
             }
         }
 
@@ -200,7 +201,6 @@ namespace Small_World
             int first = r.Next(PlayerList.Count);
             FirstPlayer = first;
             CurrentPlayer = FirstPlayer;
- 
         }
 
         /// <summary>

@@ -153,22 +153,34 @@
                 Grid.Column="1">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Grid
                     Grid.Row="0"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
-                    <Button
-                        Width="200"
-                        Height="30"
-                        Click="EndTurnOnClick"
-                        Name="endTurnButton">
-                        End Turn
-                    </Button>
+                    <StackPanel>
+                        <TextBlock
+                            Style="{StaticResource ActionManFontStyle}"
+                            FontSize="18"
+                            HorizontalAlignment="Center"
+                            Margin="0,5,0,5"
+                            Name="remainingTurns"
+                            >
+                            Remaining turns : 8
+                        </TextBlock>
+                        <Button
+                            Width="200"
+                            Height="30"
+                            Click="EndTurnOnClick"
+                            Name="endTurnButton"
+                            Style="{StaticResource ActionMan}">
+                            End Turn
+                        </Button>
+                    </StackPanel>
                 </Grid>
 
                 <Grid
