@@ -194,7 +194,6 @@
                         <SolidColorBrush Color="#333333" Opacity="0.7" />
                     </Grid.Background>
                     <ScrollViewer
-                        Padding="20"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto"
                         Margin="5,5,5,5"

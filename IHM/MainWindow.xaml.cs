@@ -367,13 +367,27 @@ namespace IHM
 
             getSelectedTileUnits(x, y);
 
-            if (selectedTileUnits.Count() > 0)
-            {
-                selectedUnit = selectedTileUnits[0];
-                showPossibleMoves();
-            }
+            getNextSelectedUnit();
 
             showUnits();
+        }
+
+        private void getNextSelectedUnit()
+        {
+            selectedUnit = null;
+            if (selectedTileUnits.Count() > 0)
+            {
+                int i = 0;
+                while (selectedUnit == null && i < selectedTileUnits.Count())
+                {
+                    if (selectedTileUnits[i].MovePt > 0)
+                    {
+                        selectedUnit = selectedTileUnits[i];
+                        showPossibleMoves();
+                    }
+                    i++;
+                }
+            }
         }
 
         private void getSelectedTileUnits(int posX, int posY)
@@ -411,6 +425,10 @@ namespace IHM
                     moved = true;
                     game.AskToMove(selectedUnit, x, y);
                 }
+                else
+                {
+                    GameMessages.Instance.addMessage("[Error] " + game.PlayerList[game.CurrentPlayer].Name + ": You can't move that unit there !\n");
+                }
 
                 if (moved)
                 {
@@ -423,12 +441,16 @@ namespace IHM
                 }
                 else
                 {
-                    selectedUnit = selectedTileUnits[0];
+                    getNextSelectedUnit();
                 }
 
                 showUnits();
                 showUnitsOnMap();
                 checkGameEnded();
+            }
+            else
+            {
+                GameMessages.Instance.addMessage("[Error] " + game.PlayerList[game.CurrentPlayer].Name + ": You need to select an unit first !\n");
             }
         }
 
@@ -441,10 +463,12 @@ namespace IHM
                 EndWindow endWindow;
                 if (game.winner() == "egalite")
                 {
+                    GameMessages.Instance.addMessage("You did a draw !\n");
                     endWindow = new EndWindow(this);
                 }
                 else
                 {
+                    GameMessages.Instance.addMessage(game.winner() + " has won !\n");
                     endWindow = new EndWindow(this, game.winner());
                 }
                 this.IsEnabled = false;
@@ -498,6 +522,7 @@ namespace IHM
                     break;
                 case "GameMessages":
                     gameMessages.Content = gameMessages.Content + GameMessages.Instance.getLastMessage();
+                    gameMessages.ScrollToBottom();
                     break;
             }
         }

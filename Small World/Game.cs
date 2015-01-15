@@ -251,7 +251,7 @@ namespace Small_World
                 GameEnded = true;
             }
 
-            GameMessages.Instance.addMessage("C'est à " + PlayerList[CurrentPlayer].Name + " de jouer !\n");
+            GameMessages.Instance.addMessage(PlayerList[CurrentPlayer].Name + "'s Turn !\n");
         }
 
         /// <summary>
@@ -359,7 +359,7 @@ namespace Small_World
                         {
                             if ((unit.DefensePt + unit.HitPt) > (best.DefensePt + best.HitPt))
                             {
-                                best = u;
+                                best = unit;
                             }
                         }
 
@@ -369,11 +369,28 @@ namespace Small_World
                         {
                             rounds = r.Next(Math.Max(u.HitPt, best.HitPt) + 2);
                         }
+                        int attackUnitHpLost = 0;
+                        int defenseUnitHpLost = 0;
+                        int attackUnitHpBefore = u.HitPt;
+                        int defenseUnitHpBefore = best.HitPt;
                         u.Attack(best, rounds);
+                        attackUnitHpLost = attackUnitHpBefore - u.HitPt;
+                        defenseUnitHpLost = defenseUnitHpBefore - best.HitPt;
+
+                        if (attackUnitHpLost > 0)
+                        {
+                            GameMessages.Instance.addMessage(PlayerList[CurrentPlayer].Name + "'s unit has lost "+attackUnitHpLost+" hp\n");
+                        }
+
+                        if (defenseUnitHpLost > 0)
+                        {
+                            GameMessages.Instance.addMessage(PlayerList[(CurrentPlayer + 1)%2].Name + "'s unit has lost " + defenseUnitHpLost + " hp\n");
+                        }
 
                         // unite defensive meurt
                         if (best.HitPt == 0)
                         {
+                            GameMessages.Instance.addMessage(PlayerList[CurrentPlayer].Name + " killed an unit !\n");
                             if (u.GetType() == new OrcUnit().GetType())
                             {
                                 ((OrcUnit)u).BonusPt++;
@@ -395,6 +412,7 @@ namespace Small_World
                         //unite attaquante meurt
                         if (u.HitPt == 0)
                         {
+                            GameMessages.Instance.addMessage(PlayerList[CurrentPlayer].Name + "'s unit died trying to attack !\n");
                             if (best.GetType() == new OrcUnit().GetType())
                             {
                                 ((OrcUnit)best).BonusPt++;
@@ -417,7 +435,7 @@ namespace Small_World
             }
             else
             {
-                
+                GameMessages.Instance.addMessage("The unit can't move !\n");
             }
             return 1;
         }
