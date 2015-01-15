@@ -250,6 +250,8 @@ namespace Small_World
             {
                 GameEnded = true;
             }
+
+            GameMessages.Instance.addMessage("C'est à " + PlayerList[CurrentPlayer].Name + " de jouer !\n");
         }
 
         /// <summary>

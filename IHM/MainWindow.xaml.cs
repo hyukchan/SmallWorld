@@ -37,6 +37,8 @@ namespace IHM
             g.PropertyChanged += new PropertyChangedEventHandler(update);
             g.PlayerList[1].PropertyChanged += new PropertyChangedEventHandler(update);
             g.PlayerList[0].PropertyChanged += new PropertyChangedEventHandler(update);
+            GameMessages.Instance.PropertyChanged += new PropertyChangedEventHandler(update);
+
             selectedPolygon = null;
             selectedTileUnits = new List<Unit>();
             int mapSize = game.Map.Size;
@@ -53,6 +55,7 @@ namespace IHM
 
             //initialize player's informations
             playerOneName.Text = game.PlayerList[0].Name;
+            playerOnePoints.DataContext = game.PlayerList[0].Points;
             playerOnePoints.Text = game.PlayerList[0].Points.ToString();
             playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
 
@@ -74,8 +77,6 @@ namespace IHM
             endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
 
             game.saveAs("Test");
-
-
 
             for (int j = 0; j < mapSize; j++)
             {
@@ -107,8 +108,6 @@ namespace IHM
 
             Brush unactiveColor = (Brush)converter.ConvertFromString("#555555");
             Brush activeColor = (Brush)converter.ConvertFromString("#333333");
-
-            
             
             BitmapImage playerOneActiveAvatar = new BitmapImage(game.PlayerList[0].getPlayerAvatar());
             BitmapImage playerTwoActiveAvatar = new BitmapImage(game.PlayerList[1].getPlayerAvatar());
@@ -182,6 +181,7 @@ namespace IHM
                     {
                         playerOneUnitList.Children.Add(unitBox);
                     }
+
                     else
                     {
                         playerTwoUnitList.Children.Add(unitBox);
@@ -326,12 +326,6 @@ namespace IHM
 
             endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
 
-            //playerOnePoints.Text = game.PlayerList[0].Points.ToString();
-            //playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
-
-            //playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
-            //playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
-
             checkGameEnded();
         }
 
@@ -434,12 +428,6 @@ namespace IHM
 
                 showUnits();
                 showUnitsOnMap();
-                //TODOSW actualisation des points en mode moins barbare
-                
-                //playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
-
-                //playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
-                //playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
                 checkGameEnded();
             }
         }
@@ -507,6 +495,9 @@ namespace IHM
                 case "Units":
                     playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count().ToString();
                     playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count().ToString();
+                    break;
+                case "GameMessages":
+                    gameMessages.Content = gameMessages.Content + GameMessages.Instance.getLastMessage();
                     break;
             }
         }

@@ -51,6 +51,7 @@
     <Compile Include="GameBoardCreator.cs" />
     <Compile Include="GameBuilder.cs" />
     <Compile Include="GameCreator.cs" />
+    <Compile Include="GameMessages.cs" />
     <Compile Include="LargeGameBuilder.cs" />
     <Compile Include="MediumGameBuilder.cs" />
     <Compile Include="NewGameCreator.cs" />

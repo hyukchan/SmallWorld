@@ -175,7 +175,6 @@
                     Grid.Row="1">
                     <!-- The Map -->
                     <ScrollViewer
-                        Grid.Column="1"
                         Padding="20"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto"
@@ -194,6 +193,15 @@
                     <Grid.Background>
                         <SolidColorBrush Color="#333333" Opacity="0.7" />
                     </Grid.Background>
+                    <ScrollViewer
+                        Padding="20"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"
+                        Margin="5,5,5,5"
+                        Name="gameMessages"
+                        Foreground="White">
+                        
+                    </ScrollViewer>
                 </Grid>
             </Grid>
             <!-- Second Column with the Map End -->
