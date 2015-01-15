@@ -34,6 +34,7 @@ namespace IHM
         public MainWindow(Game g)
         {
             game = g;
+            g.PropertyChanged += new PropertyChangedEventHandler(update);
             g.PlayerList[1].PropertyChanged += new PropertyChangedEventHandler(update);
             g.PlayerList[0].PropertyChanged += new PropertyChangedEventHandler(update);
             selectedPolygon = null;
@@ -162,7 +163,7 @@ namespace IHM
 
                     if (!(u.Position.X == x && u.Position.Y == y))
                     {
-                        unactiveColor.Opacity = 0.3;
+                        unactiveColor.Opacity = 0.1;
                         unitBox.unitBoxGrid.Background = unactiveColor;
                     }
 
@@ -458,7 +459,7 @@ namespace IHM
                 {
                     endWindow = new EndWindow(this, game.winner());
                 }
-
+                this.IsEnabled = false;
                 endWindow.Show();
             }
         }
@@ -503,12 +504,13 @@ namespace IHM
                     playerOnePoints.Text = game.PlayerList[0].Points.ToString();
                     playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
                     break;
-                case"Units":
-                    playerTwoUnitNumbers.Text = "9";
+                case "Units":
+                    playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count().ToString();
+                    playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count().ToString();
                     break;
-
             }
         }
+
         public class Hexagon
         {
 

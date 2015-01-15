@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using Wrapper;
@@ -34,7 +36,7 @@ namespace Small_World
     }
 
     [Serializable()]
-    public class Game : GameInterface
+    public class Game : GameInterface, INotifyPropertyChanged
     {
 
         private int firstPlayer;
@@ -375,6 +377,7 @@ namespace Small_World
                                 ((OrcUnit)u).BonusPt++;
                             }
                             PlayerList[(CurrentPlayer + 1) % PlayerList.Count].Units.Remove(best);
+                            OnPropertyChanged("Units");
                             PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
                             PlayerList[CurrentPlayer].GetGamePoints();
 
@@ -544,5 +547,19 @@ namespace Small_World
 
             return g;
         }
+
+        #region INotifyPropertyChanged
+
+        [field: NonSerialized()]
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
     }
 }
