@@ -171,12 +171,8 @@ namespace IHM
                         unitBox.unitBoxGrid.Background = unactiveColor;
                     }
 
-                    if (selectedTileUnits.Count() > 0 && selectedTileUnits.Contains(u))
-                    {
-                        unitBox.Opacity = 1;
-                    }
 
-                    if ((selectedUnit == u) || (selectedTileUnits.Count() > 0 && selectedTileUnits[0] == u && selectedUnit == null))
+                    if (selectedUnit == u)
                     {
                         activeColor.Opacity = 0.7;
                         unitBox.unitBoxGrid.Background = activeColor;
@@ -415,7 +411,7 @@ namespace IHM
         /// <param name="e"></param>
         private void mouseRightClickHexaHandler(object sender, MouseButtonEventArgs e)
         {
-            if (selectedTileUnits.Count() > 0)
+            if (selectedTileUnits.Count() > 0 && selectedUnit != null)
             {
                 if (selectedTileUnits.Count() == 1)
                 {
@@ -522,6 +518,10 @@ namespace IHM
         private void onMouseLeaveMenu(object sender, MouseEventArgs e)
         {
             menuImage.Source = new BitmapImage(new Uri("./textures/menu.png", UriKind.Relative));
+        }
+
+        private void onMouseDownMenu(object sender, MouseEventArgs e)
+        {
         }
 
         public void update(object sender, PropertyChangedEventArgs e)
