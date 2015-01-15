@@ -176,8 +176,7 @@
                             Width="200"
                             Height="30"
                             Click="EndTurnOnClick"
-                            Name="endTurnButton"
-                            Style="{StaticResource ActionMan}">
+                            Name="endTurnButton">
                             End Turn
                         </Button>
                     </StackPanel>
@@ -205,14 +204,26 @@
                     <Grid.Background>
                         <SolidColorBrush Color="#333333" Opacity="0.7" />
                     </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
                     <ScrollViewer
+                        Grid.Column="0"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto"
                         Margin="5,5,5,5"
                         Name="gameMessages"
                         Foreground="White">
-                        
                     </ScrollViewer>
+                    <Image
+                        Grid.Column="1"
+                        Source="textures/menu.png"
+                        Margin="10"
+                        MouseEnter="onMouseEnterMenu"
+                        MouseLeave="onMouseLeaveMenu"
+                        x:Name="menuImage">
+                    </Image>
                 </Grid>
             </Grid>
             <!-- Second Column with the Map End -->

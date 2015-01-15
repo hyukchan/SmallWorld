@@ -147,7 +147,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="textures\active_menu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="textures\draw.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="textures\menu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="textures\new_game_background.jpg">
