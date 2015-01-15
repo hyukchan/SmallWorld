@@ -346,14 +346,14 @@ namespace Small_World
                 {
                     if (u.CanMove(x, y))
                     {
-                        if ((u.GetType() == new ElfUnit().GetType() && TabMap[y * u.SizeMap + x] == Tile.FOREST) || ((u.GetType() == new OrcUnit().GetType() || u.GetType() == new DwarfUnit().GetType()) && TabMap[y*u.SizeMap + x] == Tile.PLAIN))
-                        {
-                            u.MovePt -= Unit.MOVE_PT / 2;
-                        }
-                        else
-                        {
-                            u.MovePt -= Unit.MOVE_PT;
-                        }
+                        //if ((u.GetType() == new ElfUnit().GetType() && TabMap[y * u.SizeMap + x] == Tile.FOREST) || ((u.GetType() == new OrcUnit().GetType() || u.GetType() == new DwarfUnit().GetType()) && TabMap[y*u.SizeMap + x] == Tile.PLAIN))
+                        //{
+                        //    u.MovePt -= Unit.MOVE_PT / 2;
+                        //}
+                        //else
+                        //{
+                        //    u.MovePt -= Unit.MOVE_PT;
+                        //}
                         Unit best = listUnits[0];
                         foreach (Unit unit in listUnits)
                         {
