@@ -16,6 +16,7 @@
 
         <Image Grid.Row="0" Source="textures/save_game.png" Name="saveWindowImage" Stretch="Fill"/>
         <StackPanel
+            Name="saveWindowStackPanel"
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
