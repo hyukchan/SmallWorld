@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using Wrapper;
 
 namespace Small_World
 {
-    public class ExistingGameBuilder : GameCreator
+    public class ExistingGameCreator : GameCreator
     {
         public string saveName;
 
-        public ExistingGameBuilder(string name)
+        public ExistingGameCreator(string name)
         {
             saveName = name;
         }
@@ -20,9 +21,12 @@ namespace Small_World
         /// Monteur d'une partie sauvegardée
         /// </summary>
         /// <returns>La partie chargée</returns>
-        public override Game CreateGame()
+        public override unsafe Game CreateGame()
         {
+            WrapperAlgo w = new WrapperAlgo();
             Game g = new Game();
+            
+
             if(File.Exists(saveName)){
                 using(FileStream f = File.OpenRead(saveName)){
                     BinaryFormatter b = new BinaryFormatter();               

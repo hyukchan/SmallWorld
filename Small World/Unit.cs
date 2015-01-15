@@ -266,7 +266,7 @@ namespace Small_World
         {
             WrapperAlgo wrapper = new WrapperAlgo();
             TabMap = tiles;
-            Moves = wrapper.mapCreation(SizeMap);      
+            Moves = wrapper.mapCreation(SizeMap);
         }
         
        /// <summary>

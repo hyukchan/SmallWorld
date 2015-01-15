@@ -312,6 +312,10 @@ namespace Small_World
         /// <returns>La liste des unités sur la case</returns>
         public bool CanMove(Unit u, int x, int y)
         {
+            if (u.Position.X == x && u.Position.Y == y) 
+            {
+                return false; 
+            }
             if((u.GetType() == new DwarfUnit().GetType()) && (SelectOpponentUnit(x,y).Count != 0))
             {
                 if (u.Position.Y % 2 == 0 && (Math.Abs(y - u.Position.Y) > 1 || (x > u.Position.X || x < u.Position.X -1)))
@@ -405,6 +409,8 @@ namespace Small_World
                             if (u.GetType() == new OrcUnit().GetType())
                             {
                                 ((OrcUnit)u).BonusPt++;
+                                
+
                             }
                             PlayerList[(CurrentPlayer + 1) % PlayerList.Count].Units.Remove(best);
                             OnPropertyChanged("Units");
@@ -518,14 +524,45 @@ namespace Small_World
         /// <returns></returns>
         public unsafe Game load(Game g)
         {
+            WrapperAlgo w = new WrapperAlgo();
             this.FirstPlayer = g.FirstPlayer;
             this.CurrentPlayer = g.CurrentPlayer;
-            this.Map = g.Map;
             this.NbRemainingTurns = g.NbRemainingTurns;
             this.PlayerList = g.PlayerList;
             this.SaveName = g.SaveName;
             this.TabMap = g.TabMap;
+            this.Map = g.Map;
             this.GameEnded = g.GameEnded;
+
+            
+
+            //int i, j, k;
+            //for (i = 0; i < g.Map.Size; i++)
+            //{
+            //    for (j = 0; j < g.Map.Size; j++)
+            //    {
+            //        k = this.TabMap[i * g.Map.Size + j];
+
+            //        switch (k)
+            //        {
+            //            case Tile.DESERT:
+            //                this.Map.ListTiles.Add(TileFactory.TileFactory_Instance.GetDesert());
+            //                break;
+            //            case Tile.PLAIN:
+            //                this.Map.ListTiles.Add(TileFactory.TileFactory_Instance.GetPlain());
+            //                break;
+            //            case Tile.FOREST:
+            //                this.Map.ListTiles.Add(TileFactory.TileFactory_Instance.GetForest());
+            //                break;
+            //            case Tile.MOUNTAIN:
+            //                this.Map.ListTiles.Add(TileFactory.TileFactory_Instance.GetMountain());
+            //                break;
+            //            default:
+            //                break;
+
+            //        }
+            //    }
+            //}
 
             foreach (Player player in PlayerList)
             {

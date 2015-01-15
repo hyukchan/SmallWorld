@@ -46,7 +46,7 @@
     <Compile Include="BuilderMediumGameBoard.cs" />
     <Compile Include="DwarfUnit.cs" />
     <Compile Include="ElfUnit.cs" />
-    <Compile Include="ExistingGameBuilder.cs" />
+    <Compile Include="ExistingGameCreator.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameBoardCreator.cs" />
     <Compile Include="GameBuilder.cs" />
