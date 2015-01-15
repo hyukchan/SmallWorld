@@ -372,7 +372,6 @@ namespace IHM
             {
                 selectedUnit = selectedTileUnits[0];
                 showPossibleMoves();
-                // showPossibleMoves();
             }
 
             showUnits();
