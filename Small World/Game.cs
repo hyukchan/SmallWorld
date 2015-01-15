@@ -312,9 +312,20 @@ namespace Small_World
         /// <returns>La liste des unités sur la case</returns>
         public bool CanMove(Unit u, int x, int y)
         {
-            if((u.GetType() == new DwarfUnit().GetType()) && (SelectOpponentUnit(x,y).Count != 0) && (Math.Abs(x - u.Position.X) > 1) && (Math.Abs(y-u.Position.Y) > 1 ))
+            if((u.GetType() == new DwarfUnit().GetType()) && (SelectOpponentUnit(x,y).Count != 0))
             {
-                return false;
+                if (u.Position.Y % 2 == 0 && (Math.Abs(y - u.Position.Y) > 1 || (x > u.Position.X || x < u.Position.X -1)))
+                {
+                    return false;
+                }
+                if (u.Position.Y % 2 == 1 && (Math.Abs(y - u.Position.Y) > 1 || (x < u.Position.X || x > u.Position.X + 1)))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
