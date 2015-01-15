@@ -314,6 +314,11 @@ namespace IHM
 
             showCurrentPlayer();
 
+            selectedTileUnits = new List<Unit>();
+            selectedUnit = null;
+            selectedPolygon = null;
+            showUnits();
+
             endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
 
             //playerOnePoints.Text = game.PlayerList[0].Points.ToString();
@@ -332,9 +337,12 @@ namespace IHM
         {
             foreach (Polygon p in this.listHexa)
             {
-                p.StrokeThickness = 2;
-                p.Stroke = Brushes.Black;
-                p.SetValue(Canvas.ZIndexProperty, 10);
+                if (selectedPolygon != p)
+                {
+                    p.StrokeThickness = 2;
+                    p.Stroke = Brushes.Black;
+                    p.SetValue(Canvas.ZIndexProperty, 10);
+                }
             }
         }
 
@@ -347,10 +355,9 @@ namespace IHM
         {
             selectedUnit = null;
 
-            resetPolygonStroke();
-
             var polygon = sender as Polygon;
             this.selectedPolygon = polygon;
+            resetPolygonStroke();
             polygon.StrokeThickness = 4;
             polygon.Stroke = Brushes.White;
             polygon.SetValue(Canvas.ZIndexProperty, 60);
@@ -450,25 +457,6 @@ namespace IHM
             int unitNumber = (int)u.unitNumber.Content;
             Polygon unitPolygon = listHexa[posY * game.Map.Size + posX];
 
-            foreach (Polygon p in this.listHexa)
-            {
-                if (p == selectedPolygon)
-                {
-                    if (this.listHexaReachable.Contains(selectedPolygon))
-                    {
-                        p.StrokeThickness = 3;
-                        p.Stroke = Brushes.GreenYellow;
-                        p.SetValue(Canvas.ZIndexProperty, 25);
-                    }
-                    else
-                    {
-                        p.StrokeThickness = 2;
-                        p.Stroke = Brushes.Black;
-                        p.SetValue(Canvas.ZIndexProperty, 10);
-                    }
-                }
-            }
-
             var polygon = unitPolygon;
             this.selectedPolygon = polygon;
             polygon.StrokeThickness = 4;
@@ -481,6 +469,9 @@ namespace IHM
             {
                 selectedTileUnits.Add(selectedUnit);
             }
+
+            resetPolygonStroke();
+            showPossibleMoves();
 
             showUnits();
         }
