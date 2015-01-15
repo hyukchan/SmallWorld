@@ -12,6 +12,7 @@ namespace UnitTestProject1
         public void TestCreationOrcUnit()
         {
             OrcUnit orc = new OrcUnit();
+            orc.Position = new Position { X = 1, Y = 1 };
 
             Assert.AreEqual(orc.AttackPt, 2);
             Assert.AreEqual(orc.DefensePt, 1);

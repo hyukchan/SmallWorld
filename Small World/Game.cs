@@ -29,7 +29,7 @@ namespace Small_World
 
         bool saveAs(string filename);
 
-        Game load(string filename);
+        Game load(Game g);
 
     }
 
@@ -355,7 +355,7 @@ namespace Small_World
                         {
                             if ((unit.DefensePt + unit.HitPt) > (best.DefensePt + best.HitPt))
                             {
-                                best = u;
+                                best = unit;
                             }
                         }
 
@@ -402,10 +402,12 @@ namespace Small_World
                         if (((u.GetType() == new DwarfUnit().GetType() || u.GetType() == new OrcUnit().GetType()) && TabMap[y * u.SizeMap + x] == Tile.PLAIN) || (u.GetType() == new ElfUnit().GetType() && TabMap[y * u.SizeMap + x] == Tile.FOREST))
                         {
                             u.MovePt -= Unit.MOVE_PT / 2;
+                            u.PossibleMoves(u.MovePt, u.Moves, u.Position.X, u.Position.Y, u.SizeMap, u.TabMap);
                         }
                         else
                         {
                             u.MovePt -= Unit.MOVE_PT;
+                            u.PossibleMoves(u.MovePt, u.Moves, u.Position.X, u.Position.Y, u.SizeMap, u.TabMap);
                         }
                     }
                 }
@@ -440,60 +442,6 @@ namespace Small_World
                 end = end || (p.Units.Count == 0);
             }
             GameEnded = end;
-        }
-
-
-        /// <summary>
-        /// Restaure une partie suite à un chargement
-        /// </summary>
-        /// <param name="g"> La partie à restaurer</param>
-        public unsafe Game restore(Game g)
-        {
-            this.FirstPlayer = g.FirstPlayer;
-            this.CurrentPlayer = g.CurrentPlayer;
-            this.Map = g.Map;
-            this.NbRemainingTurns = g.NbRemainingTurns;
-            this.PlayerList = g.PlayerList;
-            this.SaveName = g.SaveName;
-            this.TabMap = g.TabMap;
-
-            //WrapperAlgo wrapper = new WrapperAlgo();
-
-            //int mapSize = this.Map.Size;
-            //int* tiles = wrapper.createGameBoard(mapSize);
-            //int i, j;
-
-            //for (i = 0; i < mapSize; i++)
-            //{
-            //    for (j = 0; j < mapSize; j++)
-            //    {
-            //        if (Map.ListTiles[i * mapSize + j].GetType() == new Desert().GetType())
-            //        {
-            //            tiles[i * mapSize + j] = Tile.DESERT;
-            //        }
-            //        if (Map.ListTiles[i * mapSize + j].GetType() == new Mountain().GetType())
-            //        {
-            //            tiles[i * mapSize + j] = Tile.MOUNTAIN;
-            //        }
-            //        if (Map.ListTiles[i * mapSize + j].GetType() == new Plain().GetType())
-            //        {
-            //            tiles[i * mapSize + j] = Tile.PLAIN;
-            //        }
-            //        if (Map.ListTiles[i * mapSize + j].GetType() == new Forest().GetType())
-            //        {
-            //            tiles[i * mapSize + j] = Tile.FOREST;
-            //        }
-            //    }
-            //}
-
-            foreach (Player player in PlayerList)
-            {
-                foreach (Unit u in player.Units)
-                {
-                    u.restore(this.TabMap);
-                }
-            }
-            return this;
         }
 
         /// <summary>
@@ -534,15 +482,25 @@ namespace Small_World
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public Game load(string filename)
+        public unsafe Game load(Game g)
         {
-            FileStream file = File.OpenRead(filename);
-            BinaryFormatter b = new BinaryFormatter();
-            Game g = (Game)b.Deserialize(file);
-            file.Close();
-            restore(g);
+            this.FirstPlayer = g.FirstPlayer;
+            this.CurrentPlayer = g.CurrentPlayer;
+            this.Map = g.Map;
+            this.NbRemainingTurns = g.NbRemainingTurns;
+            this.PlayerList = g.PlayerList;
+            this.SaveName = g.SaveName;
+            this.TabMap = g.TabMap;
+            this.GameEnded = g.GameEnded;
 
-            return g;
+            foreach (Player player in PlayerList)
+            {
+                foreach (Unit u in player.Units)
+                {
+                    u.restore(this.TabMap);
+                }
+            }
+            return this;
         }
     }
 }
