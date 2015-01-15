@@ -30,5 +30,12 @@ namespace IHM
             newGameWindow.Show();
             this.Close();
         }
+
+        public void OnClickLoadGame(object sender, RoutedEventArgs e)
+        {
+            NewGameWindow newGameWindow = new NewGameWindow();
+            newGameWindow.Show();
+            this.Close();
+        }
     }
 }

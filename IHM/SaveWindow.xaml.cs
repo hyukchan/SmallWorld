@@ -36,6 +36,7 @@ namespace IHM
                 this.Height = 280;
                 saveWindowImage.Source = new BitmapImage(new Uri("./textures/saved.png", UriKind.Relative));
                 saveWindowStackPanel.Visibility = System.Windows.Visibility.Hidden;
+                saveWindowButton.Visibility = System.Windows.Visibility.Hidden;
             }
         }
     }

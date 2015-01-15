@@ -1,7 +1,7 @@
 ﻿<Window x:Class="IHM.SaveWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SaveWindow" Height="400" Width="300"
+        Title="Save Game" Height="400" Width="300"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
@@ -31,6 +31,7 @@
         </StackPanel>
 
         <Button Grid.Row="2"
+            Name="saveWindowButton"
             FontSize="23"
             Foreground="#333333"
             Style="{StaticResource ActionMan}"

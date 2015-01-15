@@ -24,7 +24,8 @@
         <Button Grid.Row="2"
             FontSize="23"
             Foreground="#333333"
-            Style="{StaticResource ActionMan}">
+            Style="{StaticResource ActionMan}"
+            Click="OnClickLoadGame">
             Load Game
         </Button>
     </Grid>
