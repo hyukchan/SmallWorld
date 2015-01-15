@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Small_World
 {
     [Serializable]
-    public class Player
+    public class Player : System.ComponentModel.INotifyPropertyChanged
     {
         private People people;
         private int points;
@@ -59,6 +61,7 @@ namespace Small_World
             set
             {
                 points = value;
+                OnPropertyChanged();
             }
         }
 
@@ -89,6 +92,7 @@ namespace Small_World
             set
             {
                 units = value;
+                OnPropertyChanged();
             }
         }
 
@@ -155,5 +159,17 @@ namespace Small_World
         {
             return People.getUnactivePeopleImage();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        
+        
     }
 }

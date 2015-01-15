@@ -275,8 +275,6 @@ namespace Small_World
        /// <param name="y">Ordonnée de l'unité</param>
        /// <param name="size">Taille du plateai</param>
        /// <param name="map">plateau</param>
-       /// <param name="peuple">peuple courant</param>
-       /// <returns></returns>
        public abstract unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map);
 
         /// <summary>

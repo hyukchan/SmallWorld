@@ -16,7 +16,7 @@ namespace UnitTestProject1
             Assert.AreEqual(orc.AttackPt, 2);
             Assert.AreEqual(orc.DefensePt, 1);
             Assert.AreEqual(orc.MovePt, 1);
-            orc.Move(new Position { X = 1, Y = 2});
+            orc.Move(1,2);
             Assert.AreEqual(orc.MovePt, 0);
         }
 

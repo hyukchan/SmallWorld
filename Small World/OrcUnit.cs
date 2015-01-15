@@ -75,10 +75,14 @@ namespace Small_World
         }
 
         /// <summary>
-        /// 
+        /// Calcule les déplacements possibles de l'unité Orc
         /// </summary>
-        /// <param name="movePt">Les points de déplacement de l'unité</param>
-        /// <returns></returns>
+        /// <param name="movePt">points de mouvements disponibles</param>
+        /// <param name="moves">tableau des déplacements</param>
+        /// <param name="x">Abscisse de l'unité</param>
+        /// <param name="y">Ordonnée de l'unité</param>
+        /// <param name="size">Taille du plateai</param>
+        /// <param name="map">plateau</param>
         public override unsafe void PossibleMoves(double movePt, int* moves, int x, int y, int size, int* map)
         {
             Moves = wrapperAlgo.possibleMoves(movePt, moves, x, y, size, map, People.ORC);

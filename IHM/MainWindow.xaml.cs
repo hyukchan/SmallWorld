@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Small_World;
+using System.ComponentModel;
 
 namespace IHM
 {
@@ -32,7 +33,10 @@ namespace IHM
 
         public MainWindow(Game g)
         {
+
             game = g;
+            g.PlayerList[1].PropertyChanged += new PropertyChangedEventHandler(update);
+            g.PlayerList[0].PropertyChanged += new PropertyChangedEventHandler(update);
             selectedPolygon = null;
             selectedTileUnits = new List<Unit>();
             int mapSize = game.Map.Size;
@@ -312,11 +316,11 @@ namespace IHM
 
             endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
 
-            playerOnePoints.Text = game.PlayerList[0].Points.ToString();
-            playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
+            //playerOnePoints.Text = game.PlayerList[0].Points.ToString();
+            //playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
 
-            playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
-            playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
+            //playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
+            //playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
 
             checkGameEnded();
         }
@@ -405,11 +409,11 @@ namespace IHM
                 showUnits();
                 showUnitsOnMap();
                 //TODOSW actualisation des points en mode moins barbare
-                playerOnePoints.Text = game.PlayerList[0].Points.ToString();
-                playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
+                
+                //playerOneUnitNumbers.Text = game.PlayerList[0].Units.Count.ToString();
 
-                playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
-                playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
+                //playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
+                //playerTwoUnitNumbers.Text = game.PlayerList[1].Units.Count.ToString();
                 checkGameEnded();
             }
         }
@@ -481,6 +485,20 @@ namespace IHM
             showUnits();
         }
 
+        public void update(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "Points":
+                    playerOnePoints.Text = game.PlayerList[0].Points.ToString();
+                    playerTwoPoints.Text = game.PlayerList[1].Points.ToString();
+                    break;
+                case"Units":
+                    playerTwoUnitNumbers.Text = "9";
+                    break;
+
+            }
+        }
         public class Hexagon
         {
 

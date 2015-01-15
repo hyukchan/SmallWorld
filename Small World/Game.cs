@@ -501,10 +501,11 @@ namespace Small_World
         /// <returns></returns>
         public bool saveAs(string filename)
         {
-            FileStream file = File.Create(filename);
-            BinaryFormatter b = new BinaryFormatter();
-            b.Serialize(file, this);
-            file.Close();
+            using (FileStream file = File.Create(filename))
+            {
+                BinaryFormatter b = new BinaryFormatter();
+                b.Serialize(file, this);
+            }
 
             return true;
         }
