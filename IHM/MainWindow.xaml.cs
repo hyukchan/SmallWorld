@@ -81,8 +81,6 @@ namespace IHM
             menuImage.MouseEnter += new MouseEventHandler(onMouseEnterMenu);
             menuImage.MouseLeave += new MouseEventHandler(onMouseLeaveMenu);
 
-            game.saveAs("Test");
-
             for (int j = 0; j < mapSize; j++)
             {
                 for (int i = 0; i < mapSize; i++)
@@ -522,6 +520,25 @@ namespace IHM
 
         private void onMouseDownMenu(object sender, MouseEventArgs e)
         {
+            menuPanel.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void onClickResume(object sender, RoutedEventArgs e)
+        {
+            menuPanel.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void onClickExit(object sender, RoutedEventArgs e)
+        {
+            StartWindow s = new StartWindow();
+            s.Show();
+            this.Close();
+        }
+
+        private void onClickSave(object sender, RoutedEventArgs e)
+        {
+            SaveWindow s = new SaveWindow(game);
+            s.Show();
         }
 
         public void update(object sender, PropertyChangedEventArgs e)
