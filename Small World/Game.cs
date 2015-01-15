@@ -33,7 +33,7 @@ namespace Small_World
 
     }
 
-    [Serializable]
+    [Serializable()]
     public class Game : GameInterface
     {
 
@@ -399,6 +399,14 @@ namespace Small_World
                             PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
                             checkEndOfGame();
                         }
+                        if (((u.GetType() == new DwarfUnit().GetType() || u.GetType() == new OrcUnit().GetType()) && TabMap[y * u.SizeMap + x] == Tile.PLAIN) || (u.GetType() == new ElfUnit().GetType() && TabMap[y * u.SizeMap + x] == Tile.FOREST))
+                        {
+                            u.MovePt -= Unit.MOVE_PT / 2;
+                        }
+                        else
+                        {
+                            u.MovePt -= Unit.MOVE_PT;
+                        }
                     }
                 }
             }
@@ -434,47 +442,58 @@ namespace Small_World
             GameEnded = end;
         }
 
+
         /// <summary>
         /// Restaure une partie suite à un chargement
         /// </summary>
-        public unsafe void restore()
+        /// <param name="g"> La partie à restaurer</param>
+        public unsafe Game restore(Game g)
         {
-            WrapperAlgo wrapper = new WrapperAlgo();
+            this.FirstPlayer = g.FirstPlayer;
+            this.CurrentPlayer = g.CurrentPlayer;
+            this.Map = g.Map;
+            this.NbRemainingTurns = g.NbRemainingTurns;
+            this.PlayerList = g.PlayerList;
+            this.SaveName = g.SaveName;
+            this.TabMap = g.TabMap;
 
-            int mapSize = this.Map.Size;
-            int* tiles = wrapper.createGameBoard(mapSize);
-            int i, j;
+            //WrapperAlgo wrapper = new WrapperAlgo();
 
-            for (i = 0; i < mapSize; i++)
-            {
-                for (j = 0; j < mapSize; j++)
-                {
-                    if (Map.ListTiles[i * mapSize + j].GetType() == new Desert().GetType())
-                    {
-                        tiles[i * mapSize + j] = Tile.DESERT;
-                    }
-                    if (Map.ListTiles[i * mapSize + j].GetType() == new Mountain().GetType())
-                    {
-                        tiles[i * mapSize + j] = Tile.MOUNTAIN;
-                    }
-                    if (Map.ListTiles[i * mapSize + j].GetType() == new Plain().GetType())
-                    {
-                        tiles[i * mapSize + j] = Tile.PLAIN;
-                    }
-                    if (Map.ListTiles[i * mapSize + j].GetType() == new Forest().GetType())
-                    {
-                        tiles[i * mapSize + j] = Tile.FOREST;
-                    }
-                }
-            }
+            //int mapSize = this.Map.Size;
+            //int* tiles = wrapper.createGameBoard(mapSize);
+            //int i, j;
+
+            //for (i = 0; i < mapSize; i++)
+            //{
+            //    for (j = 0; j < mapSize; j++)
+            //    {
+            //        if (Map.ListTiles[i * mapSize + j].GetType() == new Desert().GetType())
+            //        {
+            //            tiles[i * mapSize + j] = Tile.DESERT;
+            //        }
+            //        if (Map.ListTiles[i * mapSize + j].GetType() == new Mountain().GetType())
+            //        {
+            //            tiles[i * mapSize + j] = Tile.MOUNTAIN;
+            //        }
+            //        if (Map.ListTiles[i * mapSize + j].GetType() == new Plain().GetType())
+            //        {
+            //            tiles[i * mapSize + j] = Tile.PLAIN;
+            //        }
+            //        if (Map.ListTiles[i * mapSize + j].GetType() == new Forest().GetType())
+            //        {
+            //            tiles[i * mapSize + j] = Tile.FOREST;
+            //        }
+            //    }
+            //}
 
             foreach (Player player in PlayerList)
             {
                 foreach (Unit u in player.Units)
                 {
-                    u.restore(tiles);
+                    u.restore(this.TabMap);
                 }
             }
+            return this;
         }
 
         /// <summary>
@@ -521,7 +540,7 @@ namespace Small_World
             BinaryFormatter b = new BinaryFormatter();
             Game g = (Game)b.Deserialize(file);
             file.Close();
-            g.restore();
+            restore(g);
 
             return g;
         }

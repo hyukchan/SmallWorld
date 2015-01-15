@@ -33,7 +33,6 @@ namespace IHM
 
         public MainWindow(Game g)
         {
-
             game = g;
             g.PlayerList[1].PropertyChanged += new PropertyChangedEventHandler(update);
             g.PlayerList[0].PropertyChanged += new PropertyChangedEventHandler(update);
@@ -72,6 +71,8 @@ namespace IHM
             showUnitsOnMap();
 
             endTurnButton.Content = "End Turn (" + game.NbRemainingTurns + ")";
+
+            game.saveAs("Test");
 
 
 

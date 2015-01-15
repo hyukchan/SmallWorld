@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Small_World
 {
+    [Serializable()]
     public class TileFactory
     {
         private static TileFactory tileFactory_instance;

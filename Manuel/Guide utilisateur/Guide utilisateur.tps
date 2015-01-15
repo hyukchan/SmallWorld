@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=Guide utilisateur.tex
 
 [Frame0_View0,0]
-TopLine=87
-Cursor=4339
+TopLine=93
+Cursor=4864
 
 [Frame1]
 Flags=0
@@ -32,13 +32,13 @@ NormalPos.top=26
 NormalPos.right=1362
 NormalPos.bottom=433
 Class=LaTeXView
-Document=..\..\..\..\Projet Korrigo\korrigolo\reports\3 - planification\main.tex
+Document=..\..\..\..\Projet Korrigo\korrigolo\reports\2 - specification\input\nouveaute.tex
 
 [Frame1_View0,0]
-TopLine=75
-Cursor=1725
+TopLine=24
+Cursor=0
 
 [SessionInfo]
 FrameCount=2
-ActiveFrame=1
+ActiveFrame=0
 

@@ -12,7 +12,7 @@ namespace Small_World
         List<Tile> build();
     }
 
-    [Serializable]
+    [Serializable()]
     public class BuilderDemoGameBoard : BuilderGameBoard ,StrategyDemoInterface
     {
         public const int NB_TILES_DEMO = 6;
