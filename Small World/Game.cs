@@ -435,6 +435,7 @@ namespace Small_World
                                 ((OrcUnit)best).BonusPt++;
                             }
                             PlayerList[CurrentPlayer].Units.Remove(u);
+                            OnPropertyChanged("Units");
                             PlayerList[CurrentPlayer].GetGamePoints();
                             PlayerList[(CurrentPlayer + 1) % PlayerList.Count].GetGamePoints();
                             checkEndOfGame();
