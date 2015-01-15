@@ -141,6 +141,10 @@ namespace IHM
         /// </summary>
         public void showUnits()
         {
+            var converter = new System.Windows.Media.BrushConverter();
+            Brush activeColor = (Brush)converter.ConvertFromString("#FFFFFF");
+            Brush unactiveColor = (Brush)converter.ConvertFromString("#999999");
+
             int pos = this.listHexa.IndexOf(selectedPolygon);
             int x = pos % this.game.Map.Size;
             int y = pos / this.game.Map.Size;
@@ -158,7 +162,8 @@ namespace IHM
 
                     if (!(u.Position.X == x && u.Position.Y == y))
                     {
-                        unitBox.Opacity = 0.4;
+                        unactiveColor.Opacity = 0.3;
+                        unitBox.unitBoxGrid.Background = unactiveColor;
                     }
 
                     if (selectedTileUnits.Count() > 0 && selectedTileUnits.Contains(u))
@@ -168,8 +173,6 @@ namespace IHM
 
                     if ((selectedUnit == u) || (selectedTileUnits.Count() > 0 && selectedTileUnits[0] == u && selectedUnit == null))
                     {
-                        var converter = new System.Windows.Media.BrushConverter();
-                        Brush activeColor = (Brush)converter.ConvertFromString("#FFFFFF");
                         activeColor.Opacity = 0.7;
                         unitBox.unitBoxGrid.Background = activeColor;
                     }
@@ -407,10 +410,25 @@ namespace IHM
                 int x = pos % this.game.Map.Size;
                 int y = pos / this.game.Map.Size;
 
-                int hasMoved = game.AskToMove(selectedTileUnits[0], x, y);
-                if (hasMoved != 0)
+                bool moved = false;
+                if (selectedUnit.CanMove(x, y))
                 {
-                    selectedTileUnits.Remove(selectedTileUnits[0]);
+                    moved = true;
+                    game.AskToMove(selectedUnit, x, y);
+                }
+
+                if (moved)
+                {
+                    selectedTileUnits.Remove(selectedUnit);
+                }
+
+                if (selectedTileUnits.Count() == 0)
+                {
+                    selectedUnit = null;
+                }
+                else
+                {
+                    selectedUnit = selectedTileUnits[0];
                 }
 
                 showUnits();
