@@ -81,8 +81,6 @@ namespace IHM
             menuImage.MouseEnter += new MouseEventHandler(onMouseEnterMenu);
             menuImage.MouseLeave += new MouseEventHandler(onMouseLeaveMenu);
 
-            game.saveAs("Test");
-
             for (int j = 0; j < mapSize; j++)
             {
                 for (int i = 0; i < mapSize; i++)
@@ -171,12 +169,8 @@ namespace IHM
                         unitBox.unitBoxGrid.Background = unactiveColor;
                     }
 
-                    if (selectedTileUnits.Count() > 0 && selectedTileUnits.Contains(u))
-                    {
-                        unitBox.Opacity = 1;
-                    }
 
-                    if ((selectedUnit == u) || (selectedTileUnits.Count() > 0 && selectedTileUnits[0] == u && selectedUnit == null))
+                    if (selectedUnit == u)
                     {
                         activeColor.Opacity = 0.7;
                         unitBox.unitBoxGrid.Background = activeColor;
@@ -415,7 +409,7 @@ namespace IHM
         /// <param name="e"></param>
         private void mouseRightClickHexaHandler(object sender, MouseButtonEventArgs e)
         {
-            if (selectedTileUnits.Count() > 0)
+            if (selectedTileUnits.Count() > 0 && selectedUnit != null)
             {
                 if (selectedTileUnits.Count() == 1)
                 {
@@ -522,6 +516,29 @@ namespace IHM
         private void onMouseLeaveMenu(object sender, MouseEventArgs e)
         {
             menuImage.Source = new BitmapImage(new Uri("./textures/menu.png", UriKind.Relative));
+        }
+
+        private void onMouseDownMenu(object sender, MouseEventArgs e)
+        {
+            menuPanel.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void onClickResume(object sender, RoutedEventArgs e)
+        {
+            menuPanel.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void onClickExit(object sender, RoutedEventArgs e)
+        {
+            StartWindow s = new StartWindow();
+            s.Show();
+            this.Close();
+        }
+
+        private void onClickSave(object sender, RoutedEventArgs e)
+        {
+            SaveWindow s = new SaveWindow(game);
+            s.Show();
         }
 
         public void update(object sender, PropertyChangedEventArgs e)
