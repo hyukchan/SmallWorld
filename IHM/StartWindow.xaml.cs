@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Small_World;
 
 namespace IHM
 {
@@ -33,9 +34,23 @@ namespace IHM
 
         public void OnClickLoadGame(object sender, RoutedEventArgs e)
         {
-            NewGameWindow newGameWindow = new NewGameWindow();
-            newGameWindow.Show();
-            this.Close();
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            dlg.DefaultExt = ".sw";
+            dlg.Filter = "SmallWorld Files (*.sw)|*.sw";
+
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                GameCreator existingGameCreator = new ExistingGameCreator(filename);
+                Game eg = existingGameCreator.CreateGame();
+                MainWindow main = new MainWindow(eg);
+                main.Show();
+                this.Close();
+            }
         }
     }
 }

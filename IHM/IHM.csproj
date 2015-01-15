@@ -140,10 +140,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="StartScreen.png" />
-    <Resource Include="StartScreen1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Small World\AlgorithmsWrapper\AlgorithmsWrapper.vcxproj">
       <Project>{5ce6f519-8529-4bb1-8922-825eeb8b3af2}</Project>
       <Name>AlgorithmsWrapper</Name>
@@ -185,6 +181,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="textures\save_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="textures\StartScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="textures\unactive_dwarf.png">

@@ -510,7 +510,7 @@ namespace Small_World
         /// <returns></returns>
         public bool saveAs(string filename)
         {
-            using (FileStream file = File.Create(filename))
+            using (FileStream file = File.Create(filename + ".sw"))
             {
                 BinaryFormatter b = new BinaryFormatter();
                 b.Serialize(file, this);
