@@ -4,7 +4,8 @@
         Title="MainWindow"
         Height="700"
         Width="1200"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="textures/ic_launcher.png">
     <Grid>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="textures/game_background2.jpg" AlignmentX="Center" AlignmentY="Top"></ImageBrush>
