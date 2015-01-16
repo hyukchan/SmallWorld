@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=Guide utilisateur.tex
 
 [Frame0_View0,0]
-TopLine=93
-Cursor=4864
+TopLine=0
+Cursor=0
 
 [Frame1]
 Flags=0
