@@ -13,10 +13,6 @@ namespace Small_World
     [Serializable()]
     public class Plain : Tile, PlainInterface
     {
-        public interface PlainInterface
-        {
-
-        }
 
         /// <summary>
         /// Constructeur d'une case "Plaine"

@@ -232,12 +232,7 @@ namespace Small_World
         {
             this.PlayerList[CurrentPlayer].GetGamePoints();
 
-            foreach (Unit u in PlayerList[CurrentPlayer].Units)
-            {
-                u.endTurn();
-            }
-
-            CurrentPlayer = (CurrentPlayer + 1) % PlayerList.Count;
+            this.EndTurn();
             foreach (Unit u in PlayerList[CurrentPlayer].Units)
             {
                 u.newTurn();

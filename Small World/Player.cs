@@ -15,12 +15,6 @@ namespace Small_World
         private string name;
         private List<Unit> units;
 
-        /// <summary>
-        /// Constructeur par défaut d'un joueur
-        /// </summary>
-        public Player()
-        {
-        }
 
         /// <summary>
         /// Constructeur d'un joueur à partir de deux paramètres

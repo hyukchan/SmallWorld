@@ -12,11 +12,18 @@ namespace Small_World
     {
         private static GameMessages instance;
         private List<String> messages;
+
+        /// <summary>
+        /// Constructeur d'un GameMessage
+        /// </summary>
         private GameMessages()
         {
             messages = new List<String>();
         }
 
+        /// <summary>
+        /// Getter du singleton
+        /// </summary>
         public static GameMessages Instance
         {
             get
@@ -29,19 +36,19 @@ namespace Small_World
             }
         }
 
-        public List<string> Messages
-        {
-            get
-            {
-                return messages;
-            }
-        }
-
+        /// <summary>
+        /// Ajoute un message au singleton
+        /// </summary>
+        /// <param name="str">Le message à ajouter</param>
         public void addMessage(String str) {
             messages.Add(str);
             OnPropertyChanged("GameMessages");
         }
 
+        /// <summary>
+        /// Accesseur du dernier message ajouté
+        /// </summary>
+        /// <returns>Le dernier message ajouté au singleton</returns>
         public string getLastMessage()
         {
             return messages[messages.Count() - 1];

@@ -63,7 +63,6 @@
     <Compile Include="PeopleFactory.cs" />
     <Compile Include="Forest.cs" />
     <Compile Include="GameBoard.cs" />
-    <Compile Include="GameBoardFactory.cs" />
     <Compile Include="Mountain.cs" />
     <Compile Include="Orc.cs" />
     <Compile Include="People.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="Tile.cs" />
     <Compile Include="TilesFactory.cs" />
     <Compile Include="Unit.cs" />
-    <Compile Include="View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
