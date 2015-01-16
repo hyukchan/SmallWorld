@@ -60,14 +60,6 @@ namespace Small_World
         }
 
         /// <summary>
-        /// Constructeur du créateur de la partie
-        /// </summary>
-        public GameCreator()
-        {
-            playerList = new List<string>();
-        }
-
-        /// <summary>
         /// Ajoute un joueur à la liste
         /// </summary>
         /// <param name="name">Nom du joueur à ajouter</param>

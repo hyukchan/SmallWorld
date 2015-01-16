@@ -92,24 +92,5 @@ namespace Small_World
                 size = value;
             }
         }
-
-        /// <summary>
-        /// Crée le plateau en fonction de la stratégie
-        /// </summary>
-        public void Create()
-        {
-            Strategy.build();
-        }
-
-        /// <summary>
-        /// Modifie la stratégie à employer
-        /// </summary>
-        /// <param name="b">Le monteur du plateau de taille voulue</param>
-        public void SetStrategy(BuilderGameBoard b)
-        {
-            Strategy = b;
-        }
-
-
     }
 }
