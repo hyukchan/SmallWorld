@@ -32,7 +32,7 @@
 \begin{document}
 	\maketitle
 	\begin{center}
-		\includegraphics[width=0.8\textwidth]{../../IHM/StartScreen.png}~\\[5cm]
+		\includegraphics[width=0.8\textwidth]{../../IHM/textures/StartScreen.png}~\\[5cm]
 	\end{center}
 
 \newpage
@@ -86,26 +86,84 @@ Ce jeu est inspiré de SmallWorld. Il s'agit d'un jeu de stratégie à deux joue
 		\end{figure}
 
 		\newpage\subsubsection{Chargement d'une partie}
-		En cliquant sur le bouton \og Load Game\fg{} vous pourrez choisir la partie à charger. Cet écran est représentée à la Figure \ref{fig:loading}.
+		En cliquant sur le bouton \og Load Game\fg{} vous pourrez choisir la partie à charger. Cet écran est représenté à la Figure \ref{fig:loading}. Les sauvegardes sont effectuées dans le dossier SmallWorld/Small World/IHM/bin/Debug.
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.8\textwidth]{../../IHM/loading.png}
+			\caption{Chargement d'une partie.}
+			\label{fig:loading}
+		\end{figure}
 
-	\subsection{Commandes du jeu}
+
+	\subsection{Interface du jeu}
 	Une fois la partie lancée, l'écran suivant s'affiche :
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.9\textwidth]{../../IHM/partie_lancee.png}
-			\caption{Partie lancée}
+			\includegraphics[width=\textwidth]{../../IHM/partie_lancee.png}
+			\caption{Partie lancée.}
 			\label{fig:debut_partie}
 		\end{figure}
 
-		Les deux joueurs, leur peuple et leurs unités sont représentés de chaque côté de la fenêtre.
-		Le joueur dont le tour est en cours est coloré. Vous pouvez sélectionner une case en effectuant un clic gauche sur une case. Cela sélectionne également les unités présentes sur la case, et les met en valeur. Si plusieurs unités sont présentes sur la case, l'une d'entre elles est sélectionnée au hasard.
-		La sélection d'une unité peut également se faire en cliquant sur les unités sur le côté.
+		\subsubsection{Panneaux latéraux}
+		Les deux joueurs, leur peuple et leurs unités sont représentés de chaque côté de la fenêtre. Les joueurs ont également connaissance de leur nombre de points et d'unités restantes.
+		Le joueur dont le tour est en cours est coloré, et ses unités disponibles également.
 
-		Les déplacements sont possibles après avoir sélectionné une unité. Il faut alors effectuer un clic droit sur la case sur laquelle vous voulez déplacer l'unité.
+		\subsubsection{Carte}
+		Lorsqu'une case est sélectionnée, elle est entourée de blanc. Si la case contient une de vos unités, elle est automatiquement sélectionnée et ses déplacements disponibles sont colorés en jaune. Si elle en contient plusieurs, une seule est sélectionnée, ses déplacements affichés, et les autres unités sur la case sont légèrement colorées.
 
-		Les cases surlignées en jaune représentent des déplacements possibles.
+		\subsubsection{Panneau supérieur}
+		Au-dessus de la carte, le nombre de tours restant avant la fin de la partie est rappelé. C'est également dans ce panneau que les joueurs pourront terminer leur tour en appuyant sur le bouton \og End Turn\fg{}.
 
+		\subsubsection{Panneau inférieur}
+		Ce panneau contient le résumé des dernières actions marquantes. Il affiche entre autres les erreurs effectuées par le joueur courant, les pertes de points de vie lors d'un combat et les décès d'unités.
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.9\textwidth]{../../IHM/info.png}
+			\caption{Informations données par le jeu.}
+			\label{fig:infos}
+		\end{figure}
 
+		Le menu est accessible depuis ce panneau (bouton rond situé à droite de la barre de défilement). Celui-ci ouvre un menu permettant de quitter, savegarder la partie ou reprendre le jeu, comme illustré à la Figure \ref{fig:menu}.
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.9\textwidth]{../../IHM/menu.png}
+			\caption{Menu de pause.}
+			\label{fig:menu}
+		\end{figure}
 
+		\subsubsection{Menu et sauvegarde}
+		Le bouton \og Exit \fg{} renvoie au menu principal permettant de créer ou charger une partie. Le bouton \og Save \fg{} permet de choisir le nom de sa sauvegarde. (voir à la Figure \ref{fig:save})
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.45\textwidth]{../../IHM/save.png}
+			\caption{Menu de sauvegarde.}
+			\label{fig:save}
+		\end{figure}
+
+		Une fenêtre s'ouvre pour indiquer que la sauvegarde a bien été effectuée.
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.45\textwidth]{../../IHM/saveOk.png}
+			\caption{Sauvegarde réussie.}
+			\label{fig:saveOk}
+		\end{figure}
+
+		\newpage\subsubsection{Fin de la partie}
+		La partie se termine quand l'un des deux joueurs n'a plus d'unité ou si le nombre de tours impartis a été joué. Dans ce cas, une fenêtre indiquant l'éventuel vainqueur s'affiche, et propose de quitter le jeu ou de recommencer une partie en retournant au menu d'accueil. Ces choix sont décrits par la Figure \ref{fig:fin}.
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.45\textwidth]{../../IHM/fin.png}
+			\caption{Hyuk-Chan est le vainqueur.}
+			\label{fig:fin}
+		\end{figure}
+
+	\newpage\subsection{Commandes spéciales}
+		\subsubsection{Déplacements}
+		Pour vous déplacer, il vous faut sélectionner une de vos unités. Vous pouvez pour cela effectuer un clic gauche sur la case où se situe l'unité que vous voulez déplacer, ou effectuer un clic gauche directement sur l'unité désirée dans le panneau latéral.
+
+		Si le déplacement n'est pas possible, cela sera indiqué dans le panneau inférieur.
+
+		\subsubsection{Combats}
+		Les combats sont gérés par le jeu. Ils interviennent automatiquement lorsqu'une unité peut se déplacer sur une case contenant des unités adverses, et que ce déplacement est demandé. Les nains ne peuvent cependant pas attaquer une unité à distance, et ce même si les opposants sont sur une case \og Montagne \fg{}.
 
 \end{document}

@@ -12,4 +12,13 @@
 \contentsline {subsection}{\numberline {2.1}Lancement du jeu}{4}{subsection.2.1}
 \contentsline {subsubsection}{\numberline {2.1.1}Nouvelle partie}{4}{subsubsection.2.1.1}
 \contentsline {subsubsection}{\numberline {2.1.2}Chargement d'une partie}{5}{subsubsection.2.1.2}
-\contentsline {subsection}{\numberline {2.2}Commandes du jeu}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}Interface du jeu}{6}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Panneaux lat\IeC {\'e}raux}{6}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Carte}{6}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Panneau sup\IeC {\'e}rieur}{6}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Panneau inf\IeC {\'e}rieur}{6}{subsubsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.5}Menu et sauvegarde}{7}{subsubsection.2.2.5}
+\contentsline {subsubsection}{\numberline {2.2.6}Fin de la partie}{8}{subsubsection.2.2.6}
+\contentsline {subsection}{\numberline {2.3}Commandes sp\IeC {\'e}ciales}{9}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}D\IeC {\'e}placements}{9}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Combats}{9}{subsubsection.2.3.2}
